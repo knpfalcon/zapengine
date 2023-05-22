@@ -14,7 +14,7 @@ extern "C" {
     ZAP_FUNC(void, change_scene, (ZAP_SCENE next_scene));
 
 #ifdef __cplusplus
-    extern "C" }
+}
 #endif
 
 #endif

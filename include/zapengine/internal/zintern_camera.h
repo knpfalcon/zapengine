@@ -21,7 +21,6 @@ extern "C" {
     void _draw_cam_rect();
 
 #ifdef __cplusplus
-    extern "C"
 }
 #endif
 

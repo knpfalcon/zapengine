@@ -27,7 +27,6 @@ extern "C" {
     ZAP_FUNC(void, jump, (ZAP_ACTOR *actor));
 
 #ifdef __cplusplus
-    extern "C"
 }
 #endif
 

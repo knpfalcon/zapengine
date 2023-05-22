@@ -14,7 +14,6 @@ extern "C" {
     ZAP_FUNC(void, zap_restart_music, (void));
 
 #ifdef __cplusplus
-    extern "C"
 }
 #endif
 

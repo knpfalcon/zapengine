@@ -27,7 +27,6 @@ extern "C" {
     void _load_native_graphics(void);
 
 #ifdef __cplusplus
-    extern "C"
 }
 #endif
 

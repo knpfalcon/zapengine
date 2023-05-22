@@ -15,7 +15,6 @@ extern "C" {
     void _check_fps_timer(union ALLEGRO_EVENT *event);
 
 #ifdef __cplusplus
-    extern "C"
 }
 #endif
 

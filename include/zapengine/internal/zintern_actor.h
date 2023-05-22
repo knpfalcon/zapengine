@@ -58,7 +58,6 @@ extern "C" {
     void _update_actors();
 
 #ifdef __cplusplus
-    extern "C"
 }
 #endif
 

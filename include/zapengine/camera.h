@@ -10,7 +10,6 @@ extern "C" {
     ZAP_FUNC(bool, is_point_in_view, (int x, int y, int w, int h));
 
 #ifdef __cplusplus
-    extern "C"
 }
 #endif
 

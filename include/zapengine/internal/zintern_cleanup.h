@@ -10,7 +10,6 @@ extern "C" {
     void _exit_cleanup(void);
 
 #ifdef __cplusplus
-    extern "C"
 }
 #endif
 

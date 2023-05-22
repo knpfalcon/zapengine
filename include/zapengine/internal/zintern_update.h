@@ -10,7 +10,6 @@ extern "C" {
     void _update_logic(void);
 
 #ifdef __cplusplus
-    extern "C"
 }
 #endif
 

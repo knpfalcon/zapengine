@@ -24,7 +24,6 @@ extern "C" {
     void _destroy_sample(ZAP_SAMPLE *sample);
 
 #ifdef __cplusplus
-    extern "C"
 }
 #endif
 

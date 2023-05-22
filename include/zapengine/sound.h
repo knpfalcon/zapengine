@@ -1,14 +1,11 @@
 #ifndef SOUND_H
 #define SOUND_H
 
-#include <allegro5/allegro.h>
-#include <allegro5/allegro_audio.h>
+#include "base.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#include "base.h"
 
 #define INTERUPT_NONE 0
 #define INTERUPT_SELF 1
@@ -22,7 +19,6 @@ extern "C" {
     ZAP_FUNC(void, load_sample, (ZAP_SAMPLE *sample, const char *filename));
 
 #ifdef __cplusplus
-    extern "C"
 }
 #endif
 

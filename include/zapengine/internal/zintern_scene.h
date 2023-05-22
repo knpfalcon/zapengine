@@ -19,7 +19,6 @@ extern "C" {
     } ZAP_SCENE;
 
 #ifdef __cplusplus
-    extern "C"
 }
 #endif
 

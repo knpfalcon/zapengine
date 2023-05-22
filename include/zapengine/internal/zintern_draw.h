@@ -11,7 +11,7 @@ extern "C" {
     void _draw_splash_screen(void);
 
 #ifdef __cplusplus
-    extern "C"
+
 }
 #endif
 

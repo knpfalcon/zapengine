@@ -11,7 +11,6 @@ extern "C" {
     void _set_actor_points(ZAP_ACTOR *actor);
 
 #ifdef __cplusplus
-    extern "C"
 }
 #endif
 

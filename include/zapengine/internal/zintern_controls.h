@@ -28,7 +28,6 @@ extern "C" {
     void _check_player_controls(void);
 
 #ifdef __cplusplus
-    extern "C"
 }
 #endif
 

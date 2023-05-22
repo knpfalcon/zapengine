@@ -27,7 +27,6 @@ extern "C" {
     void _reset_music_device(void);
 
 #ifdef __cplusplus
-    extern "C"
 }
 #endif
 

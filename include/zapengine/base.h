@@ -16,7 +16,6 @@ extern "C" {
 #define ZAP_FUNCPTR(type, name, args)         extern _ZAP_DLL type (*name) args
 
 #ifdef __cplusplus
-    extern "C"
 }
 #endif
 
