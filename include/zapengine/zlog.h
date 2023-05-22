@@ -1,5 +1,7 @@
-#ifndef _ZLOG_H
-#define _ZLOG_H
+#ifndef ZLOG_H
+#define ZLOG_H
+
+#include "base.h"
 
 #ifdef __cplusplus
 extern "C" {

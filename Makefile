@@ -26,14 +26,61 @@ _SRC = \
 SRC = $(patsubst %,$(SRCDIR)/%,$(_SRC))
 
 _DEPS = \
-base.h \
-zlog.h \
+internal\zintern_actor.h \
+internal\zintern_adlib.h \
+internal\zintern_bitmap.h \
+internal\zintern_camera.h \
+internal\zintern_cleanup.h \
+internal\zintern_collision.h \
+internal\zintern_controls.h \
+internal\zintern_draw.h \
+internal\zintern_events.h \
+internal\zintern_game.h \
+internal\zintern_graphics.h \
+internal\zintern_init.h \
+internal\zintern_movement.h \
+internal\zintern_scene.h \
+internal\zintern_sound.h \
+internal\zintern_update.h \
 actor.h \
-internal/zintern_actor.h
+adlib.h \
+base.h \
+bitmap.h \
+camera.h \
+cleanup.h \
+collision.h \
+controls.h \
+draw.h \
+events.h \
+game.h \
+graphics.h \
+init.h \
+movement.h \
+scene.h \
+sound.h \
+update.h \
+zapengine.h \
+zlog.h
 
 _OBJ = \
-zlog.o \
-actor.o
+actor.o \
+adlib.o \
+bitmap.o \
+camera.o \
+cleanup.o \
+collision.o \
+controls.o \
+draw.o \
+events.o \
+game.o \
+graphics.o \
+init.o \
+movement.o \
+scene.o \
+sound.o \
+update.o \
+zapengine.o \
+zlog.o
 
 
 #Headers
@@ -46,8 +93,9 @@ OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 demo : zapengine
 	@cd $(BUILDDIR) && @mkdir demo > nul 2>&1 || (exit 0)
-	$(CC) -I./build/zapengine/include -L./build/zapengine/lib demo/main.c -o build/demo/demo.exe -lzapengine -DDEBUG -DZLOG_ON
-	@robocopy ./build/zapengine/bin/ ./build/demo zapengine.dll
+	$(CC) -I./build/zapengine/include -L./build/zapengine/lib demo/main.c -o build/demo/demo.exe -lzapengine
+	@robocopy ./build/zapengine/bin/ ./build/demo zapengine.dll || (exit 0)
+
 zapengine: $(DLLDIR)/$(DLL)
 
 $(DLLDIR)/$(DLL): $(OBJ)

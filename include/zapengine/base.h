@@ -1,9 +1,10 @@
-#ifndef _BASE_H
-#define _BASE_H
+#ifndef BASE_H
+#define BASE_H
 
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdarg.h>
+
 
 #define _ZAP_DLL   __declspec(dllimport)
 
