@@ -92,6 +92,8 @@ OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 demo : zapengine
 	@cd $(BUILDDIR) && @mkdir demo > nul 2>&1 || (exit 0)
+	@cd demo && GenerateDataHeader.bat
+	@cd demo && MakeDatafile.bat
 	$(CC) $(CFLAGS) -I./build/zapengine/include -L./build/zapengine/lib demo/main.c -o build/demo/demo.exe -lzapengine
 	@robocopy ./build/zapengine/bin/ ./build/demo zapengine.dll || (exit 0)
 
@@ -111,3 +113,4 @@ $(ODIR)/%.o: $(SRC) $(DEPS)
 
 clean:
 	@if exist $(BUILDDIR) rmdir /Q /S $(BUILDDIR)
+	@cd demo && del data.h

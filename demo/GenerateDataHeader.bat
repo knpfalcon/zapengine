@@ -50,8 +50,3 @@ echo: >> data.h
 
 echo #endif >> data.h
 
-echo Moving data.h
-robocopy . src data.h
-
-del data.h
-

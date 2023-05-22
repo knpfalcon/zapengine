@@ -35,7 +35,7 @@ for /R "assets/MAP" %%f in (*.map) do (
 
 rmdir /Q /S data
 
-robocopy . bin %CurrDirName%.vol
+robocopy . ../build/demo %CurrDirName%.vol
 
 del %CurrDirName%.vol
 
