@@ -8,7 +8,6 @@
 #include "zapengine/internal/zintern_cleanup.h"
 #include "zapengine/internal/zintern_adlib.h"
 #include "zapengine/internal/zintern_sound.h"
-#include "../data.h"
 
 static void allegro_init(void);
 
@@ -112,11 +111,11 @@ static void allegro_init(void)
     }
 
     //Load Datafile
-    if (!PHYSFS_mount(DATAFILE_NAME, NULL, 1))
+   /*  if (!PHYSFS_mount(DATAFILE_NAME, NULL, 1)) //DATAFILE needs to be passed in from end-user
     {
         zlog("Problem loading %s!", DATAFILE_NAME);
         exit(1);
-    }
+    } */
 
     al_set_physfs_file_interface();
 

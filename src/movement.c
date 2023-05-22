@@ -1,11 +1,10 @@
-#include "zapengine/internal/zintern_movement.h""
+#include "zapengine/internal/zintern_movement.h"
 
 void move_right(ZAP_ACTOR *actor)
 {
     actor->dir = DIR_RIGHT;
     actor->x += actor->vel_x;
     set_actor_points(actor);
-
 }
 
 void move_left(ZAP_ACTOR *actor)

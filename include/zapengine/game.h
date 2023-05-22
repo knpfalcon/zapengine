@@ -10,15 +10,9 @@
 #include <allegro5/allegro_acodec.h>
 #include <allegro5/allegro_physfs.h>
 #include <physfs.h>
-
 #include "scene.h"
 
-/*
-*   These structs are for better organizations of shared/global data
-*   if it ever needs passed, a reference to one struct will be easier
-*/
-
-typedef struct
+typedef struct ZAP_GAME
 {
     bool done;
     bool redraw;
@@ -35,11 +29,11 @@ typedef struct
     ALLEGRO_TIMER *update_timer;
     ALLEGRO_BITMAP *view;
 
-    t_scene current_scene;
+    ZAP_SCENE current_scene;
 
-} t_game;
+} ZAP_GAME;
 
-extern t_game game;
+extern ZAP_GAME game;
 
 void main_event_loop(void);
 

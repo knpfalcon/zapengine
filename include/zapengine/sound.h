@@ -15,17 +15,17 @@ typedef struct
     float vol;
 }t_sound;
 
-typedef struct
+typedef struct ZAP_SAMPLE
 {
     ALLEGRO_SAMPLE_ID id;
     ALLEGRO_SAMPLE *sample;
-} t_sample;
+} ZAP_SAMPLE;
 
 extern t_sound sound;
 
 void init_sound(float vol);
-void play_sound(t_sample *sample, int interupt);
-void load_sample(t_sample *sample, const char *filename);
-void destroy_sample(t_sample *sample);
+void play_sound(ZAP_SAMPLE *sample, int interupt);
+void load_sample(ZAP_SAMPLE *sample, const char *filename);
+void destroy_sample(ZAP_SAMPLE *sample);
 
 #endif

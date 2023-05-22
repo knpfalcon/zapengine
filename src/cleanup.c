@@ -1,7 +1,6 @@
 #include <allegro5/allegro.h>
 #include <adlmidi.h>
-
-#include "zapengine/zutil.h"
+#include "zapengine/zlog.h"
 #include "zapengine/internal/zintern_game.h"
 #include "zapengine/internal/zintern_adlib.h"
 

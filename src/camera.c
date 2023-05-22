@@ -1,8 +1,6 @@
 #include <stdbool.h>
-
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
-
 #include "zapengine/internal/zintern_camera.h"
 
 t_camera cam;

@@ -3,7 +3,7 @@
 
 #define SCENE_NAME_MAX 32
 
-typedef struct s_scene
+typedef struct ZAP_SCENE
 {
     char *name;
     void(*init)(void);
@@ -12,8 +12,8 @@ typedef struct s_scene
     void(*destroy)(void);
     void(*on_key_down)(int keycode);
     void(*on_key_up)(int keycode);
-}t_scene;
+} ZAP_SCENE;
 
-void change_scene(t_scene next_scene);
+void change_scene(ZAP_SCENE next_scene);
 
 #endif

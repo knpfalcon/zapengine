@@ -1,10 +1,3 @@
-/*
-*
-*   Redraw the screen!
-*   This is where the screen is redrawn based on logic updates.
-*
-*/
-
 #include <allegro5/allegro.h>
 #include "zapengine/internal/zintern_draw.h"
 #include "zapengine/internal/zintern_game.h"

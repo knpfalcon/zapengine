@@ -11,14 +11,14 @@ typedef struct
     struct ALLEGRO_BITMAP *loading;
 } t_global_graphic;
 
-typedef struct
+typedef struct ZAP_ACTOR_GFX
 {
     struct ALLEGRO_BITMAP *atlas;
     struct ALLEGRO_BITMAP *frames[MAX_FRAMES];
-} t_actor_graphic;
+} ZAP_ACTOR_GFX;
 
 extern t_global_graphic gfx_global;
-extern t_actor_graphic gfx_test_actor;
+extern ZAP_ACTOR_GFX gfx_test_actor;
 
 void load_actor_graphics(void);
 void destroy_actor_graphics(void);

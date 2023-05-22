@@ -1,8 +1,8 @@
-#include "zapengine/zlog.h""
+#include "zapengine/zlog.h"
 #include "zapengine/internal/zintern_graphics.h"
 #include "zapengine/internal/zintern_bitmap.h"
 
-t_actor_graphic gfx_test_actor;
+ZAP_ACTOR_GFX gfx_test_actor;
 t_global_graphic gfx_global;
 
 void load_actor_graphics(void)

@@ -1,10 +1,10 @@
-#include "scene_intern.h"
-#include "game_intern.h"
-#include "zutil.h"
-#include "draw_intern.h"
+#include "zapengine/zlog.h"
+#include "zapengine/internal/zintern_scene.h"
+#include "zapengine/internal/zintern_game.h"
+#include "zapengine/internal/zintern_draw.h"
 
 
-void change_scene(t_scene next_scene)
+void change_scene(ZAP_SCENE next_scene)
 {
     draw_loading_screen();
     zlog("Changing Scene from %s to %s", game.current_scene.name ? game.current_scene.name : "noname", next_scene.name ? next_scene.name : "noname");

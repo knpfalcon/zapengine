@@ -79,7 +79,6 @@ movement.o \
 scene.o \
 sound.o \
 update.o \
-zapengine.o \
 zlog.o
 
 

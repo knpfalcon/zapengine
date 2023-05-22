@@ -1,14 +1,10 @@
 #include "zapengine/zlog.h"
 #include "zapengine/internal/zintern_game.h"
 #include "zapengine/internal/zintern_bitmap.h"
-#include "zapengine/internal/zintern_init.h""
-#include "zapengine/internal/zintern_events.h""
+#include "zapengine/internal/zintern_init.h"
+#include "zapengine/internal/zintern_events.h"
 
-/*Globals*/
-t_game game;            //Shared globals struct for game related variables
-
-/* Static functions */
-
+ZAP_GAME game; //Shared globals struct for game related variables
 
 /****************************
 *                           *

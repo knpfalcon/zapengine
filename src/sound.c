@@ -1,8 +1,8 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_audio.h>
 
-#include "sound_intern.h"
-#include "zutil.h"
+#include "zapengine/zlog.h"
+#include "zapengine/internal/zintern_sound.h"
 
 t_sound sound;
 
@@ -11,7 +11,7 @@ void init_sound(float vol)
     sound.vol = vol;
 }
 
-void play_sound(t_sample *sample, int interupt)
+void play_sound(ZAP_SAMPLE *sample, int interupt)
 {
     if (interupt == INTERUPT_ALL)
         al_stop_samples();
@@ -22,7 +22,7 @@ void play_sound(t_sample *sample, int interupt)
 }
 
 
-void load_sample(t_sample *sample, const char *filename)
+void load_sample(ZAP_SAMPLE *sample, const char *filename)
 {
     sample->sample = al_load_sample(filename);
     if (!sample->sample)
@@ -33,7 +33,7 @@ void load_sample(t_sample *sample, const char *filename)
     zlog("Sample %s loaded.", filename);
 }
 
-void destroy_sample(t_sample *sample)
+void destroy_sample(ZAP_SAMPLE *sample)
 {
     al_destroy_sample(sample->sample);
     sample->sample = NULL;
