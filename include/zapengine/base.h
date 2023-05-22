@@ -1,10 +1,11 @@
 #ifndef BASE_H
 #define BASE_H
 
-#include <stdio.h>
-#include <stdbool.h>
-#include <stdarg.h>
+#include "base.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define _ZAP_DLL   __declspec(dllimport)
 
@@ -13,5 +14,10 @@
 #define ZAP_FUNC(type, name, args)            extern type name args
 #define ZAP_METHOD(type, name, args)          type (*name) args
 #define ZAP_FUNCPTR(type, name, args)         extern _ZAP_DLL type (*name) args
+
+#ifdef __cplusplus
+    extern "C"
+}
+#endif
 
 #endif

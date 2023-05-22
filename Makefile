@@ -16,7 +16,7 @@ SRCDIR = src
 INCLUDEDIR = include/zapengine
 ODIR = $(BUILDDIR)/obj
 
-CFLAGS_DLL = -Wall -O3 -g -shared -Wl,--subsystem,windows,--out-implib,$(LIBDIR)/libzapengine.a
+CFLAGS_DLL = -Wall -O3 -g -shared -Wl,--subsystem,windows,--out-implib,$(LIBDIR)/libzapengine.a -DDEBUG -DZLOG_ON
 
 #Source files.
 _SRC = \
@@ -92,7 +92,7 @@ OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 demo : zapengine
 	@cd $(BUILDDIR) && @mkdir demo > nul 2>&1 || (exit 0)
-	$(CC) -I./build/zapengine/include -L./build/zapengine/lib demo/main.c -o build/demo/demo.exe -lzapengine
+	$(CC) $(CFLAGS) -I./build/zapengine/include -L./build/zapengine/lib demo/main.c -o build/demo/demo.exe -lzapengine
 	@robocopy ./build/zapengine/bin/ ./build/demo zapengine.dll || (exit 0)
 
 zapengine: $(DLLDIR)/$(DLL)

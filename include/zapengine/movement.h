@@ -1,7 +1,12 @@
 #ifndef MOVEMENT_H
 #define MOVEMENT_H
 
+#include "base.h"
 #include "actor.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define VEL_X_DEFAULT 1
 #define VEL_Y_DEFAULT 1
@@ -14,12 +19,18 @@
 #define DIR_LEFT 2
 #define DIR_UP 3
 
-void move_right(ZAP_ACTOR *actor);
-void move_left(ZAP_ACTOR *actor);
-void move_up(ZAP_ACTOR *actor);
-void move_down(ZAP_ACTOR *actor);
-void apply_gravity(ZAP_ACTOR *actor);
-void jump(ZAP_ACTOR *actor);
-void set_actor_points(ZAP_ACTOR *actor);
+    void move_right(ZAP_ACTOR *actor);
+    void move_left(ZAP_ACTOR *actor);
+    void move_up(ZAP_ACTOR *actor);
+    void move_down(ZAP_ACTOR *actor);
+    void apply_gravity(ZAP_ACTOR *actor);
+    void jump(ZAP_ACTOR *actor);
+    void set_actor_points(ZAP_ACTOR *actor);
+
+#ifdef __cplusplus
+    extern "C"
+}
+#endif
+
 
 #endif

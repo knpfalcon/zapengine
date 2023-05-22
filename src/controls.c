@@ -1,3 +1,4 @@
+#include <allegro5/allegro.h>
 #include "zapengine/zlog.h"
 #include "zapengine/internal/zintern_controls.h"
 

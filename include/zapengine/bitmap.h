@@ -1,10 +1,18 @@
 #ifndef BITMAP_H
 #define BITMAP_H
 
-#include <allegro5/allegro.h>
-#include <allegro5/allegro_image.h>
+#include "base.h"
 
-ALLEGRO_BITMAP *load_bitmap(const char *filename);
-ALLEGRO_BITMAP *create_bitmap(int w, int h, const char *name);
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+    struct ALLEGRO_BITMAP *load_bitmap(const char *filename);
+    struct ALLEGRO_BITMAP *create_bitmap(int w, int h, const char *name);
+
+#ifdef __cplusplus
+    extern "C"
+}
+#endif
 
 #endif

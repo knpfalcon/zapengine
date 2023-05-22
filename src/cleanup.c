@@ -1,5 +1,7 @@
-#include <allegro5/allegro.h>
 #include <adlmidi.h>
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_audio.h>
+#include <physfs.h>
 #include "zapengine/zlog.h"
 #include "zapengine/internal/zintern_game.h"
 #include "zapengine/internal/zintern_adlib.h"

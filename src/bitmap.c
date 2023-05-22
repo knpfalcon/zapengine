@@ -1,3 +1,6 @@
+
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_image.h>
 #include "zapengine/zlog.h"
 #include "zapengine/internal/zintern_bitmap.h"
 

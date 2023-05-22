@@ -1,11 +1,15 @@
 
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdarg.h>
 #include "zapengine/base.h"
 #include "zapengine/zlog.h"
 
-// Quick logging to file when JLOG_ON is defined. A good replacement for printf.
+#ifdef ZLOG_ON
+// Quick logging to file when ZLOG_ON is defined. A good replacement for printf.
 void zlog(const char *format, ...)
 {
-#ifdef ZLOG_ON
+
     static bool erase_log = true;
     va_list v_ptr;
     FILE *fp;
@@ -26,5 +30,5 @@ void zlog(const char *format, ...)
         fclose(fp);
     }
     erase_log = false;
-#endif
 }
+#endif

@@ -1,6 +1,17 @@
 #ifndef CLEANUP_H
 #define CLEANUP_H
 
-void exit_cleanup(void);
+#include "base.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+    void exit_cleanup(void);
+
+#ifdef __cplusplus
+    extern "C"
+}
+#endif
 
 #endif

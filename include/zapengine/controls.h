@@ -1,24 +1,35 @@
 #ifndef CONTROLS_H
 #define CONTROLS_H
 
-#include <allegro5/allegro.h>
+#include "base.h"
 
-typedef struct
-{
-    bool key_state[ALLEGRO_KEY_MAX];
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-    int key_fire;
-    int key_jump;
-    int key_left;
-    int key_right;
-    int key_up;
-    int key_down;
+#define ZAP_KEY_MAX 227
 
-}t_controls;
+    typedef struct
+    {
+        bool key_state[ZAP_KEY_MAX];
 
-extern t_controls controls;
+        int key_fire;
+        int key_jump;
+        int key_left;
+        int key_right;
+        int key_up;
+        int key_down;
 
-void init_controls(void);
-void check_player_controls(void);
+    }t_controls;
+
+    extern t_controls controls;
+
+    void init_controls(void);
+    void check_player_controls(void);
+
+#ifdef __cplusplus
+    extern "C"
+}
+#endif
 
 #endif
