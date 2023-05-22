@@ -18,8 +18,8 @@ extern "C" {
 
     typedef struct ZAP_SAMPLE ZAP_SAMPLE;
 
-    void play_sound(ZAP_SAMPLE *sample, int interupt);
-    void load_sample(ZAP_SAMPLE *sample, const char *filename);
+    ZAP_FUNC(void, play_sound, (ZAP_SAMPLE *sample, int interupt));
+    ZAP_FUNC(void, load_sample, (ZAP_SAMPLE *sample, const char *filename));
 
 #ifdef __cplusplus
     extern "C"
