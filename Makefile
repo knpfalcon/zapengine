@@ -55,7 +55,7 @@ $(DLLDIR)/$(DLL): $(OBJ)
 	@cd $(BUILDDIR) && @cd zapengine && @mkdir bin > nul 2>&1 || (exit 0)
 	@cd $(BUILDDIR) && @cd zapengine && @mkdir lib > nul 2>&1 || (exit 0)
 	$(CC) -shared $^ $(CFLAGS_DLL) $(LIBS) -o $@
-	@Xcopy include\zapengine $(BUILDDIR)\zapengine\include\zapengine\ /H /C /I
+	@Xcopy include\zapengine $(BUILDDIR)\zapengine\include\zapengine\ /H /C /I /Y
 
 $(ODIR)/%.o: $(SRC) $(DEPS)
 	@mkdir $(BUILDDIR) > nul 2>&1 || (exit 0)

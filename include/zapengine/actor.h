@@ -1,8 +1,6 @@
 #ifndef _ACTOR_H
 #define _ACTOR_H
 
-#include <stdbool.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif
