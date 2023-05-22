@@ -1,6 +1,7 @@
 #include <adlmidi.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_font.h>
 #include <physfs.h>
 #include "zapengine/zlog.h"
 #include "zapengine/internal/zintern_game.h"
@@ -15,6 +16,9 @@ void _exit_cleanup(void)
 
     al_destroy_bitmap(game.view);
     zlog("Destroy Game View Bitmap");
+
+    al_destroy_font(game.sys_font);
+    zlog("Destroy System Font");
 
     al_destroy_timer(game.update_timer);
     zlog("Destroy Timer");

@@ -53,9 +53,11 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
         exit(1);
     }
 
+    game.sys_font = al_create_builtin_font();
+
     _load_native_graphics();
 
-    _draw_loading_screen();
+    _draw_splash_screen();
 
     //register cleanup atexit functions
     if (atexit(_exit_cleanup) != 0)

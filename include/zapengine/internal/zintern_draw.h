@@ -8,7 +8,7 @@ extern "C" {
 #endif
 
     void _draw_screen(void);
-    void _draw_loading_screen(void);
+    void _draw_splash_screen(void);
 
 #ifdef __cplusplus
     extern "C"
