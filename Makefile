@@ -88,7 +88,7 @@ DEPS = $(patsubst %,$(INCLUDEDIR)/%,$(_DEPS))
 #Object files - Add object files that correspond to source files
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
-.PHONY: zapengine demo clean
+.PHONY: zapengine demo clean run
 
 demo : zapengine
 	@cd $(BUILDDIR) && @mkdir demo > nul 2>&1 || (exit 0)
@@ -114,3 +114,6 @@ $(ODIR)/%.o: $(SRC) $(DEPS)
 clean:
 	@if exist $(BUILDDIR) rmdir /Q /S $(BUILDDIR)
 	@cd demo && del data.h
+
+run:
+	@cd build/demo && demo.exe
