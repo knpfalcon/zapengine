@@ -58,12 +58,12 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
     _draw_loading_screen();
 
     //register cleanup atexit functions
-   /*  if (atexit(_exit_cleanup) != 0)
+    if (atexit(_exit_cleanup) != 0)
         zlog("Failed to register _exit_cleanup for atexit()");
     else
-        zlog("Registered _exit_cleanup for atexit()"); */
+        zlog("Registered _exit_cleanup for atexit()");
 
-        //Assign keys
+    //Assign keys
     _init_controls();
 
     al_set_target_bitmap(game.view);
@@ -76,7 +76,7 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
 
     //Entering the Main Game Loop
     game.done = false;
-    main_event_loop();
+    _main_event_loop();
 
     zlog("Breaking from main loop.");
 }
@@ -84,7 +84,7 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
 /* Initialize Allegro Stuff */
 static void allegro_init(void)
 {
-    if (!al_init())
+    if (!al_install_system(ALLEGRO_VERSION_INT, NULL)) //because this is a shared library
     {
         zlog("Problem initializing Allegro!");
         exit(1);

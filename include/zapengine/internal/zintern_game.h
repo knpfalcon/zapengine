@@ -32,6 +32,8 @@ extern "C" {
 
     extern ZAP_GAME game;
 
+    void _main_event_loop(void);
+
 #ifdef __cplusplus
     extern "C"
 }

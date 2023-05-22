@@ -21,7 +21,7 @@ ZAP_GAME game; //Shared globals struct for game related variables
 *         MAIN LOOP         *
 *                           *
 *****************************/
-void main_event_loop(void)
+void _main_event_loop(void)
 {
     ALLEGRO_EVENT event;
     while (!game.done)

@@ -22,9 +22,6 @@ void _exit_cleanup(void)
     al_destroy_event_queue(game.event_queue);
     zlog("Destroy Event Queue");
 
-    al_destroy_display(game.display);
-    zlog("Destroy Display");
-
     al_destroy_audio_stream(music.stream);
     zlog("Destroy audio music.stream");
 
@@ -33,4 +30,6 @@ void _exit_cleanup(void)
 
     PHYSFS_deinit();
     zlog("De-initialize PhysFS");
+
+
 }
