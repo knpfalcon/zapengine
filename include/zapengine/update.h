@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 
-    void update_logic(void);
 
 #ifdef __cplusplus
     extern "C"

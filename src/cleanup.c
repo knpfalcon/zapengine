@@ -6,7 +6,7 @@
 #include "zapengine/internal/zintern_game.h"
 #include "zapengine/internal/zintern_adlib.h"
 
-void exit_cleanup(void)
+void _exit_cleanup(void)
 {
     //Not really needed, but calling them anyway for good practice.
 

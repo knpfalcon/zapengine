@@ -8,7 +8,7 @@
 #include "zapengine/internal/zintern_adlib.h"
 #include "zapengine/internal/zintern_sound.h"
 
-void check_misc_events(ALLEGRO_EVENT *event)
+void _check_misc_events(ALLEGRO_EVENT *event)
 {
     if (event->type == ALLEGRO_EVENT_DISPLAY_CLOSE)
     {
@@ -17,7 +17,7 @@ void check_misc_events(ALLEGRO_EVENT *event)
     }
 }
 
-void check_keyboard_events(ALLEGRO_EVENT *event)
+void _check_keyboard_events(ALLEGRO_EVENT *event)
 {
     if (event->type == ALLEGRO_EVENT_KEY_DOWN)
     {
@@ -44,18 +44,18 @@ void check_keyboard_events(ALLEGRO_EVENT *event)
     }
 }
 
-void check_bgm_audio_stream(ALLEGRO_EVENT *event)
+void _check_bgm_audio_stream(ALLEGRO_EVENT *event)
 {
     if (music.is_playing)
     {
         if (event->type == ALLEGRO_EVENT_AUDIO_STREAM_FRAGMENT)
         {
-            stream_opl();
+            _stream_opl();
         }
     }
 }
 
-void check_fps_timer(ALLEGRO_EVENT *event)
+void _check_fps_timer(ALLEGRO_EVENT *event)
 {
 
     if (event->type == ALLEGRO_EVENT_TIMER)
@@ -65,7 +65,7 @@ void check_fps_timer(ALLEGRO_EVENT *event)
             ++game.ticks;
             if (game.ticks == 1)
             {
-                update_logic();
+                _update_logic();
             }
             game.redraw = true;
         }
@@ -75,7 +75,7 @@ void check_fps_timer(ALLEGRO_EVENT *event)
     {
         game.redraw = false;
 
-        draw_screen();
+        _draw_screen();
 
         game.ticks = 0;
     }

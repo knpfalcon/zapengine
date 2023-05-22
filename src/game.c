@@ -27,9 +27,9 @@ void main_event_loop(void)
     while (!game.done)
     {
         al_wait_for_event(game.event_queue, &event);
-        check_misc_events(&event);
-        check_keyboard_events(&event);
-        check_bgm_audio_stream(&event);
-        check_fps_timer(&event);
+        _check_misc_events(&event);
+        _check_keyboard_events(&event);
+        _check_bgm_audio_stream(&event);
+        _check_fps_timer(&event);
     }
 }

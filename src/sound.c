@@ -4,9 +4,9 @@
 #include "zapengine/zlog.h"
 #include "zapengine/internal/zintern_sound.h"
 
-t_sound sound;
+ZAP_SOUND sound;
 
-void init_sound(float vol)
+void _init_sound(float vol)
 {
     sound.vol = vol;
 }
@@ -33,7 +33,7 @@ void load_sample(ZAP_SAMPLE *sample, const char *filename)
     zlog("Sample %s loaded.", filename);
 }
 
-void destroy_sample(ZAP_SAMPLE *sample)
+void _destroy_sample(ZAP_SAMPLE *sample)
 {
     al_destroy_sample(sample->sample);
     sample->sample = NULL;

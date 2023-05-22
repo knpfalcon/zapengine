@@ -2,9 +2,9 @@
 #include "zapengine/zlog.h"
 #include "zapengine/internal/zintern_controls.h"
 
-t_controls controls;
+ZAP_CONTROLS controls;
 
-void init_controls(void)
+void _init_controls(void)
 {
     controls.key_fire = ALLEGRO_KEY_X;
     controls.key_jump = ALLEGRO_KEY_Z;
@@ -14,7 +14,7 @@ void init_controls(void)
     controls.key_down = ALLEGRO_KEY_DOWN;
 }
 
-void check_player_controls(void)
+void _check_player_controls(void)
 {
 
 }

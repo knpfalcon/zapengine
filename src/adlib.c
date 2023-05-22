@@ -7,9 +7,9 @@
 #include "zapengine/internal/zintern_adlib.h"
 #include "zapengine/internal/zintern_game.h"
 
-t_adlib music;
+ZAP_OPL_PLAYER music;
 
-void stream_opl()
+void _stream_opl()
 {
     music.opl_buffer = al_get_audio_stream_fragment(music.stream);
 
@@ -32,7 +32,7 @@ void stream_opl()
     }
 }
 
-void adlmidi_init(void)
+void _adlmidi_init(void)
 {
     music.is_playing = false;
     music.vol = 1.0f;
@@ -63,9 +63,9 @@ void adlmidi_init(void)
     zlog("Music Device Reset.");
 }
 
-void open_music_file(const char *filename)
+void zap_load_music_file(const char *filename)
 {
-    pause_music();
+    zap_pause_music();
     PHYSFS_file *musfile = PHYSFS_openRead(filename);
     char *buffer = malloc(PHYSFS_fileLength(musfile));
 
@@ -78,34 +78,34 @@ void open_music_file(const char *filename)
     PHYSFS_close(musfile);
 }
 
-void play_music(void)
+void zap_play_music(void)
 {
     adl_positionRewind(music.midi_player);
     al_set_audio_stream_playing(music.stream, true);
     music.is_playing = true;
 }
 
-void pause_music(void)
+void zap_pause_music(void)
 {
     al_set_audio_stream_playing(music.stream, false);
     music.is_playing = false;
 }
 
-void resume_music(void)
+void zap_resume_music(void)
 {
     al_set_audio_stream_playing(music.stream, true);
     music.is_playing = true;
 }
 
-void restart_music(void)
+void zap_restart_music(void)
 {
     adl_positionRewind(music.midi_player);
     music.is_playing = true;
 }
 
-void reset_music_device(void)
+void _reset_music_device(void)
 {
     al_destroy_audio_stream(music.stream);
     adl_close(music.midi_player);
-    adlmidi_init();
+    _adlmidi_init();
 }

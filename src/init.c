@@ -20,10 +20,18 @@
 
 static void allegro_init(void);
 
+char *DATAFILE_NAME;
+
 /*  Called from entry point main. Startup happens here. */
-void game_begin(int fps, int window_w, int window_h)
+void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile)
 {
     zlog("Begin.");
+    if (!PHYSFS_init(argv0))
+    {
+        zlog("Problem initializing PhysFS!");
+        exit(1);
+    }
+    DATAFILE_NAME = datafile;
 
     game.fps = fps;
     zlog("Frames Per Second: %d", game.fps);
@@ -38,30 +46,30 @@ void game_begin(int fps, int window_w, int window_h)
     allegro_init();
 
     //Bitmaps
-    game.view = create_bitmap(320, 200, "game.view");
+    game.view = _create_bitmap(320, 200, "game.view");
     if (!game.view)
     {
         zlog("Couldn't create game.view");
         exit(1);
     }
 
-    load_global_graphics();
+    _load_native_graphics();
 
-    draw_loading_screen();
+    _draw_loading_screen();
 
     //register cleanup atexit functions
-    if (atexit(exit_cleanup) != 0)
-        zlog("Failed to register exit_cleanup for atexit()");
+   /*  if (atexit(_exit_cleanup) != 0)
+        zlog("Failed to register _exit_cleanup for atexit()");
     else
-        zlog("Registered exit_cleanup for atexit()");
+        zlog("Registered _exit_cleanup for atexit()"); */
 
-    //Assign keys
-    init_controls();
+        //Assign keys
+    _init_controls();
 
     al_set_target_bitmap(game.view);
 
     //Initialize sound sample stuff
-    init_sound(0.5f);
+    _init_sound(0.5f);
 
     //Load first scene
     //change_scene(scene_temp());
@@ -70,7 +78,7 @@ void game_begin(int fps, int window_w, int window_h)
     game.done = false;
     main_event_loop();
 
-    zlog("Finished Successfully!");
+    zlog("Breaking from main loop.");
 }
 
 /* Initialize Allegro Stuff */
@@ -120,11 +128,11 @@ static void allegro_init(void)
     }
 
     //Load Datafile
-   /*  if (!PHYSFS_mount(DATAFILE_NAME, NULL, 1)) //DATAFILE needs to be passed in from end-user
+    if (!PHYSFS_mount(DATAFILE_NAME, NULL, 1)) //DATAFILE needs to be passed in from end-user
     {
         zlog("Problem loading %s!", DATAFILE_NAME);
         exit(1);
-    } */
+    }
 
     al_set_physfs_file_interface();
 
@@ -153,7 +161,7 @@ static void allegro_init(void)
     }
 
     // Start libADLMidi
-    adlmidi_init();
+    _adlmidi_init();
 
     //Register even sources
     al_register_event_source(game.event_queue, al_get_display_event_source(game.display));

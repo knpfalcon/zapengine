@@ -70,7 +70,7 @@ static ZAP_ACTOR *create_actor(ZAP_ACTOR *type, int x, int y, int dir, int id)
     zlog("Actor with ID %d Created.", id);
     zlog("Active = %d", actor->active);
 
-    /* set_actor_points(actor); */
+    /* _set_actor_points(actor); */
     return actor;
 }
 

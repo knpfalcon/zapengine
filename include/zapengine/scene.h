@@ -9,18 +9,9 @@ extern "C" {
 
 #define SCENE_NAME_MAX 32
 
-    typedef struct ZAP_SCENE
-    {
-        char *name;
-        void(*init)(void);
-        void(*update)(void);
-        void(*draw)(void);
-        void(*destroy)(void);
-        void(*on_key_down)(int keycode);
-        void(*on_key_up)(int keycode);
-    } ZAP_SCENE;
+    typedef struct ZAP_SCENE ZAP_SCENE;
 
-    void change_scene(ZAP_SCENE next_scene);
+    ZAP_FUNC(void, change_scene, (ZAP_SCENE next_scene));
 
 #ifdef __cplusplus
     extern "C" }

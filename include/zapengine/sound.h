@@ -16,23 +16,10 @@ extern "C" {
 
 #define MAX_SAMPLES 32
 
-    typedef struct
-    {
-        float vol;
-    }t_sound;
+    typedef struct ZAP_SAMPLE ZAP_SAMPLE;
 
-    typedef struct ZAP_SAMPLE
-    {
-        struct ALLEGRO_SAMPLE_ID id;
-        struct ALLEGRO_SAMPLE *sample;
-    } ZAP_SAMPLE;
-
-    extern t_sound sound;
-
-    void init_sound(float vol);
     void play_sound(ZAP_SAMPLE *sample, int interupt);
     void load_sample(ZAP_SAMPLE *sample, const char *filename);
-    void destroy_sample(ZAP_SAMPLE *sample);
 
 #ifdef __cplusplus
     extern "C"

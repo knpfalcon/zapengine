@@ -5,7 +5,7 @@
 #include "zapengine/internal/zintern_bitmap.h"
 
 
-ALLEGRO_BITMAP *load_bitmap(const char *filename)
+ALLEGRO_BITMAP *_load_bitmap(const char *filename)
 {
     ALLEGRO_BITMAP *bmp = al_load_bitmap(filename);
     if (!bmp)
@@ -19,7 +19,7 @@ ALLEGRO_BITMAP *load_bitmap(const char *filename)
     return bmp;
 }
 
-ALLEGRO_BITMAP *create_bitmap(int w, int h, const char *name)
+ALLEGRO_BITMAP *_create_bitmap(int w, int h, const char *name)
 {
     ALLEGRO_BITMAP *bmp = al_create_bitmap(w, h);
     if (!bmp)

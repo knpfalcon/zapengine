@@ -3,7 +3,7 @@
 #include "zapengine/internal/zintern_game.h"
 #include "zapengine/internal/zintern_scene.h"
 
-void update_logic(void)
+void _update_logic(void)
 {
     _update_actors();
     if (game.current_scene.update)
