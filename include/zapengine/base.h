@@ -1,0 +1,16 @@
+#ifndef _BASE_H
+#define _BASE_H
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdarg.h>
+
+#define _AL_DLL   __declspec(dllimport)
+
+#define ZAP_VAR(type, name)                   extern _AL_DLL type name
+#define ZAP_ARRAY(type, name)                 extern _AL_DLL type name[]
+#define ZAP_FUNC(type, name, args)            extern type name args
+#define ZAP_METHOD(type, name, args)          type (*name) args
+#define ZAP_FUNCPTR(type, name, args)         extern _AL_DLL type (*name) args
+
+#endif
