@@ -11,7 +11,7 @@ extern "C" {
 #ifdef ZLOG_ON
     ZAP_FUNC(void, zlog, (const char *format, ...));
 #else
-#define zlog(a)
+#define zlog(a, ...)
 #endif
 
 
