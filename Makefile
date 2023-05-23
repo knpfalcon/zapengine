@@ -16,7 +16,7 @@ SRCDIR = src
 INCLUDEDIR = include/zapengine
 ODIR = $(BUILDDIR)/obj
 
-CFLAGS_DLL = -Wall -O3 -g -shared -Wl,--subsystem,windows,--out-implib,$(LIBDIR)/libzapengine.a -DDEBUG -DZLOG_ON
+CFLAGS_DLL = -Wall -O3 -g -static -Wl,--subsystem,windows,--out-implib,$(LIBDIR)/libzapengine.a -DDEBUG -DZLOG_ON
 
 #Source files.
 _SRC = \

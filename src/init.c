@@ -45,6 +45,12 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
     game.reserved_samples = 10;
     zlog("Reserved Audio Samples: %d", game.reserved_samples);
 
+    //register cleanup atexit functions
+    if (atexit(_exit_cleanup) != 0)
+        zlog("Failed to register _exit_cleanup for atexit()");
+    else
+        zlog("Registered _exit_cleanup for atexit()");
+
     // Start Allegro
     allegro_init();
 
@@ -76,11 +82,7 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
     al_set_physfs_file_interface();
 
     _load_native_graphics();
-    //register cleanup atexit functions
-    if (atexit(_exit_cleanup) != 0)
-        zlog("Failed to register _exit_cleanup for atexit()");
-    else
-        zlog("Registered _exit_cleanup for atexit()");
+
     _increment_draw_progress_bar(progbar, 20);
     //Assign keys
     _init_controls();
@@ -100,6 +102,8 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
     _main_event_loop();
 
     zlog("Breaking from main loop.");
+
+    al_uninstall_system();
 }
 
 /* Initialize Allegro Stuff */
