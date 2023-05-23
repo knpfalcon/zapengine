@@ -3,19 +3,20 @@
 
 typedef struct ZAP_PROGRESS_BAR
 {
-    int val;
+    float val;
     int x;
     int y;
-    int w;
-    int h;
+    float w;
+    float h;
     int r, g, b;
     struct ALLEGRO_BITMAP *bitmap;
 } ZAP_PROGRESS_BAR;
 
-void _increment_progress_bar(ZAP_PROGRESS_BAR *bar, int increment);
+void _increment_progress_bar(ZAP_PROGRESS_BAR *bar, float increment);
 void _draw_progress_bar(ZAP_PROGRESS_BAR *bar);
+void _increment_draw_progress_bar(ZAP_PROGRESS_BAR *bar, float increment);
 
-ZAP_PROGRESS_BAR *_create_progress_bar(int x, int y, int w, int h, int r, int g, int b);
+ZAP_PROGRESS_BAR *_create_progress_bar(int x, int y, float w, float h, int r, int g, int b);
 void _destroy_progress_bar(ZAP_PROGRESS_BAR *bar);
 
 #endif

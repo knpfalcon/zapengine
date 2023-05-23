@@ -119,5 +119,5 @@ clean:
 	@if exist $(BUILDDIR) rmdir /Q /S $(BUILDDIR)
 	@cd demo && del data.h
 
-run:
+run: demo
 	@cd build/demo && demo.exe
