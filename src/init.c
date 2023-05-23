@@ -72,8 +72,6 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
     al_set_physfs_file_interface();
 
     _load_native_graphics();
-    _draw_splash_screen();
-
     //register cleanup atexit functions
     if (atexit(_exit_cleanup) != 0)
         zlog("Failed to register _exit_cleanup for atexit()");
@@ -92,6 +90,8 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
     //Load first scene
     //change_scene(scene_temp());
 
+    _draw_splash_screen();
+    al_rest(3);
     //Entering the Main Game Loop
     game.done = false;
     _main_event_loop();
