@@ -39,6 +39,7 @@ internal\zintern_game.h \
 internal\zintern_graphics.h \
 internal\zintern_init.h \
 internal\zintern_movement.h \
+internal\zintern_progbar.h \
 internal\zintern_scene.h \
 internal\zintern_sound.h \
 internal\zintern_update.h \
@@ -78,6 +79,7 @@ game.o \
 graphics.o \
 init.o \
 movement.o \
+progbar.o \
 scene.o \
 sound.o \
 update.o \

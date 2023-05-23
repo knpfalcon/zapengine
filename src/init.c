@@ -61,6 +61,7 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
     ALLEGRO_FILE *splashfp = al_open_memfile(zap_splash, sizeof(zap_splash), "r");
     game.splash = al_load_bitmap_f(splashfp, ".png");
     al_fclose(splashfp);
+    _draw_splash_screen();
 
     //Load Datafile
     if (!PHYSFS_mount(DATAFILE_NAME, NULL, 1)) //DATAFILE needs to be passed in from end-user
@@ -90,7 +91,7 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
     //Load first scene
     //change_scene(scene_temp());
 
-    _draw_splash_screen();
+
     al_rest(3);
     //Entering the Main Game Loop
     game.done = false;
