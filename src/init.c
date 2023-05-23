@@ -100,11 +100,11 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
     _destroy_progress_bar(progbar);
 
 
-    //TEST CODE
-
+    //TEST CODE//////////////////////////////////////////////////////////////////////////
     zap_load_actor_sprite("GRAPHICS/SPR_TALLY", 32, 32, 0);
     zap_add_actor(32, 32, 0, zap_create_actor("Tally", 1, 1, 8, 4, 8, 32, 32, 0, NULL));
-    ///////
+    /////////////////////////////////////////////////////////////////////////////////////
+
     //Entering the Main Game Loop
     al_set_target_bitmap(game.view);
     game.done = false;

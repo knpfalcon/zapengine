@@ -21,13 +21,13 @@ int zap_add_actor(int x, int y, int dir, ZAP_ACTOR *type)
             zlog("Found DEAD actor at %d", i);
             _destroy_actor(_actor_list[i]);
             _actor_list[i] = NULL;
-            _actor_list[i] = create_actor(type, x, y, dir, i);
+            _actor_list[i] = type;
             return 1;
         }
         else if (_actor_list[i] == NULL)
         {
             zlog("Found NULL actor slot at %d", i);
-            _actor_list[i] = type;
+            _actor_list[i] = type; //Why create an acotor from scratch?? use this type
             return 1;
         }
     }
@@ -56,6 +56,7 @@ int zap_remove_actor(int id)
     return 0;
 }
 
+// this probably isn't needed now! ///////////////////////////////////////
 static ZAP_ACTOR *create_actor(ZAP_ACTOR *type, int x, int y, int dir, int id)
 {
     ZAP_ACTOR *actor = type;
@@ -183,6 +184,7 @@ size_t zap_get_actor_type_size()
     return sizeof(ZAP_ACTOR);
 }
 
+//This might be something to look at making permenant.
 ZAP_ACTOR *zap_create_actor(char *name, int vel_x, int vel_y, int max_vel_y, int gravity, int jump_strength,
     int w, int h, int type, void (*update_func)(void *self))
 {
@@ -197,9 +199,6 @@ ZAP_ACTOR *zap_create_actor(char *name, int vel_x, int vel_y, int max_vel_y, int
     actor->jump_strength = jump_strength;
     actor->x = 32;
     actor->y = 32;
-
-    //actor->w = al_get_bitmap_width(actor->current_frame);
-    //actor->h = al_get_bitmap_height(actor->current_frame);
 
     actor->r = rand() % 256;
     actor->g = rand() % 256;
