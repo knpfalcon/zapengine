@@ -4,12 +4,14 @@
 #include "zapengine/internal/zintern_game.h"
 #include "zapengine/internal/zintern_update.h"
 #include "zapengine/internal/zintern_graphics.h"
+#include "zapengine/internal/zintern_actor.h"
 #include "zapengine/internal/zintern_version.h"
 
 void _draw_screen(void)
 {
     al_set_target_bitmap(game.view);
 
+    _draw_actors();
     if (game.current_scene.draw)
         (*game.current_scene.draw)();
 

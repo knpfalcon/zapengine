@@ -2,21 +2,27 @@
 #define ZINTERN_ACTOR_H
 
 #include "actor.h"
+#include "zapengine/internal/zintern_graphics.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+    extern ZAP_ACTOR_SPRITE *_actor_sprites[MAX_ACTOR_TYPES];
+
+    enum _ACTOR_STATE { WALKING, JUMPING, FALLING };
+
     struct ZAP_ACTOR
     {
-        //temporary
-        bool touching;
         bool active;
         bool in_view;
+        bool is_touching_player;
+        bool can_touch_player;
 
-        bool jumping;
-
+        int type;
         int id;
+
+        int state;
 
         char *name;
 
@@ -44,7 +50,7 @@ extern "C" {
 
         int r, g, b;
 
-        //struct ALLEGRO_BITMAP *current_frame;
+        struct ZAP_ACTOR_SPRITE *sprite;
 
         void (*update)(void *self);
         void (*draw)(void *self);

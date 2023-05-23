@@ -1,10 +1,12 @@
 #include <stdlib.h>
 #include "zapengine/zapengine.h"
 #include "zapengine/internal/zintern_actor.h"
+#include "zapengine/internal/zintern_graphics.h"
 
 static ZAP_ACTOR_MODULE_CALLBACK actor_module_list[MAX_ACTOR_TYPES];
 
 static ZAP_ACTOR *create_actor(ZAP_ACTOR *type, int x, int y, int dir, int id);
+
 static void update_actor_modules(void);
 
 ZAP_ACTOR *_actor_list[MAX_ACTORS];
@@ -25,7 +27,7 @@ int zap_add_actor(int x, int y, int dir, ZAP_ACTOR *type)
         else if (_actor_list[i] == NULL)
         {
             zlog("Found NULL actor slot at %d", i);
-            _actor_list[i] = create_actor(type, x, y, dir, i);
+            _actor_list[i] = type;
             return 1;
         }
     }
@@ -132,14 +134,14 @@ void _update_actors()
         {
             if (_actor_list[i]->active == true)
             {
-                /* if (is_point_in_view(_actor_list[i]->x, _actor_list[i]->y, _actor_list[i]->w, _actor_list[i]->h))
+                if (zap_is_point_in_view(_actor_list[i]->x, _actor_list[i]->y, _actor_list[i]->w, _actor_list[i]->h))
                 {
                     _actor_list[i]->in_view = true;
-                } */
-                /*   else
-                  {
-                      _actor_list[i]->in_view = false;
-                  } */
+                }
+                else
+                {
+                    _actor_list[i]->in_view = false;
+                }
                 _actor_list[i]->update(_actor_list[i]);
             }
         }
@@ -154,7 +156,7 @@ void _draw_actors()
     {
         if (_actor_list[i] != NULL)
         {
-            if (_actor_list[i]->active == true && _actor_list[i]->in_view == true)
+            if (_actor_list[i]->active == true) //&& _actor_list[i]->in_view == true
             {
                 _actor_list[i]->draw(_actor_list[i]);
             }
@@ -182,11 +184,11 @@ size_t zap_get_actor_type_size()
 }
 
 ZAP_ACTOR *zap_create_actor(char *name, int vel_x, int vel_y, int max_vel_y, int gravity, int jump_strength,
-    int w, int h, void (*update_func)(void *self))
+    int w, int h, int type, void (*update_func)(void *self))
 {
     ZAP_ACTOR *actor = malloc(sizeof(ZAP_ACTOR));
 
-
+    actor->type = type;
     actor->name = name;
     actor->vel_x = vel_x;
     actor->vel_y = vel_y;
@@ -202,10 +204,11 @@ ZAP_ACTOR *zap_create_actor(char *name, int vel_x, int vel_y, int max_vel_y, int
     actor->b = rand() % 256;
 
     actor->update = update_func;
+    actor->sprite = _actor_sprites[type];
 
-    actor->touching = false;
+    if (actor->sprite) return actor;
 
-    return actor;
+    return NULL;
 }
 
 void _zap_destroy_actor_list()

@@ -23,7 +23,7 @@ extern "C" {
     ZAP_FUNC(int, zap_remove_actor, (int id));
     ZAP_FUNC(void, zap_register_actor_module, (ZAP_ACTOR_MODULE_CALLBACK actor_module_update_function));
 
-    ZAP_FUNC(ZAP_ACTOR *, zap_create_actor, (char *name, int vel_x, int vel_y, int max_vel_y, int gravity, int jump_strength, int w, int h, void (*update_func)(void *self)));
+    ZAP_FUNC(ZAP_ACTOR *, zap_create_actor, (char *name, int vel_x, int vel_y, int max_vel_y, int gravity, int jump_strength, int w, int h, int type, void (*update_func)(void *self)));
 
 #ifdef __cplusplus
 }

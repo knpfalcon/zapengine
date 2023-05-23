@@ -13,11 +13,13 @@ extern "C" {
         struct ALLEGRO_BITMAP *loading;
     } ZAP_GRAPHIC;
 
-    typedef struct ZAP_ACTOR_GFX
+    typedef struct ZAP_ACTOR_SPRITE
     {
+        int frame_count;
+        int current_frame;
         struct ALLEGRO_BITMAP *atlas;
         struct ALLEGRO_BITMAP *frames[MAX_FRAMES];
-    } ZAP_ACTOR_GFX;
+    } ZAP_ACTOR_SPRITE;
 
     extern ZAP_GRAPHIC gfx_native;
 
