@@ -142,7 +142,7 @@ void _update_actors()
                 {
                     _actor_list[i]->in_view = false;
                 }
-                _actor_list[i]->update(_actor_list[i]);
+                //_actor_list[i]->update(_actor_list[i]);
             }
         }
         else return;
@@ -158,7 +158,7 @@ void _draw_actors()
         {
             if (_actor_list[i]->active == true) //&& _actor_list[i]->in_view == true
             {
-                _actor_list[i]->draw(_actor_list[i]);
+                //_actor_list[i]->draw(_actor_list[i]);
             }
         }
         else
@@ -195,6 +195,8 @@ ZAP_ACTOR *zap_create_actor(char *name, int vel_x, int vel_y, int max_vel_y, int
     actor->max_vel_y = max_vel_y;
     actor->gravity = gravity;
     actor->jump_strength = jump_strength;
+    actor->x = 32;
+    actor->y = 32;
 
     //actor->w = al_get_bitmap_width(actor->current_frame);
     //actor->h = al_get_bitmap_height(actor->current_frame);

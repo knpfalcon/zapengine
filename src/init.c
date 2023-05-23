@@ -72,8 +72,6 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
     al_fclose(splashfp);
     _draw_splash_screen();
 
-    al_rest(1);
-
     //Load Datafile
     if (!PHYSFS_mount(DATAFILE_NAME, NULL, 1)) //DATAFILE needs to be passed in from end-user
     {

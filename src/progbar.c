@@ -52,5 +52,4 @@ void _increment_draw_progress_bar(ZAP_PROGRESS_BAR *bar, float increment)
 {
     _increment_progress_bar(bar, increment);
     _draw_progress_bar(bar);
-    al_rest(0.1); //For testing purposes
 }

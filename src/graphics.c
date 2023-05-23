@@ -19,7 +19,10 @@ void zap_load_actor_sprite(char *file, int frame_w, int frame_h, int type)
 
     if (_actor_sprites[type] == NULL)
     {
+        _actor_sprites[type] = malloc(sizeof(ZAP_ACTOR_SPRITE));
         _actor_sprites[type]->atlas = _load_bitmap(file);
+        _actor_sprites[type]->frame_count = 0;
+        _actor_sprites[type]->current_frame = 0;
 
         bh = al_get_bitmap_height(_actor_sprites[type]->atlas) / frame_h;
         bw = al_get_bitmap_width(_actor_sprites[type]->atlas) / frame_w;
@@ -30,7 +33,7 @@ void zap_load_actor_sprite(char *file, int frame_w, int frame_h, int type)
             {
                 zlog("Actor frame count %d", _actor_sprites[type]->frame_count);
                 _actor_sprites[type]->frames[_actor_sprites[type]->frame_count] = al_create_sub_bitmap(_actor_sprites[type]->atlas, x * frame_w, y * frame_h, frame_w, frame_h);
-                ++_actor_sprites[type]->frame_count;
+                _actor_sprites[type]->frame_count++;
             }
         }
     }

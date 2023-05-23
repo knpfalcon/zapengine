@@ -4,7 +4,7 @@
 
 int main(int argc, char **argv)
 {
-    game_begin(60, 640, 480, argv[0], DATAFILE_NAME);
+    game_begin(15, 640, 480, argv[0], DATAFILE_NAME);
 
     return 0;
 }

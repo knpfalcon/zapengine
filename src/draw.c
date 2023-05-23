@@ -10,8 +10,10 @@
 void _draw_screen(void)
 {
     al_set_target_bitmap(game.view);
+    al_clear_to_color(al_map_rgb(0, 0, 0));
 
-    _draw_actors();
+    al_draw_bitmap(_actor_list[0]->sprite->frames[_actor_list[0]->sprite->current_frame], _actor_list[0]->x, _actor_list[0]->y, 0);
+
     if (game.current_scene.draw)
         (*game.current_scene.draw)();
 

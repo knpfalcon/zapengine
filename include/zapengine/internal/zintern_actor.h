@@ -7,6 +7,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+    extern ZAP_ACTOR *_actor_list[MAX_ACTORS];
 
     extern ZAP_ACTOR_SPRITE *_actor_sprites[MAX_ACTOR_TYPES];
 
