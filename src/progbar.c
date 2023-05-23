@@ -30,7 +30,7 @@ void _destroy_progress_bar(ZAP_PROGRESS_BAR *bar)
 
 void _increment_progress_bar(ZAP_PROGRESS_BAR *bar, float increment)
 {
-    if (bar->val < 100 - increment + 1) bar->val += increment;
+    if (bar->val < 100) bar->val += increment;
 }
 
 void _draw_progress_bar(ZAP_PROGRESS_BAR *bar)
@@ -38,6 +38,8 @@ void _draw_progress_bar(ZAP_PROGRESS_BAR *bar)
     al_set_target_bitmap(bar->bitmap);
     al_draw_filled_rectangle(0, 0, bar->w * (bar->val / 100), bar->h, al_map_rgb(bar->r, bar->g, bar->b));
     al_draw_rectangle(1, 1, bar->w, bar->h, al_map_rgba(228, 120, 0, 255), 1);
+    if (bar->val < 100) al_draw_text(game.sys_font, al_map_rgb(228, 120, 0), bar->w / 2, bar->h - 12, ALLEGRO_ALIGN_CENTRE, "LOADING");
+    else al_draw_text(game.sys_font, al_map_rgb(228, 120, 0), bar->w / 2, bar->h - 12, ALLEGRO_ALIGN_CENTRE, "PRESS ANY KEY!");
     al_set_target_bitmap(game.view);
     al_draw_bitmap(bar->bitmap, bar->x, bar->y, 0);
 
@@ -50,5 +52,5 @@ void _increment_draw_progress_bar(ZAP_PROGRESS_BAR *bar, float increment)
 {
     _increment_progress_bar(bar, increment);
     _draw_progress_bar(bar);
-    //al_rest(0.1); //For testing purposes
+    al_rest(0.1); //For testing purposes
 }

@@ -61,7 +61,7 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
         zlog("Couldn't create game.view");
         exit(1);
     }
-    ZAP_PROGRESS_BAR *progbar = _create_progress_bar(96, 158, 132, 14, 255, 255, 255);
+    ZAP_PROGRESS_BAR *progbar = _create_progress_bar(96, 158, 132, 16, 255, 255, 255);
 
     game.sys_font = al_create_builtin_font();
 
@@ -70,7 +70,8 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
     game.splash = al_load_bitmap_f(splashfp, ".png");
     al_fclose(splashfp);
     _draw_splash_screen();
-    _increment_draw_progress_bar(progbar, 20);
+
+    al_rest(1);
 
     //Load Datafile
     if (!PHYSFS_mount(DATAFILE_NAME, NULL, 1)) //DATAFILE needs to be passed in from end-user
@@ -78,24 +79,27 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
         zlog("Problem loading %s!", DATAFILE_NAME);
         exit(1);
     }
-    _increment_draw_progress_bar(progbar, 20);
     al_set_physfs_file_interface();
 
     _load_native_graphics();
 
-    _increment_draw_progress_bar(progbar, 20);
     //Assign keys
     _init_controls();
-    _increment_draw_progress_bar(progbar, 20);
 
     //Initialize sound sample stuff
     _init_sound(0.5f);
-    _increment_draw_progress_bar(progbar, 20);
 
     //Load first scene
     //change_scene(scene_temp());
 
-    al_rest(3);
+    //Fake loading bar
+    for (int i = 0; i < 10; i++)
+    {
+        _increment_draw_progress_bar(progbar, 10);
+    }
+
+    _destroy_progress_bar(progbar);
+
     //Entering the Main Game Loop
     al_set_target_bitmap(game.view);
     game.done = false;
