@@ -42,6 +42,8 @@ internal\zintern_movement.h \
 internal\zintern_scene.h \
 internal\zintern_sound.h \
 internal\zintern_update.h \
+internal\zintern_version.h \
+internal\zintern_zapsplash.h \
 actor.h \
 adlib.h \
 base.h \

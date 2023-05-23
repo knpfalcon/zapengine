@@ -5,6 +5,7 @@
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
+#include <allegro5/allegro_memfile.h>
 #include <allegro5/allegro_physfs.h>
 #include <physfs.h>
 #include "zapengine/zlog.h"
@@ -17,6 +18,7 @@
 #include "zapengine/internal/zintern_cleanup.h"
 #include "zapengine/internal/zintern_adlib.h"
 #include "zapengine/internal/zintern_sound.h"
+#include "zapengine/internal/zintern_zapsplash.h"
 
 static void allegro_init(void);
 
@@ -55,8 +57,21 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
 
     game.sys_font = al_create_builtin_font();
 
-    _load_native_graphics();
+    //Load splash from hardcoded data
+    ALLEGRO_FILE *splashfp = al_open_memfile(zap_splash, sizeof(zap_splash), "r");
+    game.splash = al_load_bitmap_f(splashfp, ".png");
+    al_fclose(splashfp);
 
+    //Load Datafile
+    if (!PHYSFS_mount(DATAFILE_NAME, NULL, 1)) //DATAFILE needs to be passed in from end-user
+    {
+        zlog("Problem loading %s!", DATAFILE_NAME);
+        exit(1);
+    }
+
+    al_set_physfs_file_interface();
+
+    _load_native_graphics();
     _draw_splash_screen();
 
     //register cleanup atexit functions
@@ -72,6 +87,7 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
 
     //Initialize sound sample stuff
     _init_sound(0.5f);
+
 
     //Load first scene
     //change_scene(scene_temp());
@@ -129,14 +145,6 @@ static void allegro_init(void)
         exit(1);
     }
 
-    //Load Datafile
-    if (!PHYSFS_mount(DATAFILE_NAME, NULL, 1)) //DATAFILE needs to be passed in from end-user
-    {
-        zlog("Problem loading %s!", DATAFILE_NAME);
-        exit(1);
-    }
-
-    al_set_physfs_file_interface();
 
     //Create display
     game.display = al_create_display(game.window_w, game.window_h);

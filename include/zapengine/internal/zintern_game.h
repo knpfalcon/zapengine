@@ -26,6 +26,7 @@ extern "C" {
         struct ALLEGRO_TIMER *update_timer;
         struct ALLEGRO_BITMAP *view;
         struct ALLEGRO_FONT *sys_font;
+        struct ALLEGRO_BITMAP *splash;
 
         ZAP_SCENE current_scene;
 

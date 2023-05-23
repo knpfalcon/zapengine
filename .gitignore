@@ -1,3 +1,5 @@
 .vscode
 build/
 demo/data.h
+demo.vol
+*.vol
