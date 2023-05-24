@@ -23,8 +23,8 @@ void _check_keyboard_events(ALLEGRO_EVENT *event)
     if (event->type == ALLEGRO_EVENT_KEY_DOWN)
     {
         controls.key_state[event->keyboard.keycode] = true;
-        if (game.current_scene.on_key_down)
-            (*game.current_scene.on_key_down)(event->keyboard.keycode);
+        if (game.current_scene->on_key_down)
+            (*game.current_scene->on_key_down)(event->keyboard.keycode);
 
 #ifdef DEBUG
         //Bounding box draw toggle
@@ -40,8 +40,8 @@ void _check_keyboard_events(ALLEGRO_EVENT *event)
     if (event->type == ALLEGRO_EVENT_KEY_UP)
     {
         controls.key_state[event->keyboard.keycode] = false;
-        if (game.current_scene.on_key_up)
-            (*game.current_scene.on_key_up)(event->keyboard.keycode);
+        if (game.current_scene->on_key_up)
+            (*game.current_scene->on_key_up)(event->keyboard.keycode);
     }
 }
 

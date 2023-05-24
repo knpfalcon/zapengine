@@ -28,7 +28,7 @@ extern "C" {
         struct ALLEGRO_FONT *sys_font;
         struct ALLEGRO_BITMAP *splash;
 
-        ZAP_SCENE current_scene;
+        ZAP_SCENE *current_scene;
 
     } ZAP_GAME;
 

@@ -27,7 +27,7 @@ static void allegro_init(void);
 char *DATAFILE_NAME;
 
 /*  Called from entry point main. Startup happens here. */
-void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile)
+void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile, ZAP_SCENE *first_scene)
 {
     zlog("Begin.");
     if (!PHYSFS_init(argv0))
@@ -88,9 +88,6 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
     //Initialize sound sample stuff
     _init_sound(0.5f);
 
-    //Load first scene
-    //change_scene(scene_temp());
-
     //Fake loading bar
     for (int i = 0; i < 10; i++)
     {
@@ -100,13 +97,17 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
     _destroy_progress_bar(progbar);
 
 
-    //TEST CODE//////////////////////////////////////////////////////////////////////////
+    /* //TEST CODE//////////////////////////////////////////////////////////////////////////
     zap_load_actor_sprite("GRAPHICS/SPR_TALLY", 32, 32, 0);
     zap_add_actor(32, 32, 0, zap_create_actor("Tally", 1, 1, 8, 4, 8, 32, 32, 0, NULL));
-    /////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////// */
 
     //Entering the Main Game Loop
     al_set_target_bitmap(game.view);
+
+    //Load first scene
+    zap_change_scene(first_scene);
+
     game.done = false;
     _main_event_loop();
 

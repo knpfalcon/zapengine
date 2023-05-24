@@ -22,12 +22,14 @@ int zap_add_actor(int x, int y, int dir, ZAP_ACTOR *type)
             _destroy_actor(_actor_list[i]);
             _actor_list[i] = NULL;
             _actor_list[i] = type;
+            _actor_list[i]->id = i;
             return 1;
         }
         else if (_actor_list[i] == NULL)
         {
             zlog("Found NULL actor slot at %d", i);
             _actor_list[i] = type; //Why create an acotor from scratch?? use this type
+            _actor_list[i]->id = i;
             return 1;
         }
     }

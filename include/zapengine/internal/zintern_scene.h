@@ -18,6 +18,8 @@ extern "C" {
         void(*on_key_up)(int keycode);
     } ZAP_SCENE;
 
+    void _destroy_scene(ZAP_SCENE *scene);
+
 #ifdef __cplusplus
 }
 #endif
