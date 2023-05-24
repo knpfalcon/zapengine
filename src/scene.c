@@ -1,5 +1,6 @@
 #include <stddef.h>
 #include <malloc.h>
+#include <string.h>
 #include "zapengine/zlog.h"
 #include "zapengine/internal/zintern_scene.h"
 #include "zapengine/internal/zintern_game.h"
@@ -23,6 +24,7 @@ ZAP_SCENE *zap_create_empty_scene(void)
 {
     zlog("Create Empty Scene");
     ZAP_SCENE *scene = malloc(sizeof(ZAP_SCENE));
+    memset(scene, 0, sizeof(ZAP_SCENE));
     if (scene) return scene;
     zlog("Error creating empty scene");
     return NULL;
