@@ -98,7 +98,7 @@ demo : zapengine
 	@cd $(BUILDDIR) && @mkdir demo > nul 2>&1 || (exit 0)
 	@cd demo && GenerateDataHeader.bat
 	@cd demo && MakeDatafile.bat
-	$(CC) $(CFLAGS) -I./build/zapengine/include -L./build/zapengine/lib demo/main.c demo/demo_scene.c -o build/demo/demo.exe -lzapengine
+	$(CC) $(CFLAGS) -I./build/zapengine/include -L./build/zapengine/lib demo/demo.c demo/demo_scene.c -o build/demo/demo.exe -lzapengine
 	@robocopy ./build/zapengine/bin/ ./build/demo zapengine.dll || (exit 0)
 
 zapengine: $(DLLDIR)/$(DLL)
