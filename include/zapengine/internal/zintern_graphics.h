@@ -7,19 +7,18 @@
 extern "C" {
 #endif
 
-    // Holds global bitmaps
-    typedef struct
+    struct ZAP_GRAPHIC
     {
         struct ALLEGRO_BITMAP *loading;
-    } ZAP_GRAPHIC;
+    };
 
-    typedef struct ZAP_ACTOR_SPRITE
+    struct ZAP_ACTOR_SPRITE
     {
         int frame_count;
         int current_frame;
         struct ALLEGRO_BITMAP *atlas;
         struct ALLEGRO_BITMAP *frames[MAX_FRAMES];
-    } ZAP_ACTOR_SPRITE;
+    };
 
     extern ZAP_GRAPHIC gfx_native;
 

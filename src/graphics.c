@@ -53,3 +53,8 @@ void _load_native_graphics(void)
 {
     //gfx_native.loading = al_load_bitmap("GRAPHICS/gfx_fs_loading");
 }
+
+ZAP_ACTOR_SPRITE *zap_get_actor_sprite(int type)
+{
+    return _actor_sprites[type];
+}

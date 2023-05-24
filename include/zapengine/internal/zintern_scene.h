@@ -1,13 +1,14 @@
 #ifndef ZINTERN_SCENE_H
 #define ZINTERN_SCENE_H
 
+#include <stdbool.h>
 #include "scene.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-    typedef struct ZAP_SCENE
+    struct ZAP_SCENE
     {
         char *name;
         void(*init)(void);
@@ -16,7 +17,9 @@ extern "C" {
         void(*destroy)(void);
         void(*on_key_down)(int keycode);
         void(*on_key_up)(int keycode);
-    } ZAP_SCENE;
+
+        bool use_actors;
+    };
 
     void _destroy_scene(ZAP_SCENE *scene);
 

@@ -53,8 +53,12 @@ extern "C" {
 
         struct ZAP_ACTOR_SPRITE *sprite;
 
-        void (*update)(void *self);
-        void (*draw)(void *self);
+        void(*init)(ZAP_ACTOR *self);;
+        void(*update)(ZAP_ACTOR *self);;
+        void(*draw)(ZAP_ACTOR *self);;
+        void(*destroy)(ZAP_ACTOR *self);;
+        void(*on_key_down)(int keycode, ZAP_ACTOR *self);
+        void(*on_key_up)(int keycode, ZAP_ACTOR *self);
     };
 
     void _kill_actor(ZAP_ACTOR **actor_list, int id);

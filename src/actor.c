@@ -1,4 +1,7 @@
 #include <stdlib.h>
+#include <string.h>
+#include <allegro5/allegro.h>
+#include <allegro5/allegro_image.h>
 #include "zapengine/zapengine.h"
 #include "zapengine/internal/zintern_actor.h"
 #include "zapengine/internal/zintern_graphics.h"
@@ -88,10 +91,10 @@ void _destroy_actor(ZAP_ACTOR *actor)
         zlog("Actor was null, returning!");
         return;
     }
-    actor->active = true;
+    actor->active = false;
     int actor_id = actor->id;
     actor->update = NULL;
-    //actor->draw = NULL;
+    actor->draw = NULL;
     free(actor);
     zlog("Actor %d Destroyed", actor_id);
 }
@@ -146,7 +149,7 @@ void _update_actors()
                 {
                     _actor_list[i]->in_view = false;
                 }
-                //_actor_list[i]->update(_actor_list[i]);
+                _actor_list[i]->update(_actor_list[i]);
             }
         }
         else return;
@@ -162,7 +165,8 @@ void _draw_actors()
         {
             if (_actor_list[i]->active == true) //&& _actor_list[i]->in_view == true
             {
-                //_actor_list[i]->draw(_actor_list[i]);
+                //put this in a function sometime
+                al_draw_bitmap(_actor_list[i]->sprite->frames[_actor_list[i]->sprite->current_frame], _actor_list[i]->x, _actor_list[i]->y, 0);
             }
         }
         else
@@ -187,34 +191,6 @@ size_t zap_get_actor_type_size()
     return sizeof(ZAP_ACTOR);
 }
 
-//This might be something to look at making permenant.
-ZAP_ACTOR *zap_create_actor(char *name, int vel_x, int vel_y, int max_vel_y, int gravity, int jump_strength,
-    int w, int h, int type, void (*update_func)(void *self))
-{
-    ZAP_ACTOR *actor = malloc(sizeof(ZAP_ACTOR));
-
-    actor->type = type;
-    actor->name = name;
-    actor->vel_x = vel_x;
-    actor->vel_y = vel_y;
-    actor->max_vel_y = max_vel_y;
-    actor->gravity = gravity;
-    actor->jump_strength = jump_strength;
-    actor->x = 32;
-    actor->y = 32;
-
-    actor->r = rand() % 256;
-    actor->g = rand() % 256;
-    actor->b = rand() % 256;
-
-    actor->update = update_func;
-    actor->sprite = _actor_sprites[type];
-
-    if (actor->sprite) return actor;
-
-    return NULL;
-}
-
 void _zap_destroy_actor_list()
 {
     zlog("Destroying Actor List");
@@ -226,4 +202,68 @@ void _zap_destroy_actor_list()
         _actor_list[i] = NULL;
     }
 
+}
+
+ZAP_ACTOR *zap_create_empty_actor(void)
+{
+    zlog("Create Empty Scene");
+    ZAP_ACTOR *actor = malloc(sizeof(ZAP_ACTOR));
+    memset(actor, 0, sizeof(ZAP_ACTOR));
+    actor->active = true;
+    if (actor) return actor;
+    zlog("Error creating empty actor");
+    return NULL;
+}
+
+void zap_set_actor_init_func(ZAP_ACTOR *actor, void(*init)(ZAP_ACTOR *self))
+{
+    actor->init = init;
+}
+void zap_set_actor_update_func(ZAP_ACTOR *actor, void(*update)(ZAP_ACTOR *self))
+{
+    actor->update = update;
+}
+void zap_set_actor_draw_func(ZAP_ACTOR *actor, void(*draw)(ZAP_ACTOR *self))
+{
+    actor->draw = draw;
+}
+void zap_set_actor_destroy_func(ZAP_ACTOR *actor, void(*destroy)(ZAP_ACTOR *self))
+{
+    actor->destroy = destroy;
+}
+void zap_set_actor_key_down_func(ZAP_ACTOR *actor, void(*on_key_down)(int keycode, ZAP_ACTOR *self))
+{
+    actor->on_key_down = on_key_down;
+}
+void zap_set_actor_key_up_func(ZAP_ACTOR *actor, void(*on_key_up)(int keycode, ZAP_ACTOR *self))
+{
+    actor->on_key_up = on_key_up;
+}
+
+void zap_set_actor_type(ZAP_ACTOR *actor, int type)
+{
+    actor->type = type;
+}
+
+int zap_get_actor_type(ZAP_ACTOR *actor)
+{
+    return actor->type;
+}
+
+void zap_set_actor_active(ZAP_ACTOR *actor, bool active)
+{
+    actor->active = active;
+}
+
+void zap_set_actor_sprite(ZAP_ACTOR *actor, ZAP_ACTOR_SPRITE *sprite)
+{
+    actor->sprite = sprite;
+}
+
+void zap_increment_actor_frame(ZAP_ACTOR *actor)
+{
+    if (actor->sprite->current_frame == actor->sprite->frame_count - 1)
+        actor->sprite->current_frame = 0;
+    if (actor->sprite->current_frame < actor->sprite->frame_count)
+        actor->sprite->current_frame++;
 }

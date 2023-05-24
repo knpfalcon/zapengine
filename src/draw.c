@@ -10,14 +10,11 @@
 void _draw_screen(void)
 {
     al_set_target_bitmap(game.view);
-    /*
-        //TEST CODE//////////////////////////////////////////////////////////////////////////
-        al_clear_to_color(al_map_rgb(0, 0, 0));
-        al_draw_bitmap(_actor_list[0]->sprite->frames[_actor_list[0]->sprite->current_frame], _actor_list[0]->x, _actor_list[0]->y, 0);
-        //TEST CODE////////////////////////////////////////////////////////////////////////// */
 
     if (game.current_scene->draw)
         game.current_scene->draw();
+
+    if (game.current_scene->use_actors == true) _draw_actors();
 
     al_set_target_backbuffer(game.display);
     al_draw_scaled_bitmap(game.view, 0, 0, 320, 200, 0, 0, game.window_w, game.window_h, 0);
