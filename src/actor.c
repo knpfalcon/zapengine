@@ -165,7 +165,7 @@ void _draw_actors()
         {
             if (_actor_list[i]->active == true) //&& _actor_list[i]->in_view == true
             {
-                //put this in a function sometime
+                _actor_list[i]->draw(_actor_list[i]);
                 al_draw_bitmap(_actor_list[i]->sprite->frames[_actor_list[i]->sprite->current_frame], _actor_list[i]->x, _actor_list[i]->y, 0);
             }
         }
