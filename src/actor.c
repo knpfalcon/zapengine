@@ -5,7 +5,7 @@
 
 static ZAP_ACTOR_MODULE_CALLBACK actor_module_list[MAX_ACTOR_TYPES];
 
-static ZAP_ACTOR *create_actor(ZAP_ACTOR *type, int x, int y, int dir, int id);
+//static ZAP_ACTOR *create_actor(ZAP_ACTOR *type, int x, int y, int dir, int id);
 
 static void update_actor_modules(void);
 
@@ -58,7 +58,7 @@ int zap_remove_actor(int id)
     return 0;
 }
 
-// this probably isn't needed now! ///////////////////////////////////////
+/* // this probably isn't needed now! ///////////////////////////////////////
 static ZAP_ACTOR *create_actor(ZAP_ACTOR *type, int x, int y, int dir, int id)
 {
     ZAP_ACTOR *actor = type;
@@ -75,11 +75,12 @@ static ZAP_ACTOR *create_actor(ZAP_ACTOR *type, int x, int y, int dir, int id)
     zlog("Actor with ID %d Created.", id);
     zlog("Active = %d", actor->active);
 
-    /* _set_actor_points(actor); */
+    //_set_actor_points(actor);
     return actor;
 }
+ */
 
-/* Destorys an actor, freeing its memory */
+ /* Destorys an actor, freeing its memory */
 void _destroy_actor(ZAP_ACTOR *actor)
 {
     if (actor == NULL)

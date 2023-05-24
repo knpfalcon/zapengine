@@ -1,6 +1,6 @@
 #include "demo_scene.h"
 
-char *scene_name = "Template Scene";
+char *scene_name = "Demo Scene";
 
 static void init(void);
 static void update(void);

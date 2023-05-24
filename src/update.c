@@ -14,5 +14,5 @@ void _update_logic(void)
     } */
 
     if (game.current_scene->update)
-        (game.current_scene->update)();
+        game.current_scene->update();
 }
