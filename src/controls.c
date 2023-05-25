@@ -18,3 +18,8 @@ void _check_player_controls(void)
 {
 
 }
+
+bool zap_get_key_state(int keycode)
+{
+    return controls.key_state[keycode];
+}

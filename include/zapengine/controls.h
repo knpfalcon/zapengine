@@ -7,7 +7,9 @@
 extern "C" {
 #endif
 
+    typedef struct ZAP_CONTROLS ZAP_CONTROLS;
 
+    ZAP_FUNC(bool, zap_get_key_state, (int keycode));
 
 #ifdef __cplusplus
 }

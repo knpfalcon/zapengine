@@ -9,7 +9,7 @@ extern "C" {
 
 #define ZAP_KEY_MAX 227
 
-    typedef struct ZAP_CONTROLS
+    struct ZAP_CONTROLS
     {
         bool key_state[ZAP_KEY_MAX];
 
@@ -20,7 +20,7 @@ extern "C" {
         int key_up;
         int key_down;
 
-    } ZAP_CONTROLS;
+    };
 
     extern ZAP_CONTROLS controls;
 
