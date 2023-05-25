@@ -38,7 +38,7 @@ extern "C" {
     ZAP_FUNC(int, zap_get_actor_type, (ZAP_ACTOR *actor));
     ZAP_FUNC(void, zap_set_actor_active, (ZAP_ACTOR *actor, bool active));
     ZAP_FUNC(void, zap_set_actor_sprite, (ZAP_ACTOR *actor, ZAP_ACTOR_SPRITE *sprite));
-    ZAP_FUNC(void, zap_increment_actor_frame, (ZAP_ACTOR *actor));
+    ZAP_FUNC(void, zap_animate_actor, (ZAP_ACTOR *actor, int speed, int start_frame, int num_frames));
 
 
 #ifdef __cplusplus

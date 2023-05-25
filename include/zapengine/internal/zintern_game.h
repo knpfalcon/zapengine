@@ -20,6 +20,7 @@ extern "C" {
         int window_h;
         int reserved_samples;
         int ticks;
+        int drawn_frames;
 
         struct ALLEGRO_DISPLAY *display;
         struct ALLEGRO_EVENT_QUEUE *event_queue;

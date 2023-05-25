@@ -14,7 +14,7 @@ static void init(ZAP_ACTOR *self)
 
 static void update(ZAP_ACTOR *self)
 {
-    zap_increment_actor_frame(self);
+    zap_animate_actor(self, 4, 7, 2);
 }
 
 static void draw(ZAP_ACTOR *self)

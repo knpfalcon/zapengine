@@ -16,6 +16,11 @@
 
 ZAP_GAME game; //Shared globals struct for game related variables
 
+int zap_get_drawn_game_frames(void)
+{
+    return game.drawn_frames;
+}
+
 /****************************
 *                           *
 *         MAIN LOOP         *

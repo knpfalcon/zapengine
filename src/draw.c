@@ -19,6 +19,9 @@ void _draw_screen(void)
     al_set_target_backbuffer(game.display);
     al_draw_scaled_bitmap(game.view, 0, 0, 320, 200, 0, 0, game.window_w, game.window_h, 0);
     al_flip_display();
+
+    if (game.drawn_frames == 6000) game.drawn_frames = 0;
+    game.drawn_frames++;
 }
 
 void _draw_splash_screen(void)

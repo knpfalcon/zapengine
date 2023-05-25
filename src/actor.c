@@ -5,6 +5,7 @@
 #include "zapengine/zapengine.h"
 #include "zapengine/internal/zintern_actor.h"
 #include "zapengine/internal/zintern_graphics.h"
+#include "zapengine/internal/zintern_game.h"
 
 static ZAP_ACTOR_MODULE_CALLBACK actor_module_list[MAX_ACTOR_TYPES];
 
@@ -260,10 +261,21 @@ void zap_set_actor_sprite(ZAP_ACTOR *actor, ZAP_ACTOR_SPRITE *sprite)
     actor->sprite = sprite;
 }
 
-void zap_increment_actor_frame(ZAP_ACTOR *actor)
+void zap_animate_actor(ZAP_ACTOR *actor, int speed, int start_frame, int num_frames)
 {
     if (actor->sprite->current_frame == actor->sprite->frame_count - 1)
         actor->sprite->current_frame = 0;
-    if (actor->sprite->current_frame < actor->sprite->frame_count)
-        actor->sprite->current_frame++;
+
+    if (actor->sprite->current_frame == start_frame)
+        goto inc_frame;
+
+    if (actor->sprite->current_frame < start_frame || actor->sprite->current_frame >= (start_frame + num_frames))
+        actor->sprite->current_frame = start_frame;
+
+
+inc_frame:
+    if (zap_get_drawn_game_frames() % speed == 0)
+    {
+        if (num_frames > 1) ++actor->sprite->current_frame;
+    }
 }
