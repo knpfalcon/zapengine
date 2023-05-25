@@ -19,6 +19,7 @@ void _check_player_controls(void)
 
 }
 
+//maybe rename to zap_is_key_down
 bool zap_get_key_state(int keycode)
 {
     return controls.key_state[keycode];
