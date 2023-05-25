@@ -1,5 +1,16 @@
 #include "zapengine/internal/zintern_movement.h"
 
+static void _set_actor_points(ZAP_ACTOR *actor)
+{
+    actor->x_center = (actor->w >> 1) + actor->x;
+    actor->y_center = (actor->h >> 1) + actor->y;
+
+    actor->left = actor->x + 8;
+    actor->right = actor->w - 8 + actor->x;
+    actor->bottom = actor->y + actor->h;
+    actor->top = actor->y + 8;
+}
+
 void zap_move_actor_right(ZAP_ACTOR *actor)
 {
     actor->dir = DIR_RIGHT;
@@ -37,17 +48,6 @@ void zap_apply_actor_gravity(ZAP_ACTOR *actor)
 void zap_actor_jump(ZAP_ACTOR *actor)
 {
     actor->vel_y = -actor->jump_strength;
-}
-
-void _set_actor_points(ZAP_ACTOR *actor)
-{
-    actor->x_center = (actor->w >> 1) + actor->x;
-    actor->y_center = (actor->h >> 1) + actor->y;
-
-    actor->left = actor->x + 8;
-    actor->right = actor->w - 8 + actor->x;
-    actor->bottom = actor->y + actor->h;
-    actor->top = actor->y + 8;
 }
 
 void zap_update_actor_movement(ZAP_ACTOR *actor)

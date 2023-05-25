@@ -8,7 +8,6 @@
 extern "C" {
 #endif
 
-    void _set_actor_points(ZAP_ACTOR *actor);
 
 #ifdef __cplusplus
 }
