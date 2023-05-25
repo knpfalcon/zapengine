@@ -4,8 +4,8 @@ static void init(ZAP_ACTOR *self);
 static void update(ZAP_ACTOR *self);
 static void draw(ZAP_ACTOR *self);
 static void destroy(ZAP_ACTOR *self);
-static void on_key_down(int keycode, ZAP_ACTOR *self);
-static void on_key_up(int keycode, ZAP_ACTOR *self);
+static void on_key_down(ZAP_ACTOR *self);
+static void on_key_up(ZAP_ACTOR *self);
 
 static void init(ZAP_ACTOR *self)
 {
@@ -16,6 +16,9 @@ static void init(ZAP_ACTOR *self)
 static void update(ZAP_ACTOR *self)
 {
     zap_animate_actor(self, 4);
+    if (zap_get_key_state(28)) zap_set_actor_animation_frames(self, 1, 4);
+    else if (zap_get_key_state(29)) zap_set_actor_animation_frames(self, 5, 7);
+    else if (zap_get_key_state(30)) zap_set_actor_animation_frames(self, 8, 9);
 }
 
 static void draw(ZAP_ACTOR *self)
@@ -28,12 +31,12 @@ static void destroy(ZAP_ACTOR *self)
 
 }
 
-static void on_key_down(int keycode, ZAP_ACTOR *self)
+static void on_key_down(ZAP_ACTOR *self)
 {
 
 }
 
-static void on_key_up(int keycode, ZAP_ACTOR *self)
+static void on_key_up(ZAP_ACTOR *self)
 {
 
 }

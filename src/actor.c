@@ -5,7 +5,7 @@
 #include "zapengine/zapengine.h"
 #include "zapengine/internal/zintern_actor.h"
 #include "zapengine/internal/zintern_graphics.h"
-#include "zapengine/internal/zintern_game.h"
+#include "zapengine/internal/zintern_controls.h"
 
 static ZAP_ACTOR_MODULE_CALLBACK actor_module_list[MAX_ACTOR_TYPES];
 
@@ -234,11 +234,11 @@ void zap_set_actor_destroy_func(ZAP_ACTOR *actor, void(*destroy)(ZAP_ACTOR *self
 {
     actor->destroy = destroy;
 }
-void zap_set_actor_key_down_func(ZAP_ACTOR *actor, void(*on_key_down)(int keycode, ZAP_ACTOR *self))
+void zap_set_actor_key_down_func(ZAP_ACTOR *actor, void(*on_key_down)(ZAP_ACTOR *self))
 {
     actor->on_key_down = on_key_down;
 }
-void zap_set_actor_key_up_func(ZAP_ACTOR *actor, void(*on_key_up)(int keycode, ZAP_ACTOR *self))
+void zap_set_actor_key_up_func(ZAP_ACTOR *actor, void(*on_key_up)(ZAP_ACTOR *self))
 {
     actor->on_key_up = on_key_up;
 }
@@ -265,6 +265,10 @@ void zap_set_actor_sprite(ZAP_ACTOR *actor, ZAP_ACTOR_SPRITE *sprite)
 
 void zap_set_actor_animation_frames(ZAP_ACTOR *actor, int start_frame, int end_frame)
 {
+    //Check if animation is already set. If it's the same animation, return.
+    if (actor->sprite->start_frame == start_frame && actor->sprite->end_frame == end_frame)
+        return;
+
     actor->sprite->start_frame = start_frame;
     actor->sprite->end_frame = end_frame;
     actor->sprite->current_frame = start_frame;
