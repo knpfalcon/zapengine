@@ -10,7 +10,7 @@
 void _draw_screen(void)
 {
     al_set_target_bitmap(game.view);
-
+    al_clear_to_color(al_map_rgb(0, 0, 0)); //test code
     if (game.current_scene->draw)
         game.current_scene->draw();
 

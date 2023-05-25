@@ -9,12 +9,13 @@ static void on_key_up(int keycode, ZAP_ACTOR *self);
 
 static void init(ZAP_ACTOR *self)
 {
+    zap_set_actor_animation_frames(self, 5, 7);
     zlog("Demo Actor initialized!");
 }
 
 static void update(ZAP_ACTOR *self)
 {
-    zap_animate_actor(self, 4, 7, 2);
+    zap_animate_actor(self, 15);
 }
 
 static void draw(ZAP_ACTOR *self)

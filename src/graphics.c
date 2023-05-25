@@ -39,7 +39,9 @@ void zap_load_actor_sprite(char *file, int frame_w, int frame_h, int type)
     }
     else return;
 
-    zlog("Actor sprite sheet loaded.");
+    _actor_sprites[type]->start_frame = 0;
+    _actor_sprites[type]->end_frame = _actor_sprites[type]->frame_count - 1;
+    zlog("Actor sprite sheet loaded. Starting Frame: %d, Ending Frame: %d", _actor_sprites[type]->start_frame, _actor_sprites[type]->end_frame);
 }
 
 void _destroy_actor_graphics(void)

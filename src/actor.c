@@ -27,6 +27,7 @@ int zap_add_actor(int x, int y, int dir, ZAP_ACTOR *type)
             _actor_list[i] = NULL;
             _actor_list[i] = type;
             _actor_list[i]->id = i;
+            _actor_list[i]->init(_actor_list[i]);
             return 1;
         }
         else if (_actor_list[i] == NULL)
@@ -34,6 +35,7 @@ int zap_add_actor(int x, int y, int dir, ZAP_ACTOR *type)
             zlog("Found NULL actor slot at %d", i);
             _actor_list[i] = type; //Why create an acotor from scratch?? use this type
             _actor_list[i]->id = i;
+            _actor_list[i]->init(_actor_list[i]);
             return 1;
         }
     }
@@ -261,21 +263,20 @@ void zap_set_actor_sprite(ZAP_ACTOR *actor, ZAP_ACTOR_SPRITE *sprite)
     actor->sprite = sprite;
 }
 
-void zap_animate_actor(ZAP_ACTOR *actor, int speed, int start_frame, int num_frames)
+void zap_set_actor_animation_frames(ZAP_ACTOR *actor, int start_frame, int end_frame)
 {
-    if (actor->sprite->current_frame == actor->sprite->frame_count - 1)
-        actor->sprite->current_frame = 0;
+    actor->sprite->start_frame = start_frame;
+    actor->sprite->end_frame = end_frame;
+    actor->sprite->current_frame = start_frame;
+}
+void zap_animate_actor(ZAP_ACTOR *actor, int speed)
+{
 
-    if (actor->sprite->current_frame == start_frame)
-        goto inc_frame;
-
-    if (actor->sprite->current_frame < start_frame || actor->sprite->current_frame >= (start_frame + num_frames))
-        actor->sprite->current_frame = start_frame;
-
-
-inc_frame:
     if (zap_get_drawn_game_frames() % speed == 0)
     {
-        if (num_frames > 1) ++actor->sprite->current_frame;
+        if (actor->sprite->current_frame < actor->sprite->end_frame)
+            actor->sprite->current_frame++;
+        else
+            actor->sprite->current_frame = actor->sprite->start_frame;
     }
 }
