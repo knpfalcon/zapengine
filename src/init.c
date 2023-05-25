@@ -2,7 +2,6 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_font.h>
-#include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
 #include <allegro5/allegro_memfile.h>
@@ -130,11 +129,7 @@ static void allegro_init(void)
         zlog("Problem initializing Font Addon!");
         exit(1);
     }
-    if (!al_init_ttf_addon())
-    {
-        zlog("Problem initializing TTF Addon!");
-        exit(1);
-    }
+
     if (!al_init_image_addon())
     {
         zlog("Problem initializing Image Addon!");

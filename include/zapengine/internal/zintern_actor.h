@@ -59,7 +59,7 @@ extern "C" {
         void(*draw)(ZAP_ACTOR *self);;
         void(*destroy)(ZAP_ACTOR *self);;
         void(*on_key_down)(ZAP_ACTOR *self);
-        void(*on_key_up)(int keycode, ZAP_ACTOR *self);
+        void(*on_key_up)(ZAP_ACTOR *self);
     };
 
     void _kill_actor(ZAP_ACTOR **actor_list, int id);

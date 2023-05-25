@@ -3,9 +3,9 @@ CFLAGS = -O3 -Wall -g -static -DDEBUG -DZLOG_ON
 DEMOCFLAGS = -O3 -Wall -g -DDEBUG -DZLOG_ON
 LIBDIR =
 
-LIBS = -lallegro_monolith-debug-static -ljpeg -ldumb -lFLAC -ldsound -lopusfile -lopus -lvorbisfile -lvorbis -lfreetype -logg -lpng16 -lzlib \
+LIBS = -lallegro_monolith-static -ldsound -lpng16 -lzlibstatic \
 -lphysfs -lgdiplus -luuid -lkernel32 -lwinmm -lpsapi -lopengl32 -lglu32 -luser32 -lcomdlg32 \
--lgdi32 -lshell32 -lole32 -ladvapi32 -lws2_32 -lshlwapi -lwebp -l:libADLMIDI-static.a -static-libgcc -static-libstdc++ -lstdc++
+-lgdi32 -lshell32 -lole32 -ladvapi32 -lws2_32 -lshlwapi -l:libADLMIDI-static.a -static-libgcc -static-libstdc++ -lstdc++
 
 INC = -I./include -I./include/zapengine -I./include/zapengine/internal
 
