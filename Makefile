@@ -1,5 +1,6 @@
 CC = gcc
 CFLAGS = -O3 -Wall -g -static -DDEBUG -DZLOG_ON
+DEMOCFLAGS = -O3 -Wall -g -DDEBUG -DZLOG_ON
 LIBDIR =
 
 LIBS = -lallegro_monolith-debug-static -ljpeg -ldumb -lFLAC -ldsound -lopusfile -lopus -lvorbisfile -lvorbis -lfreetype -logg -lpng16 -lzlib \
@@ -98,7 +99,7 @@ demo : zapengine
 	@cd $(BUILDDIR) && @mkdir demo > nul 2>&1 || (exit 0)
 	@cd demo && GenerateDataHeader.bat
 	@cd demo && MakeDatafile.bat
-	$(CC) $(CFLAGS) -I./build/zapengine/include -L./build/zapengine/lib demo/demo.c demo/demo_scene.c demo/demo_actor.c -o build/demo/demo.exe -lzapengine
+	$(CC) $(DEMOCFLAGS) -I./build/zapengine/include -L./build/zapengine/lib demo/demo.c demo/demo_scene.c demo/demo_actor.c -o build/demo/demo.exe -lzapengine
 	@robocopy ./build/zapengine/bin/ ./build/demo zapengine.dll || (exit 0)
 
 zapengine: $(DLLDIR)/$(DLL)
