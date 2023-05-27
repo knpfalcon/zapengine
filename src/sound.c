@@ -26,10 +26,10 @@ void load_sample(ZAP_SAMPLE *sample, const char *filename)
     sample->sample = al_load_sample(filename);
     if (!sample->sample)
     {
-        zlog("Couldn't open sample from %s", filename);
+        zlog(FAIL, "Couldn't open sample from %s", filename);
         return;
     }
-    zlog("Sample %s loaded.", filename);
+    zlog(INFO, "Sample %s loaded.", filename);
 }
 
 void _destroy_sample(ZAP_SAMPLE *sample)

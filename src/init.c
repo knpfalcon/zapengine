@@ -20,6 +20,7 @@
 #include "zapengine/internal/zintern_zapsplash.h"
 #include "zapengine/internal/zintern_progbar.h"
 #include "zapengine/internal/zintern_actor.h"
+#include "zapengine/internal/zintern_version.h"
 
 static void allegro_init(void);
 
@@ -28,37 +29,40 @@ char *DATAFILE_NAME;
 /*  Called from entry point main. Startup happens here. */
 void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile, ZAP_SCENE *first_scene)
 {
-    zlog("Begin.");
+    zlog(LOAD, "Staring Zap Engine %d.%d.%d", ZAP_VERSION_MAJOR, ZAP_VERSION_MINOR, ZAP_VERSION_REVISION);
+    zlog(LOAD, "Inializing PHYSFS.");
     if (!PHYSFS_init(argv0))
     {
-        zlog("Problem initializing PhysFS!");
+        zlog(FAIL, "Problem initializing PhysFS!");
         exit(1);
     }
     DATAFILE_NAME = datafile;
 
     game.fps = fps;
-    zlog("Frames Per Second: %d", game.fps);
+    zlog(INFO, "Frames Per Second: %d", game.fps);
     game.window_w = window_w;
-    zlog("Window Width: %d", game.window_w);
+    zlog(INFO, "Window Width: %d", game.window_w);
     game.window_h = window_h;
-    zlog("Window Height: %d", game.window_h);
+    zlog(INFO, "Window Height: %d", game.window_h);
     game.reserved_samples = 10;
-    zlog("Reserved Audio Samples: %d", game.reserved_samples);
+    zlog(INFO, "Reserved Audio Samples: %d", game.reserved_samples);
 
     //register cleanup atexit functions
+    zlog(LOAD, "Registering Cleanup Functions.");
     if (atexit(_exit_cleanup) != 0)
-        zlog("Failed to register _exit_cleanup for atexit()");
+        zlog(FAIL, "Failed to register _exit_cleanup for atexit()");
     else
-        zlog("Registered _exit_cleanup for atexit()");
+        zlog(INFO, "Registered _exit_cleanup for atexit()");
 
     // Start Allegro
     allegro_init();
 
     //Bitmaps
+    zlog(LOAD, "Creating game view bitmap.");
     game.view = _create_bitmap(320, 200, "game.view");
     if (!game.view)
     {
-        zlog("Couldn't create game.view");
+        zlog(FAIL, "Couldn't create game.view");
         exit(1);
     }
     ZAP_PROGRESS_BAR *progbar = _create_progress_bar(96, 158, 132, 16, 255, 255, 255);
@@ -66,15 +70,19 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
     game.sys_font = al_create_builtin_font();
 
     //Load splash from hardcoded data
+    zlog(LOAD, "Loading Zap Engine Splash from memfile.");
     ALLEGRO_FILE *splashfp = al_open_memfile(zap_splash, sizeof(zap_splash), "r");
     game.splash = al_load_bitmap_f(splashfp, ".png");
+    if (!game.splash)
+        zlog(WARN, "Couldn't load Zap Engine Splash from memfile.");
     al_fclose(splashfp);
     _draw_splash_screen();
 
     //Load Datafile
+    zlog(LOAD, "Mounting datafile.");
     if (!PHYSFS_mount(DATAFILE_NAME, NULL, 1)) //DATAFILE needs to be passed in from end-user
     {
-        zlog("Problem loading %s!", DATAFILE_NAME);
+        zlog(INFO, "Problem loading %s!", DATAFILE_NAME);
         exit(1);
     }
     al_set_physfs_file_interface();
@@ -104,7 +112,7 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
     game.done = false;
     _main_event_loop();
 
-    zlog("Breaking from main loop.");
+    zlog(INFO, "Breaking from main loop.");
 
     al_uninstall_system();
 }
@@ -112,67 +120,76 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
 /* Initialize Allegro Stuff */
 static void allegro_init(void)
 {
+    zlog(LOAD, "Installing Allegro 5.");
     if (!al_install_system(ALLEGRO_VERSION_INT, NULL)) //because this is a shared library
     {
-        zlog("Problem initializing Allegro!");
+        zlog(FAIL, "Problem initializing Allegro!");
         exit(1);
     }
 
     //Initialize addons
+    zlog(LOAD, "Initializing Primitives Addon.");
     if (!al_init_primitives_addon())
     {
-        zlog("Problem initializing Primitives Addon!");
+        zlog(FAIL, "Problem initializing Primitives Addon!");
         exit(1);
     }
+    zlog(LOAD, "Initializing Font Addon.");
     if (!al_init_font_addon())
     {
-        zlog("Problem initializing Font Addon!");
+        zlog(FAIL, "Problem initializing Font Addon!");
         exit(1);
     }
-
+    zlog(LOAD, "Initializing Image Addon.");
     if (!al_init_image_addon())
     {
-        zlog("Problem initializing Image Addon!");
+        zlog(FAIL, "Problem initializing Image Addon!");
         exit(1);
     }
+    zlog(LOAD, "Initializing Audio Addon.");
     if (!al_install_audio())
     {
-        zlog("Problem initializing Audio!");
+        zlog(FAIL, "Problem initializing Audio!");
         exit(1);
     }
+    zlog(LOAD, "Initializing Audio Codec Addon.");
     if (!al_init_acodec_addon())
     {
-        zlog("Problem initializing Audio Codec!");
+        zlog(FAIL, "Problem initializing Audio Codec!");
         exit(1);
     }
+    zlog(LOAD, "Installing Keyboard.");
     if (!al_install_keyboard())
     {
-        zlog("Problem installing Keyboard!");
+        zlog(FAIL, "Problem installing Keyboard!");
         exit(1);
     }
 
 
     //Create display
+    zlog(LOAD, "Creating Display.");
     game.display = al_create_display(game.window_w, game.window_h);
     if (!game.display)
     {
-        zlog("Problem creating display!");
+        zlog(FAIL, "Problem creating display!");
         exit(1);
     }
 
     // Create update timer.
+    zlog(LOAD, "Creating Timer.");
     game.update_timer = al_create_timer(1.0f / game.fps);
     if (!game.update_timer)
     {
-        zlog("Problem creating update timer!");
+        zlog(FAIL, "Problem creating update timer!");
         exit(1);
     }
 
     // Create event queue.
+    zlog(LOAD, "Creating Event Queue.");
     game.event_queue = al_create_event_queue();
     if (!game.event_queue)
     {
-        zlog("Problem creating Event Queue!");
+        zlog(FAIL, "Problem creating Event Queue!");
         exit(1);
     }
 
@@ -180,8 +197,11 @@ static void allegro_init(void)
     _adlmidi_init();
 
     //Register even sources
+    zlog(LOAD, "Registering Display Event Source.");
     al_register_event_source(game.event_queue, al_get_display_event_source(game.display));
+    zlog(LOAD, "Registering Timer Event Source.");
     al_register_event_source(game.event_queue, al_get_timer_event_source(game.update_timer));
+    zlog(LOAD, "Registering Keyboard Event Source.");
     al_register_event_source(game.event_queue, al_get_keyboard_event_source());
 
     // Start update timer

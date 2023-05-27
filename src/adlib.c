@@ -15,7 +15,7 @@ void _stream_opl()
 
     if (!music.opl_buffer)
     {
-        zlog("music.opl_buffer returned null!");
+        zlog(WARN, "music.opl_buffer returned null!");
     }
     else
     {
@@ -34,6 +34,7 @@ void _stream_opl()
 
 void _adlmidi_init(void)
 {
+    zlog(LOAD, "Initializing Midi Player.");
     music.is_playing = false;
     music.vol = 1.0f;
 
@@ -44,27 +45,28 @@ void _adlmidi_init(void)
     adl_setVolumeRangeModel(music.midi_player, ADLMIDI_VolumeModel_APOGEE_Fixed);
 
     music.stream = al_create_audio_stream(2, BUFFER_SAMPLES, STREAM_FREQ, ALLEGRO_AUDIO_DEPTH_INT16, ALLEGRO_CHANNEL_CONF_2);
-    if (music.stream) zlog("music.stream created.");
+    if (music.stream) zlog(INFO, "Music stream created.");
 
     al_register_event_source(game.event_queue, al_get_audio_stream_event_source(music.stream));
-    zlog("music.stream registered as audio stream event source.");
+    zlog(INFO, "Music Stream registered as audio stream event source.");
 
     if (!al_reserve_samples(game.reserved_samples))
     {
-        zlog("Problem reserving Audio Samples!");
+        zlog(FAIL, "Problem reserving Audio Samples!");
         exit(1);
     }
-    zlog("Audio Samples Reserved.");
+    zlog(INFO, "Audio Samples Reserved.");
 
     al_set_mixer_gain(al_get_default_mixer(), 1.0f); //Turn down the volume during development
     al_set_audio_stream_gain(music.stream, music.vol);
     al_attach_audio_stream_to_mixer(music.stream, al_get_default_mixer());
     al_set_audio_stream_playing(music.stream, false);
-    zlog("Music Device Reset.");
+    zlog(INFO, "Music Device Reset.");
 }
 
 void zap_load_music_file(const char *filename)
 {
+    zlog(LOAD, "Loading %s into midi player.", filename);
     zap_pause_music();
     PHYSFS_file *musfile = PHYSFS_openRead(filename);
     char *buffer = malloc(PHYSFS_fileLength(musfile));
@@ -72,7 +74,7 @@ void zap_load_music_file(const char *filename)
     PHYSFS_readBytes(musfile, buffer, PHYSFS_fileLength(musfile));
     if (adl_openData(music.midi_player, buffer, PHYSFS_fileLength(musfile)) < 0)
     {
-        zlog("Couldn't open music file: %s", adl_errorInfo(music.midi_player));
+        zlog(FAIL, "Couldn't open music file: %s", adl_errorInfo(music.midi_player));
     }
     free(buffer);
     PHYSFS_close(musfile);

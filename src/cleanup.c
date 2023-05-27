@@ -17,9 +17,9 @@ void _exit_cleanup(void)
     game.current_scene = NULL;
 
     adl_close(music.midi_player);
-    zlog("Close Midi Player");
+    zlog(INFO, "Close Midi Player");
 
     PHYSFS_deinit();
-    zlog("De-initialize PhysFS");
+    zlog(INFO, "De-initialize PhysFS");
 
 }

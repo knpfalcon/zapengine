@@ -13,7 +13,7 @@ ZAP_ACTOR_SPRITE *_actor_sprites[MAX_ACTOR_TYPES];
 
 void zap_load_actor_sprite(char *file, int frame_w, int frame_h, int type)
 {
-
+    zlog(LOAD, "Loading actor sprite from file %s for type %d", file, type);
     int bh;
     int bw;
 
@@ -31,7 +31,7 @@ void zap_load_actor_sprite(char *file, int frame_w, int frame_h, int type)
         {
             for (int x = 0; x < bw; x++)
             {
-                zlog("Actor frame count %d", _actor_sprites[type]->frame_count);
+                zlog(INFO, "Actor frame count %d", _actor_sprites[type]->frame_count);
                 _actor_sprites[type]->frames[_actor_sprites[type]->frame_count] = al_create_sub_bitmap(_actor_sprites[type]->atlas, x * frame_w, y * frame_h, frame_w, frame_h);
                 _actor_sprites[type]->frame_count++;
             }
@@ -41,14 +41,14 @@ void zap_load_actor_sprite(char *file, int frame_w, int frame_h, int type)
 
     _actor_sprites[type]->start_frame = 0;
     _actor_sprites[type]->end_frame = _actor_sprites[type]->frame_count - 1;
-    zlog("Actor sprite sheet loaded. Starting Frame: %d, Ending Frame: %d", _actor_sprites[type]->start_frame, _actor_sprites[type]->end_frame);
+    zlog(INFO, "Actor sprite sheet loaded. Starting Frame: %d, Ending Frame: %d", _actor_sprites[type]->start_frame, _actor_sprites[type]->end_frame);
 }
 
 void _destroy_actor_graphics(void)
 {
     /* al_destroy_bitmap(gfx_test_actor.frames[0]);
     al_destroy_bitmap(gfx_test_actor.atlas);*/
-    zlog("Test Actor Graphics Destroyed.");
+    zlog(INFO, "Test Actor Graphics Destroyed.");
 }
 
 void _load_native_graphics(void)

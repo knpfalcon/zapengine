@@ -22,7 +22,7 @@ int zap_add_actor(int x, int y, int dir, ZAP_ACTOR *type)
     {
         if (_actor_list[i] != NULL && _actor_list[i]->active == false)
         {
-            zlog("Found DEAD actor at %d", i);
+            zlog(INFO, "Found DEAD actor at %d", i);
             _destroy_actor(_actor_list[i]);
             _actor_list[i] = NULL;
             _actor_list[i] = type;
@@ -32,7 +32,7 @@ int zap_add_actor(int x, int y, int dir, ZAP_ACTOR *type)
         }
         else if (_actor_list[i] == NULL)
         {
-            zlog("Found NULL actor slot at %d", i);
+            zlog(INFO, "Found NULL actor slot at %d", i);
             _actor_list[i] = type; //Why create an acotor from scratch?? use this type
             _actor_list[i]->id = i;
             _actor_list[i]->init(_actor_list[i]);
@@ -40,7 +40,7 @@ int zap_add_actor(int x, int y, int dir, ZAP_ACTOR *type)
         }
     }
 
-    zlog("No free actor slots!");
+    zlog(WARN, "No free actor slots!");
     return 0;
 }
 
@@ -49,7 +49,7 @@ int zap_remove_actor(int id)
 {
     if (_actor_list[id] == NULL)
     {
-        zlog("Actor slot null!");
+        zlog(WARN, "Actor slot null!");
         return 0;
     }
     else if (_actor_list[id] != NULL)
@@ -57,41 +57,19 @@ int zap_remove_actor(int id)
         if (_actor_list[id]->active)
         {
             _kill_actor(_actor_list, id);
-            zlog("Actor %d removed from list. NULL? %s", id, _actor_list[id] == NULL ? "Yes." : "No.");
+            zlog(INFO, "Actor %d removed from list. NULL? %s", id, _actor_list[id] == NULL ? "Yes." : "No.");
             return 1;
         }
     }
     return 0;
 }
 
-/* // this probably isn't needed now! ///////////////////////////////////////
-static ZAP_ACTOR *create_actor(ZAP_ACTOR *type, int x, int y, int dir, int id)
-{
-    ZAP_ACTOR *actor = type;
-    if (actor == NULL) return NULL;
-
-    actor->x = x;
-    actor->y = y;
-
-    actor->dir = dir;
-
-    actor->id = id;
-    actor->active = true;
-
-    zlog("Actor with ID %d Created.", id);
-    zlog("Active = %d", actor->active);
-
-    //_set_actor_points(actor);
-    return actor;
-}
- */
-
- /* Destorys an actor, freeing its memory */
+/* Destorys an actor, freeing its memory */
 void _destroy_actor(ZAP_ACTOR *actor)
 {
     if (actor == NULL)
     {
-        zlog("Actor was null, returning!");
+        zlog(WARN, "Actor was null, returning!");
         return;
     }
     actor->active = false;
@@ -99,7 +77,7 @@ void _destroy_actor(ZAP_ACTOR *actor)
     actor->update = NULL;
     actor->draw = NULL;
     free(actor);
-    zlog("Actor %d Destroyed", actor_id);
+    zlog(INFO, "Actor %d Destroyed", actor_id);
 }
 
 /* Sets an actor's active stats to false but doesn't destory it */
@@ -107,13 +85,13 @@ void _kill_actor(ZAP_ACTOR **actor_list, int id)
 {
     if (actor_list[id] == NULL)
     {
-        zlog("Can't kill actor! Actor was null, returning!");
+        zlog(WARN, "Can't kill actor! Actor was null, returning!");
         return;
     }
     else if (actor_list[id] != NULL && actor_list[id])
     {
         actor_list[id]->active = false;
-        zlog("Actor %d killed. Active status set to %d", id, actor_list[id]->active);
+        zlog(INFO, "Actor %d killed. Active status set to %d", id, actor_list[id]->active);
     }
 }
 
@@ -196,7 +174,7 @@ size_t zap_get_actor_type_size()
 
 void _zap_destroy_actor_list()
 {
-    zlog("Destroying Actor List");
+    zlog(INFO, "Destroying Actor List");
 
     for (int i = 0; i < MAX_ACTORS; i++)
     {
@@ -209,12 +187,12 @@ void _zap_destroy_actor_list()
 
 ZAP_ACTOR *zap_create_empty_actor(void)
 {
-    zlog("Create Empty Scene");
+    zlog(LOAD, "Creating Empty Actor.");
     ZAP_ACTOR *actor = malloc(sizeof(ZAP_ACTOR));
     memset(actor, 0, sizeof(ZAP_ACTOR));
     actor->active = true;
     if (actor) return actor;
-    zlog("Error creating empty actor");
+    zlog(FAIL, "Couldn't create empty actor");
     return NULL;
 }
 

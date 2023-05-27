@@ -10,7 +10,7 @@ static void on_key_up(ZAP_ACTOR *self);
 static void init(ZAP_ACTOR *self)
 {
     zap_set_actor_animation_frames(self, 1, 4);
-    zlog("Demo Actor initialized!");
+    zlog(INFO, "Demo Actor initialized!");
 }
 
 static void update(ZAP_ACTOR *self)
@@ -43,7 +43,7 @@ static void on_key_up(ZAP_ACTOR *self)
 
 ZAP_ACTOR *demo_actor(void)
 {
-    zlog("DEMO SCENE CREATE begin.");
+    zlog(LOAD, "Creating Demo Actor.");
     ZAP_ACTOR *actor = zap_create_empty_actor();
 
     zap_set_actor_init_func(actor, init);
@@ -55,6 +55,6 @@ ZAP_ACTOR *demo_actor(void)
     zap_set_actor_type(actor, 0);
     zap_set_actor_sprite(actor, zap_get_actor_sprite(zap_get_actor_type(actor)));
 
-    zlog("Demo Actor Created.");
+    zlog(INFO, "Demo Actor Created.");
     return actor;
 }

@@ -13,7 +13,7 @@ void _check_misc_events(ALLEGRO_EVENT *event)
 {
     if (event->type == ALLEGRO_EVENT_DISPLAY_CLOSE)
     {
-        zlog("Quit by clicking X");
+        zlog(INFO, "Quit by clicking X");
         game.done = true;
     }
 }
