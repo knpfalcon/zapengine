@@ -4,9 +4,9 @@
 
 #ifdef ZLOG_ON
 // Quick logging to file when ZLOG_ON is defined. A good replacement for printf.
-void _zlog(char *file, int line, int type, char *format, ...)
+#undef zlog
+void zlog(char *file, int line, int type, char *format, ...)
 {
-
     static bool erase_log = true;
     va_list v_ptr;
     FILE *fp;
@@ -17,7 +17,6 @@ void _zlog(char *file, int line, int type, char *format, ...)
         va_start(v_ptr, format);
 
         if (type == INFO)
-
         {
             fprintf(fp, "INFO: ");
             vfprintf(fp, format, v_ptr);
@@ -30,7 +29,6 @@ void _zlog(char *file, int line, int type, char *format, ...)
             printf("\n" COLOR_RESET);
         }
         else if (type == WARN)
-
         {
             fprintf(fp, "WARN: ");
             vfprintf(fp, format, v_ptr);
@@ -68,7 +66,6 @@ void _zlog(char *file, int line, int type, char *format, ...)
         }
         else if (type == NONE)
         {
-            fprintf(fp, "      ");
             vfprintf(fp, format, v_ptr);
             fprintf(fp, "\n");
 

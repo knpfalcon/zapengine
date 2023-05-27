@@ -25,12 +25,11 @@ extern "C" {
 
 #define BOLD_ON "\x1b[1m"
 #define BOLD_OFF "\x1b[22m"
+    void zlog(char *file, int line, int type, char *format, ...);
+#define zlog(type, format, ...) (zlog(__FILE__, __LINE__, type, format, ##__VA_ARGS__))
 
-
-#define zlog(type, format, ...) _zlog(__FILE__, __LINE__, type, format, ##__VA_ARGS__)
-    void _zlog(char *file, int line, int type, char *format, ...);
 #else
-#define zlog(msg, ...)
+#define zlog(type, format, ...)
 #endif
 
 
