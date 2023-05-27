@@ -22,7 +22,7 @@ ALLEGRO_BITMAP *_load_bitmap(const char *filename)
 
 ALLEGRO_BITMAP *_create_bitmap(int w, int h, const char *name)
 {
-    zlog(INFO, "Destroying bitmap %s", name);
+    zlog(INFO, "Creating bitmap %s", name);
     ALLEGRO_BITMAP *bmp = al_create_bitmap(w, h);
     if (!bmp)
     {
