@@ -1,6 +1,9 @@
 #ifndef BASE_H
 #define BASE_H
 
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdarg.h>
 #include "base.h"
 
 #ifdef __cplusplus

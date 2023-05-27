@@ -3,16 +3,17 @@
 
 #include "zapengine/base.h"
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #ifdef ZLOG_ON
-#define INFO 0  //General Info
-#define WARN 1  //Non-critical oddities
-#define FAIL 2  //Failure, quitting
-#define LOAD 3  //File loading or creating.
+#define NONE 0  //General Info
+#define INFO 1  //General Info
+#define WARN 2  //Non-critical oddities
+#define FAIL 3  //Failure, quitting
+#define LOAD 4  //File loading or creating.
+
 
 #define COLOR_RED     "\x1b[31m"
 #define COLOR_GREEN   "\x1b[32m"
@@ -25,9 +26,11 @@ extern "C" {
 #define BOLD_ON "\x1b[1m"
 #define BOLD_OFF "\x1b[22m"
 
-    ZAP_FUNC(void, zlog, (int type, const char *format, ...));
+
+#define zlog(type, format, ...) _zlog(__FILE__, __LINE__, type, format, ##__VA_ARGS__)
+    void _zlog(char *file, int line, int type, char *format, ...);
 #else
-#define zlog(a, ...)
+#define zlog(msg, ...)
 #endif
 
 

@@ -29,13 +29,14 @@ char *DATAFILE_NAME;
 /*  Called from entry point main. Startup happens here. */
 void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile, ZAP_SCENE *first_scene)
 {
-    zlog(LOAD, "Staring Zap Engine %d.%d.%d", ZAP_VERSION_MAJOR, ZAP_VERSION_MINOR, ZAP_VERSION_REVISION);
+    zlog(NONE, "Starting Zap Engine %d.%d.%d", ZAP_VERSION_MAJOR, ZAP_VERSION_MINOR, ZAP_VERSION_REVISION);
     zlog(LOAD, "Inializing PHYSFS.");
     if (!PHYSFS_init(argv0))
     {
         zlog(FAIL, "Problem initializing PhysFS!");
         exit(1);
     }
+
     DATAFILE_NAME = datafile;
 
     game.fps = fps;
@@ -51,8 +52,6 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
     zlog(LOAD, "Registering Cleanup Functions.");
     if (atexit(_exit_cleanup) != 0)
         zlog(FAIL, "Failed to register _exit_cleanup for atexit()");
-    else
-        zlog(INFO, "Registered _exit_cleanup for atexit()");
 
     // Start Allegro
     allegro_init();
