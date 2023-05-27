@@ -9,13 +9,11 @@
 
 static ZAP_ACTOR_MODULE_CALLBACK actor_module_list[MAX_ACTOR_TYPES];
 
-//static ZAP_ACTOR *create_actor(ZAP_ACTOR *type, int x, int y, int dir, int id);
-
 static void update_actor_modules(void);
 
 ZAP_ACTOR *_actor_list[MAX_ACTORS];
 
-/* Finds and empty slot in actor list and adds and actor. */
+/* Finds and empty slot (NULL or inactive) in actor list and adds and actor. */
 int zap_add_actor(int x, int y, int dir, ZAP_ACTOR *type)
 {
     for (int i = 0; i < MAX_ACTORS; i++)
@@ -44,7 +42,7 @@ int zap_add_actor(int x, int y, int dir, ZAP_ACTOR *type)
     return 0;
 }
 
-/* Removes actor from actor list and sets its old slot to NULL */
+/* Removes actor from actor list and sets its active status to false */
 int zap_remove_actor(int id)
 {
     if (_actor_list[id] == NULL)
