@@ -29,7 +29,7 @@ char *DATAFILE_NAME;
 /*  Called from entry point main. Startup happens here. */
 void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile, ZAP_SCENE *first_scene)
 {
-    zlog(NONE, "Starting Zap Engine %d.%d.%d", ZAP_VERSION_MAJOR, ZAP_VERSION_MINOR, ZAP_VERSION_REVISION);
+    zlog(NONE, "Starting Zap Engine %d.%d.%d", zap_get_version_major(), zap_get_version_minor(), zap_get_version_revision());
     zlog(LOAD, "Inializing PHYSFS.");
     if (!PHYSFS_init(argv0))
     {

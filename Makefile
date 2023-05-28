@@ -64,6 +64,7 @@ sound.h \
 sprite.h \
 update.h \
 zapengine.h \
+version.h \
 zlog.h
 
 _OBJ = \
@@ -84,6 +85,7 @@ scene.o \
 sound.o \
 sprite.o \
 update.o \
+version.o \
 zlog.o
 
 
