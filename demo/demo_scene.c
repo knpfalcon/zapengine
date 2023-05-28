@@ -14,12 +14,21 @@ static void init(void)
 {
     zap_load_actor_sprite("GRAPHICS/SPR_TALLY", 32, 32, 0);
     zap_add_actor(32, 32, DIR_RIGHT, demo_actor());
+    zap_add_actor(64, 32, DIR_RIGHT, demo_actor());
+    zap_add_actor(64, 64, DIR_RIGHT, demo_actor());
     zlog(INFO, "%s initialized!", scene_name);
+
+    zap_set_actor_animation_frames(zap_get_actor(0), 0, 0);
+    zap_set_actor_animation_frames(zap_get_actor(1), 1, 4);
+    zap_set_actor_animation_frames(zap_get_actor(2), 5, 7);
+    zap_set_actor_animation_frames(zap_get_actor(3), 5, 7); //This one should throw a warning
 }
 
 static void update(void)
 {
-
+    if (zap_get_key_state(28)) zap_set_actor_animation_frames(zap_get_actor(0), 1, 4);
+    else if (zap_get_key_state(29)) zap_set_actor_animation_frames(zap_get_actor(0), 5, 7);
+    else if (zap_get_key_state(30)) zap_set_actor_animation_frames(zap_get_actor(0), 8, 9);
 }
 
 static void draw(void)

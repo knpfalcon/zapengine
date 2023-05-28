@@ -5,6 +5,7 @@
 #include "zapengine/internal/zintern_scene.h"
 #include "zapengine/internal/zintern_game.h"
 #include "zapengine/internal/zintern_draw.h"
+#include "zapengine/internal/zintern_actor.h"
 
 void zap_change_scene(ZAP_SCENE *next_scene)
 {
@@ -32,6 +33,7 @@ ZAP_SCENE *zap_create_empty_scene(void)
 
 void _destroy_scene(ZAP_SCENE *scene)
 {
+    if (scene->use_actors) _destroy_actor_list();
     if (scene) free(scene);
 }
 

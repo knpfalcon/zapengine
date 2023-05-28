@@ -49,11 +49,11 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
     zlog(INFO, "Reserved Audio Samples: %d", game.reserved_samples);
 
     //register cleanup atexit functions
-    zlog(LOAD, "Registering Cleanup Functions.");
+    /* zlog(LOAD, "Registering Cleanup Functions.");
     if (atexit(_exit_cleanup) != 0)
-        zlog(FAIL, "Failed to register _exit_cleanup for atexit()");
+        zlog(FAIL, "Failed to register _exit_cleanup for atexit()"); */
 
-    // Start Allegro
+        // Start Allegro
     allegro_init();
 
     //Bitmaps
@@ -110,6 +110,8 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
     _main_event_loop();
 
     zlog(INFO, "Breaking from main loop.");
+
+    _exit_cleanup();
 
     al_uninstall_system();
 }

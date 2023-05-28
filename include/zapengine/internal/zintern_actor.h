@@ -52,6 +52,9 @@ extern "C" {
 
         int r, g, b;
 
+        int current_frame;
+        int start_frame;
+        int end_frame;
         struct ZAP_ACTOR_SPRITE *sprite;
 
         void(*init)(ZAP_ACTOR *self);
@@ -62,8 +65,8 @@ extern "C" {
 
     void _kill_actor(ZAP_ACTOR **actor_list, int id);
     void _destroy_actor(ZAP_ACTOR *actor);
-    void _zap_destroy_actor_list();
-    void _zap_set_actor_list(ZAP_ACTOR **actor_list);
+    void _destroy_actor_list();
+    void _zap_set_actor_list(ZAP_ACTOR **actor_list); //not needed. prune.
     void _draw_actors();
     void _update_actors();
 

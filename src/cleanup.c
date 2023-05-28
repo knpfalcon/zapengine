@@ -9,8 +9,6 @@
 
 void _exit_cleanup(void)
 {
-    //Not really needed, but calling them anyway for good practice.
-
     if (game.current_scene->destroy)
         (*game.current_scene->destroy)();
     _destroy_scene(game.current_scene);

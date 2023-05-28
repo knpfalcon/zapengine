@@ -40,6 +40,9 @@ extern "C" {
     ZAP_FUNC(void, zap_set_actor_animation_frames, (ZAP_ACTOR *actor, int start_frame, int end_frame));
     ZAP_FUNC(void, zap_animate_actor, (ZAP_ACTOR *actor, int speed));
 
+    ZAP_FUNC(ZAP_ACTOR *, zap_get_actor, (int id));
+
+
 
 #ifdef __cplusplus
 }

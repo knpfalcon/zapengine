@@ -26,6 +26,9 @@ int zap_add_actor(int x, int y, int dir, ZAP_ACTOR *type)
             _actor_list[i] = type;
             _actor_list[i]->id = i;
             _actor_list[i]->init(_actor_list[i]);
+            _actor_list[i]->x = x;
+            _actor_list[i]->y = y;
+            _actor_list[i]->dir = dir;
             return 1;
         }
         else if (_actor_list[i] == NULL)
@@ -34,6 +37,9 @@ int zap_add_actor(int x, int y, int dir, ZAP_ACTOR *type)
             _actor_list[i] = type; //Why create an acotor from scratch?? use this type
             _actor_list[i]->id = i;
             _actor_list[i]->init(_actor_list[i]);
+            _actor_list[i]->x = x;
+            _actor_list[i]->y = y;
+            _actor_list[i]->dir = dir;
             return 1;
         }
     }
@@ -145,7 +151,7 @@ void _draw_actors()
             if (_actor_list[i]->active == true) //&& _actor_list[i]->in_view == true
             {
                 _actor_list[i]->draw(_actor_list[i]);
-                al_draw_bitmap(_actor_list[i]->sprite->frames[_actor_list[i]->sprite->current_frame], _actor_list[i]->x, _actor_list[i]->y, 0);
+                al_draw_bitmap(_actor_list[i]->sprite->frames[_actor_list[i]->current_frame], _actor_list[i]->x, _actor_list[i]->y, 0);
             }
         }
         else
@@ -170,7 +176,7 @@ size_t zap_get_actor_type_size()
     return sizeof(ZAP_ACTOR);
 }
 
-void _zap_destroy_actor_list()
+void _destroy_actor_list()
 {
     zlog(INFO, "Destroying Actor List");
 
@@ -180,7 +186,8 @@ void _zap_destroy_actor_list()
         _destroy_actor(_actor_list[i]);
         _actor_list[i] = NULL;
     }
-
+    zlog(INFO, "Actor List Destroyed");
+    _destroy_sprites();
 }
 
 ZAP_ACTOR *zap_create_empty_actor(void)
@@ -236,22 +243,35 @@ void zap_set_actor_sprite(ZAP_ACTOR *actor, ZAP_ACTOR_SPRITE *sprite)
 
 void zap_set_actor_animation_frames(ZAP_ACTOR *actor, int start_frame, int end_frame)
 {
+    if (!actor)
+    {
+        zlog(WARN, "Can't set actor animations frames! No actor with ID specified.");
+        return;
+    }
     //Check if animation is already set. If it's the same animation, return.
-    if (actor->sprite->start_frame == start_frame && actor->sprite->end_frame == end_frame)
+    if (actor->start_frame == start_frame && actor->end_frame == end_frame)
         return;
 
-    actor->sprite->start_frame = start_frame;
-    actor->sprite->end_frame = end_frame;
-    actor->sprite->current_frame = start_frame;
+    actor->start_frame = start_frame;
+    actor->end_frame = end_frame;
+    actor->current_frame = start_frame;
+    zlog(INFO, "Actor %d animation frames set to START: %d, END: %d.", actor->id, actor->start_frame, actor->end_frame);
 }
 void zap_animate_actor(ZAP_ACTOR *actor, int speed)
 {
 
     if (zap_get_drawn_game_frames() % speed == 0)
     {
-        if (actor->sprite->current_frame < actor->sprite->end_frame)
-            actor->sprite->current_frame++;
+        if (actor->current_frame < actor->end_frame)
+            actor->current_frame++;
         else
-            actor->sprite->current_frame = actor->sprite->start_frame;
+            actor->current_frame = actor->start_frame;
     }
+}
+ZAP_ACTOR *zap_get_actor(int id)
+{
+    if (_actor_list[id])
+        return _actor_list[id];
+
+    return NULL;
 }
