@@ -11,6 +11,16 @@ extern "C" {
 
     ZAP_FUNC(bool, zap_is_touching, (ZAP_ACTOR *actor1, ZAP_ACTOR *actor2));
 
+    ZAP_FUNC(void, zap_set_actor_box, (ZAP_ACTOR *actor, int left, int right, int top, int bottom));
+
+    ZAP_FUNC(int, zap_get_actor_center_x, (ZAP_ACTOR *actor));
+    ZAP_FUNC(int, zap_get_actor_center_y, (ZAP_ACTOR *actor));
+
+    ZAP_FUNC(int, zap_get_actor_left, (ZAP_ACTOR *actor));
+    ZAP_FUNC(int, zap_get_actor_right, (ZAP_ACTOR *actor));
+    ZAP_FUNC(int, zap_get_actor_top, (ZAP_ACTOR *actor));
+    ZAP_FUNC(int, zap_get_actor_bottom, (ZAP_ACTOR *actor));
+
 #ifdef __cplusplus
 }
 #endif
