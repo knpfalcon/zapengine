@@ -15,6 +15,8 @@ extern "C" {
 
     struct ZAP_ACTOR
     {
+        char *name;
+
         bool active;
         bool in_view;
         bool platform_movement;
@@ -23,8 +25,6 @@ extern "C" {
         int id;
 
         int state;
-
-        char *name;
 
         float x;
         float y;
