@@ -290,6 +290,14 @@ int zap_get_actor_id(ZAP_ACTOR *actor)
 
 void zap_change_actor_sprite(ZAP_ACTOR *actor, ZAP_ACTOR_SPRITE *sprite)
 {
-    if (sprite) actor->sprite = sprite;
-    else return;
+    if (sprite && actor)
+    {
+        zlog(INFO, "Changing Actor %d's sprite.", actor->id);
+        actor->sprite = sprite;
+    }
+    else
+    {
+        zlog(WARN, "Cannot change Actor %d's sprite!", actor->id);
+        return;
+    }
 }
