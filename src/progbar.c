@@ -28,9 +28,14 @@ void _destroy_progress_bar(ZAP_PROGRESS_BAR *bar)
     if (bar) free(bar);
 }
 
-void _increment_progress_bar(ZAP_PROGRESS_BAR *bar, float increment)
+void _increment_progress_bar(ZAP_PROGRESS_BAR *bar, float num)
 {
-    if (bar->val < 100) bar->val += increment;
+    if (bar->val < 100) bar->val += num;
+}
+
+void _decrement_progress_bar(ZAP_PROGRESS_BAR *bar, float num)
+{
+    if (bar->val > 0) bar->val -= num;
 }
 
 void _draw_progress_bar(ZAP_PROGRESS_BAR *bar)
@@ -48,8 +53,8 @@ void _draw_progress_bar(ZAP_PROGRESS_BAR *bar)
     al_flip_display();
 }
 
-void _increment_draw_progress_bar(ZAP_PROGRESS_BAR *bar, float increment)
+void _increment_draw_progress_bar(ZAP_PROGRESS_BAR *bar, float num)
 {
-    _increment_progress_bar(bar, increment);
+    _increment_progress_bar(bar, num);
     _draw_progress_bar(bar);
 }
