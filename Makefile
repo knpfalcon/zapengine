@@ -44,6 +44,7 @@ internal\zintern_scene.h \
 internal\zintern_sound.h \
 internal\zintern_sprite.h \
 internal\zintern_update.h \
+internal\zintern_util.h \
 internal\zintern_version.h \
 internal\zintern_zapsplash.h \
 actor.h \
@@ -64,6 +65,7 @@ sound.h \
 sprite.h \
 update.h \
 zapengine.h \
+util.h \
 version.h \
 zlog.h
 
@@ -85,6 +87,7 @@ scene.o \
 sound.o \
 sprite.o \
 update.o \
+util.o \
 version.o \
 zlog.o
 
