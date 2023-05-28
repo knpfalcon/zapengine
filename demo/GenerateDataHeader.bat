@@ -43,7 +43,7 @@ echo: >> data.h
 
 echo: >> data.h
 
-    for /R "assets/MAP" %%f in (*.map) do (
+    for /R "assets/MAP" %%f in (*.zm) do (
 
     echo #define %%~nf "MAP/%%~nf" >> data.h
 )

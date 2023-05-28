@@ -3,6 +3,7 @@
 
 #include "demo_scene.h"
 #include "demo_actor.h"
+#include "data.h"
 
 static char *scene_name = "Demo Scene";
 
@@ -29,6 +30,10 @@ static void init(void)
     zap_set_actor_animation_frames(zap_get_actor(1), 1, 4);
     zap_set_actor_animation_frames(zap_get_actor(2), 5, 7);
     zap_set_actor_animation_frames(zap_get_actor(3), 0, 119);
+
+    ZAP_MAP *map = zap_load_map(zapmap);
+
+
 
 }
 

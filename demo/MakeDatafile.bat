@@ -26,7 +26,7 @@ for /R "assets/SOUND" %%f in (*.voc) do (
 )
 
 
-for /R "assets/MAP" %%f in (*.map) do (
+for /R "assets/MAP" %%f in (*.zm) do (
 
     echo f | xcopy %%~f "data/MAP/%%~nf" /E /y
 )
