@@ -13,6 +13,9 @@ struct ZAP_MAP_TILE
 struct ZAP_MAP_ACTOR
 {
     int type;
+    int start_x;
+    int start_y;
+    int start_dir;
 };
 
 struct ZAP_MAP
