@@ -5,8 +5,6 @@
 #include "zapengine/internal/zintern_bitmap.h"
 #include "zapengine/internal/zintern_actor.h"
 
-#define ATLAS_FRAME_COUNT (al_get_bitmap_width(_actor_sprites[i]->atlas) / frame_w) * (al_get_bitmap_height(_actor_sprites[i]->atlas) / frame_h)
-
 ZAP_ACTOR_SPRITE *_actor_sprites[MAX_ACTOR_TYPES];
 
 void zap_load_actor_sprite(char *file, int frame_w, int frame_h, int type)

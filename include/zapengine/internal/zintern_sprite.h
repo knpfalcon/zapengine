@@ -7,11 +7,6 @@
 extern "C" {
 #endif
 
-    struct ZAP_GRAPHIC
-    {
-        struct ALLEGRO_BITMAP *loading;
-    };
-
     struct ZAP_ACTOR_SPRITE
     {
         int frame_count;
