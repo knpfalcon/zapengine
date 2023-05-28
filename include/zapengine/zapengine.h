@@ -3,7 +3,6 @@
 
 #include "base.h"
 
-#include "zlog.h"
 #include "actor.h"
 #include "adlib.h"
 #include "bitmap.h"
@@ -16,9 +15,12 @@
 #include "game.h"
 #include "sprite.h"
 #include "init.h"
+#include "map.h"
 #include "movement.h"
 #include "scene.h"
 #include "sound.h"
 #include "update.h"
+#include "util.h"
+#include "zlog.h"
 
 #endif

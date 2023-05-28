@@ -38,6 +38,7 @@ internal\zintern_draw.h \
 internal\zintern_events.h \
 internal\zintern_game.h \
 internal\zintern_init.h \
+internal\zintern_map.h \
 internal\zintern_movement.h \
 internal\zintern_progbar.h \
 internal\zintern_scene.h \
@@ -59,6 +60,7 @@ draw.h \
 events.h \
 game.h \
 init.h \
+map.h \
 movement.h \
 scene.h \
 sound.h \
@@ -81,6 +83,7 @@ draw.o \
 events.o \
 game.o \
 init.o \
+map.o \
 movement.o \
 progbar.o \
 scene.o \
