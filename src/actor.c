@@ -275,3 +275,9 @@ ZAP_ACTOR *zap_get_actor(int id)
 
     return NULL;
 }
+
+int zap_get_actor_id(ZAP_ACTOR *actor)
+{
+    if (!actor) return -1;
+    return actor->id;
+}

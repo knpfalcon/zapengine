@@ -7,7 +7,7 @@ static void destroy(ZAP_ACTOR *self);
 
 static void init(ZAP_ACTOR *self)
 {
-    zlog(INFO, "Demo Actor initialized!");
+    zlog(INFO, "Demo Actor initialized with ID %d.", zap_get_actor_id(self));
 }
 
 static void update(ZAP_ACTOR *self)

@@ -50,8 +50,6 @@ extern "C" {
 
         int health;
 
-        int r, g, b;
-
         int current_frame;
         int start_frame;
         int end_frame;
