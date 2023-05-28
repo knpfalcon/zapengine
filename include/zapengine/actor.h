@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 #include "base.h"
-#include "graphics.h"
+#include "sprite.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -32,10 +32,6 @@ extern "C" {
     ZAP_FUNC(void, zap_set_actor_update_func, (ZAP_ACTOR *actor, void(*update)(ZAP_ACTOR *self)));
     ZAP_FUNC(void, zap_set_actor_draw_func, (ZAP_ACTOR *actor, void(*draw)(ZAP_ACTOR *self)));
     ZAP_FUNC(void, zap_set_actor_destroy_func, (ZAP_ACTOR *actor, void(*destroy)(ZAP_ACTOR *self)));
-
-    //probably dont need these
-    ZAP_FUNC(void, zap_set_actor_key_down_func, (ZAP_ACTOR *actor, void(*on_key_down)(ZAP_ACTOR *self)));
-    ZAP_FUNC(void, zap_set_actor_key_up_func, (ZAP_ACTOR *actor, void(*on_key_up)(ZAP_ACTOR *self)));
 
     ZAP_FUNC(void, zap_set_actor_type, (ZAP_ACTOR *actor, int type));
     ZAP_FUNC(int, zap_get_actor_type, (ZAP_ACTOR *actor));

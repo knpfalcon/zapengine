@@ -40,6 +40,11 @@ void zap_set_scene_name(ZAP_SCENE *scene, char *name)
     scene->name = name;
 }
 
+char *zap_get_scene_name(ZAP_SCENE *scene)
+{
+    return scene->name;
+}
+
 void zap_set_scene_init_func(ZAP_SCENE *scene, void(*init)(void))
 {
     scene->init = init;

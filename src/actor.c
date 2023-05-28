@@ -4,7 +4,7 @@
 #include <allegro5/allegro_image.h>
 #include "zapengine/zapengine.h"
 #include "zapengine/internal/zintern_actor.h"
-#include "zapengine/internal/zintern_graphics.h"
+#include "zapengine/internal/zintern_sprite.h"
 #include "zapengine/internal/zintern_controls.h"
 
 static ZAP_ACTOR_MODULE_CALLBACK actor_module_list[MAX_ACTOR_TYPES];
@@ -198,25 +198,20 @@ void zap_set_actor_init_func(ZAP_ACTOR *actor, void(*init)(ZAP_ACTOR *self))
 {
     actor->init = init;
 }
+
 void zap_set_actor_update_func(ZAP_ACTOR *actor, void(*update)(ZAP_ACTOR *self))
 {
     actor->update = update;
 }
+
 void zap_set_actor_draw_func(ZAP_ACTOR *actor, void(*draw)(ZAP_ACTOR *self))
 {
     actor->draw = draw;
 }
+
 void zap_set_actor_destroy_func(ZAP_ACTOR *actor, void(*destroy)(ZAP_ACTOR *self))
 {
     actor->destroy = destroy;
-}
-void zap_set_actor_key_down_func(ZAP_ACTOR *actor, void(*on_key_down)(ZAP_ACTOR *self))
-{
-    actor->on_key_down = on_key_down;
-}
-void zap_set_actor_key_up_func(ZAP_ACTOR *actor, void(*on_key_up)(ZAP_ACTOR *self))
-{
-    actor->on_key_up = on_key_up;
 }
 
 void zap_set_actor_type(ZAP_ACTOR *actor, int type)

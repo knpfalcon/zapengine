@@ -2,7 +2,7 @@
 #define ZINTERN_ACTOR_H
 
 #include "actor.h"
-#include "zapengine/internal/zintern_graphics.h"
+#include "zapengine/internal/zintern_sprite.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -54,12 +54,10 @@ extern "C" {
 
         struct ZAP_ACTOR_SPRITE *sprite;
 
-        void(*init)(ZAP_ACTOR *self);;
-        void(*update)(ZAP_ACTOR *self);;
-        void(*draw)(ZAP_ACTOR *self);;
-        void(*destroy)(ZAP_ACTOR *self);;
-        void(*on_key_down)(ZAP_ACTOR *self);
-        void(*on_key_up)(ZAP_ACTOR *self);
+        void(*init)(ZAP_ACTOR *self);
+        void(*update)(ZAP_ACTOR *self);
+        void(*draw)(ZAP_ACTOR *self);
+        void(*destroy)(ZAP_ACTOR *self);
     };
 
     void _kill_actor(ZAP_ACTOR **actor_list, int id);

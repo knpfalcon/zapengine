@@ -1,7 +1,7 @@
 #include "demo_scene.h"
 #include "demo_actor.h"
 
-char *scene_name = "Demo Scene";
+static char *scene_name = "Demo Scene";
 
 static void init(void);
 static void update(void);
@@ -56,6 +56,6 @@ ZAP_SCENE *demo_scene(void)
     zap_set_scene_key_up_func(scene, on_key_up);
     zap_scene_use_actors(scene, 1);
 
-    zlog(INFO, "%s Created.", scene_name);
+    zlog(INFO, "%s Created.", zap_get_scene_name(scene));
     return scene;
 }

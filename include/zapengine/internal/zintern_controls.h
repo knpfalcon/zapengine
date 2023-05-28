@@ -25,7 +25,7 @@ extern "C" {
     extern ZAP_CONTROLS controls;
 
     void _init_controls(void);
-    void _check_player_controls(void);
+
 
 #ifdef __cplusplus
 }

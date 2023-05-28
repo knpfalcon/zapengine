@@ -1,7 +1,7 @@
-#ifndef ZINTERN_GRAPHICS_H
-#define ZINTERN_GRAPHICS_H
+#ifndef ZINTERN_SPRITE_H
+#define ZINTERN_SPRITE_H
 
-#include "graphics.h"
+#include "sprite.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -21,13 +21,6 @@ extern "C" {
         struct ALLEGRO_BITMAP *atlas;
         struct ALLEGRO_BITMAP *frames[MAX_FRAMES];
     };
-
-    extern ZAP_GRAPHIC gfx_native;
-
-    void _load_actor_graphics(void);
-    void _destroy_actor_graphics(void);
-
-    void _load_native_graphics(void);
 
 #ifdef __cplusplus
 }

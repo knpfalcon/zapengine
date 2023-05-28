@@ -37,12 +37,12 @@ internal\zintern_controls.h \
 internal\zintern_draw.h \
 internal\zintern_events.h \
 internal\zintern_game.h \
-internal\zintern_graphics.h \
 internal\zintern_init.h \
 internal\zintern_movement.h \
 internal\zintern_progbar.h \
 internal\zintern_scene.h \
 internal\zintern_sound.h \
+internal\zintern_sprite.h \
 internal\zintern_update.h \
 internal\zintern_version.h \
 internal\zintern_zapsplash.h \
@@ -57,11 +57,11 @@ controls.h \
 draw.h \
 events.h \
 game.h \
-graphics.h \
 init.h \
 movement.h \
 scene.h \
 sound.h \
+sprite.h \
 update.h \
 zapengine.h \
 zlog.h
@@ -77,12 +77,12 @@ controls.o \
 draw.o \
 events.o \
 game.o \
-graphics.o \
 init.o \
 movement.o \
 progbar.o \
 scene.o \
 sound.o \
+sprite.o \
 update.o \
 zlog.o
 

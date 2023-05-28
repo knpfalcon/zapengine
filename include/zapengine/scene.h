@@ -15,6 +15,7 @@ extern "C" {
     ZAP_FUNC(ZAP_SCENE *, zap_create_empty_scene, ());
 
     ZAP_FUNC(void, zap_set_scene_name, (ZAP_SCENE *scene, char *name));
+    ZAP_FUNC(char *, zap_get_scene_name, (ZAP_SCENE *scene));
     ZAP_FUNC(void, zap_set_scene_init_func, (ZAP_SCENE *scene, void(*init)(void)));
     ZAP_FUNC(void, zap_set_scene_update_func, (ZAP_SCENE *scene, void(*update)(void)));
     ZAP_FUNC(void, zap_set_scene_draw_func, (ZAP_SCENE *scene, void(*draw)(void)));

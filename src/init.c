@@ -11,7 +11,7 @@
 #include "zapengine/internal/zintern_init.h"
 #include "zapengine/internal/zintern_game.h"
 #include "zapengine/internal/zintern_controls.h"
-#include "zapengine/internal/zintern_graphics.h"
+#include "zapengine/internal/zintern_sprite.h"
 #include "zapengine/internal/zintern_draw.h"
 #include "zapengine/internal/zintern_bitmap.h"
 #include "zapengine/internal/zintern_cleanup.h"
@@ -85,8 +85,6 @@ void game_begin(int fps, int window_w, int window_h, char *argv0, char *datafile
         exit(1);
     }
     al_set_physfs_file_interface();
-
-    _load_native_graphics();
 
     //Assign keys
     _init_controls();

@@ -3,7 +3,7 @@
 #include "zapengine/internal/zintern_draw.h"
 #include "zapengine/internal/zintern_game.h"
 #include "zapengine/internal/zintern_update.h"
-#include "zapengine/internal/zintern_graphics.h"
+#include "zapengine/internal/zintern_sprite.h"
 #include "zapengine/internal/zintern_actor.h"
 #include "zapengine/internal/zintern_version.h"
 

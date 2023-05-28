@@ -1,7 +1,7 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 #include "zapengine/zlog.h"
-#include "zapengine/internal/zintern_graphics.h"
+#include "zapengine/internal/zintern_sprite.h"
 #include "zapengine/internal/zintern_bitmap.h"
 #include "zapengine/internal/zintern_actor.h"
 
@@ -40,18 +40,6 @@ void zap_load_actor_sprite(char *file, int frame_w, int frame_h, int type)
     _actor_sprites[type]->start_frame = 0;
     _actor_sprites[type]->end_frame = _actor_sprites[type]->frame_count - 1;
     zlog(INFO, "Actor sprite sheet loaded. Starting Frame: %d, Ending Frame: %d", _actor_sprites[type]->start_frame, _actor_sprites[type]->end_frame);
-}
-
-void _destroy_actor_graphics(void)
-{
-    /* al_destroy_bitmap(gfx_test_actor.frames[0]);
-    al_destroy_bitmap(gfx_test_actor.atlas);*/
-    zlog(INFO, "Test Actor Graphics Destroyed.");
-}
-
-void _load_native_graphics(void)
-{
-    //gfx_native.loading = al_load_bitmap("GRAPHICS/gfx_fs_loading");
 }
 
 ZAP_ACTOR_SPRITE *zap_get_actor_sprite(int type)

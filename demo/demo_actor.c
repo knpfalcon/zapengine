@@ -4,8 +4,6 @@ static void init(ZAP_ACTOR *self);
 static void update(ZAP_ACTOR *self);
 static void draw(ZAP_ACTOR *self);
 static void destroy(ZAP_ACTOR *self);
-static void on_key_down(ZAP_ACTOR *self);
-static void on_key_up(ZAP_ACTOR *self);
 
 static void init(ZAP_ACTOR *self)
 {
@@ -31,15 +29,6 @@ static void destroy(ZAP_ACTOR *self)
 
 }
 
-static void on_key_down(ZAP_ACTOR *self)
-{
-
-}
-
-static void on_key_up(ZAP_ACTOR *self)
-{
-
-}
 
 ZAP_ACTOR *demo_actor(void)
 {
@@ -50,8 +39,6 @@ ZAP_ACTOR *demo_actor(void)
     zap_set_actor_update_func(actor, update);
     zap_set_actor_draw_func(actor, draw);
     zap_set_actor_destroy_func(actor, destroy);
-    zap_set_actor_key_down_func(actor, on_key_down);
-    zap_set_actor_key_up_func(actor, on_key_up);
     zap_set_actor_type(actor, 0);
     zap_set_actor_sprite(actor, zap_get_actor_sprite(zap_get_actor_type(actor)));
 

@@ -1,5 +1,5 @@
-#ifndef GRAPHICS_H_
-#define GRAPHICS_H_
+#ifndef SPRITE_H_
+#define SPRITE_H_
 
 #include "base.h"
 
