@@ -10,7 +10,7 @@ ZAP_MAP *zap_create_empty_map(void)
     zlog(NONE, "Creating Empty Map.");
     ZAP_MAP *map = malloc(sizeof(ZAP_MAP));
     memset(map, 0, sizeof(ZAP_MAP));
-    strcpy(map->header, "ZMAP\0");
+    strncpy_s(map->header, sizeof(map->header), "ZMAP", 4);
     return map;
 }
 

@@ -33,8 +33,6 @@ static void init(void)
 
     ZAP_MAP *map = zap_load_map(zapmap);
 
-
-
 }
 
 static void update(void)
