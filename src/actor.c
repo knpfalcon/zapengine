@@ -273,11 +273,17 @@ ZAP_ACTOR *zap_get_actor(int id)
     if (_actor_list[id])
         return _actor_list[id];
 
+    zlog(WARN, "Cannot get actor. No actor exists with ID %d.", id);
     return NULL;
 }
 
 int zap_get_actor_id(ZAP_ACTOR *actor)
 {
-    if (!actor) return -1;
-    return actor->id;
+    if (actor)
+    {
+        return actor->id;
+    }
+
+    zlog(WARN, "Cannot get actor ID. Actor doesn't exist.");
+    return -1;
 }
