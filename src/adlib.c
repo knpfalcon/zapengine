@@ -34,7 +34,7 @@ void _stream_opl()
 
 void _adlmidi_init(void)
 {
-    zlog(LOAD, "Initializing Midi Player.");
+    zlog(NONE, "Initializing Midi Player.");
     music.is_playing = false;
     music.vol = 1.0f;
 

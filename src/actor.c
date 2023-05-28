@@ -17,6 +17,7 @@ ZAP_ACTOR *_actor_list[MAX_ACTORS];
 /* Finds and empty slot (NULL or inactive) in actor list and adds and actor. */
 int zap_add_actor(int x, int y, int dir, ZAP_ACTOR *type)
 {
+    zlog(NONE, "Adding actor of type %d", type->type);
     for (int i = 0; i < MAX_ACTORS; i++)
     {
         if (_actor_list[i] != NULL && _actor_list[i]->active == false)
@@ -52,6 +53,7 @@ int zap_add_actor(int x, int y, int dir, ZAP_ACTOR *type)
 /* Removes actor from actor list and sets its active status to false */
 int zap_remove_actor(int id)
 {
+    zlog(NONE, "Removing actor %d", id);
     if (_actor_list[id] == NULL)
     {
         zlog(WARN, "Actor slot null!");
@@ -72,6 +74,7 @@ int zap_remove_actor(int id)
 /* Destorys an actor, freeing its memory */
 void _destroy_actor(ZAP_ACTOR *actor)
 {
+    zlog(NONE, "Destroying Actor %d", actor->id);
     if (actor == NULL)
     {
         zlog(WARN, "Actor was null, returning!");
@@ -88,6 +91,7 @@ void _destroy_actor(ZAP_ACTOR *actor)
 /* Sets an actor's active stats to false but doesn't destory it */
 void _kill_actor(ZAP_ACTOR **actor_list, int id)
 {
+    zlog(NONE, "Killing Actor %d", id);
     if (actor_list[id] == NULL)
     {
         zlog(WARN, "Can't kill actor! Actor was null, returning!");
@@ -156,9 +160,9 @@ void _draw_actors()
                     al_draw_bitmap(_actor_list[i]->sprite->frames[_actor_list[i]->current_frame], _actor_list[i]->x, _actor_list[i]->y, 0);
                 else
                     al_draw_bitmap(_actor_list[i]->sprite->frames[_actor_list[i]->current_frame], _actor_list[i]->x, _actor_list[i]->y, ALLEGRO_FLIP_HORIZONTAL);
-#ifdef DEBUG
+            #ifdef DEBUG
                 al_draw_rectangle(_actor_list[i]->left, _actor_list[i]->top, _actor_list[i]->right, _actor_list[i]->bottom, al_map_rgb(255, 0, 0), 1);
-#endif
+            #endif
             }
         }
         else
@@ -185,7 +189,7 @@ size_t zap_get_actor_type_size()
 
 void _destroy_actor_list()
 {
-    zlog(INFO, "Destroying Actor List");
+    zlog(NONE, "Destroying Actor List");
 
     for (int i = 0; i < MAX_ACTORS; i++)
     {
@@ -199,7 +203,7 @@ void _destroy_actor_list()
 
 ZAP_ACTOR *zap_create_empty_actor(void)
 {
-    zlog(LOAD, "Creating Empty Actor.");
+    zlog(NONE, "Creating Empty Actor.");
     ZAP_ACTOR *actor = malloc(sizeof(ZAP_ACTOR));
     memset(actor, 0, sizeof(ZAP_ACTOR));
     actor->active = true;
@@ -256,7 +260,7 @@ void zap_set_actor_sprite(ZAP_ACTOR *actor, ZAP_ACTOR_SPRITE *sprite)
 {
     if (sprite && actor)
     {
-        zlog(INFO, "Changing Actor %d's sprite.", actor->id);
+        zlog(NONE, "Changing Actor %d's sprite.", actor->id);
         actor->sprite = sprite;
     }
     else
@@ -268,6 +272,7 @@ void zap_set_actor_sprite(ZAP_ACTOR *actor, ZAP_ACTOR_SPRITE *sprite)
 
 void zap_set_actor_animation_frames(ZAP_ACTOR *actor, int start_frame, int end_frame)
 {
+    zlog(NONE, "Set Actor Frames.");
     if (!actor)
     {
         zlog(WARN, "Can't set actor animations frames! No actor with ID specified.");

@@ -61,7 +61,7 @@ static void on_key_up(int keycode)
 
 ZAP_SCENE *demo_scene(void)
 {
-    zlog(LOAD, "Creating %s.", scene_name);
+    zlog(NONE, "Creating %s.", scene_name);
     ZAP_SCENE *scene = zap_create_empty_scene();
     zap_set_scene_name(scene, scene_name);
 

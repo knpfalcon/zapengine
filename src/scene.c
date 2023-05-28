@@ -9,7 +9,7 @@
 
 void zap_change_scene(ZAP_SCENE *next_scene)
 {
-    zlog(INFO, "Changing Scene to %s", next_scene->name);
+    zlog(NONE, "Changing Scene to %s", next_scene->name);
     if (game.current_scene != NULL && game.current_scene->destroy)
     {
         (game.current_scene->destroy)();
@@ -23,7 +23,7 @@ void zap_change_scene(ZAP_SCENE *next_scene)
 
 ZAP_SCENE *zap_create_empty_scene(void)
 {
-    zlog(INFO, "Creating empty scene.");
+    zlog(NONE, "Creating empty scene.");
     ZAP_SCENE *scene = malloc(sizeof(ZAP_SCENE));
     memset(scene, 0, sizeof(ZAP_SCENE));
     if (scene) return scene;
@@ -34,7 +34,12 @@ ZAP_SCENE *zap_create_empty_scene(void)
 void _destroy_scene(ZAP_SCENE *scene)
 {
     if (scene->use_actors) _destroy_actor_list();
-    if (scene) free(scene);
+    if (scene)
+    {
+        zlog(NONE, "Destroying scene %s", scene->name);
+        free(scene);
+    }
+    zlog(INFO, "Scene destroyed.");
 }
 
 void zap_set_scene_name(ZAP_SCENE *scene, char *name)

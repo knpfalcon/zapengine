@@ -50,7 +50,7 @@ static void destroy(ZAP_ACTOR *self)
 
 ZAP_ACTOR *demo_actor(void)
 {
-    zlog(LOAD, "Creating Demo Actor.");
+    zlog(NONE, "Creating Demo Actor.");
     ZAP_ACTOR *actor = zap_create_empty_actor();
 
     zap_set_actor_init_func(actor, init);

@@ -15,16 +15,16 @@ void _destroy_sprites()
     {
         if (_actor_sprites[i])
         {
-            zlog(INFO, "DESTROYING ACTOR TYPE %d'S FRAMES", i);
+            zlog(NONE, "Destroying Actor Type %d's frames", i);
             _depopulate_frames(_actor_sprites[i]->frames, _actor_sprites[i]->frame_count);
             if (_actor_sprites[i]->atlas)
             {
-                zlog(INFO, "DESTROYING ACTOR TYPE %d's ATLAS", i);
+                zlog(NONE, "Destroying Actor Type %d's atlas", i);
                 if (_actor_sprites[i]->atlas) al_destroy_bitmap(_actor_sprites[i]->atlas);
                 _actor_sprites[i]->atlas = NULL;
                 zlog(INFO, "Actor %d's atlas Destroyed.", i);
             }
-            zlog(INFO, "FREEING ACTOR SPRIT TYPE %d.", i);
+            zlog(NONE, "Freeing actor sprite type %d.", i);
             free(_actor_sprites[i]);
             _actor_sprites[i] = NULL;
             zlog(INFO, "Actor Sprite %d freed.", i);

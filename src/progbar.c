@@ -7,6 +7,7 @@
 
 ZAP_PROGRESS_BAR *_create_progress_bar(int x, int y, float w, float h, int r, int g, int b)
 {
+    zlog(NONE, "Creating Progress Bar.");
     ZAP_PROGRESS_BAR *barp = malloc(sizeof(ZAP_PROGRESS_BAR));
     barp->val = 0;
     barp->x = x;
@@ -19,23 +20,29 @@ ZAP_PROGRESS_BAR *_create_progress_bar(int x, int y, float w, float h, int r, in
 
     barp->bitmap = al_create_bitmap(w, h);
 
+    zlog(INFO, "Progress Bar Created.");
+
     return barp;
 }
 
 void _destroy_progress_bar(ZAP_PROGRESS_BAR *bar)
 {
+    zlog(NONE, "Destroying Progress Bar.");
     al_destroy_bitmap(bar->bitmap);
     if (bar) free(bar);
+    zlog(INFO, "Progress Bar Destroyed.");
 }
 
 void _increment_progress_bar(ZAP_PROGRESS_BAR *bar, float num)
 {
     if (bar->val < 100) bar->val += num;
+    zlog(INFO, "Incremented Progress Bar by %d. Now equals: %d", num, bar->val);
 }
 
 void _decrement_progress_bar(ZAP_PROGRESS_BAR *bar, float num)
 {
     if (bar->val > 0) bar->val -= num;
+    zlog(INFO, "Decremented Progress Bar by %d. Now equals: %d", num, bar->val);
 }
 
 void _draw_progress_bar(ZAP_PROGRESS_BAR *bar)

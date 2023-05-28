@@ -23,6 +23,7 @@ void play_sound(ZAP_SAMPLE *sample, int interupt)
 
 void load_sample(ZAP_SAMPLE *sample, const char *filename)
 {
+    zlog(NONE, "Loading Sample from %s", filename);
     sample->sample = al_load_sample(filename);
     if (!sample->sample)
     {
@@ -34,6 +35,8 @@ void load_sample(ZAP_SAMPLE *sample, const char *filename)
 
 void _destroy_sample(ZAP_SAMPLE *sample)
 {
+    zlog(NONE, "Destroying Sample %d", sample->id);
     al_destroy_sample(sample->sample);
     sample->sample = NULL;
+    zlog(NONE, "Sample destroyed");
 }
