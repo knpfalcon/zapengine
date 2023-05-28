@@ -17,8 +17,6 @@ extern "C" {
     {
         bool active;
         bool in_view;
-        bool is_touching_player;
-        bool can_touch_player;
 
         int type;
         int id;
