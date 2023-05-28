@@ -156,9 +156,9 @@ void _draw_actors()
                     al_draw_bitmap(_actor_list[i]->sprite->frames[_actor_list[i]->current_frame], _actor_list[i]->x, _actor_list[i]->y, 0);
                 else
                     al_draw_bitmap(_actor_list[i]->sprite->frames[_actor_list[i]->current_frame], _actor_list[i]->x, _actor_list[i]->y, ALLEGRO_FLIP_HORIZONTAL);
-                //#ifdef DEBUG
+#ifdef DEBUG
                 al_draw_rectangle(_actor_list[i]->left, _actor_list[i]->top, _actor_list[i]->right, _actor_list[i]->bottom, al_map_rgb(255, 0, 0), 1);
-                //#endif
+#endif
             }
         }
         else
