@@ -37,16 +37,20 @@ void zap_move_actor_down(ZAP_ACTOR *actor)
 
 void zap_apply_actor_gravity(ZAP_ACTOR *actor)
 {
-    actor->vel_y += actor->gravity;
-    if (actor->vel_y > actor->max_vel_y)
+    if (actor->platform_movement)
     {
-        actor->vel_y = actor->max_vel_y;
+        actor->vel_y += actor->gravity;
+        if (actor->vel_y > actor->max_vel_y)
+        {
+            actor->vel_y = actor->max_vel_y;
+        }
     }
 }
 
 void zap_actor_jump(ZAP_ACTOR *actor)
 {
-    actor->vel_y = -actor->jump_strength;
+    if (actor->platform_movement)
+        actor->vel_y = -actor->jump_strength;
 }
 
 void zap_update_actor_movement(ZAP_ACTOR *actor)
