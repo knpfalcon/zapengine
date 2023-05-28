@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 
-    ZAP_FUNC(bool, is_touching, (ZAP_ACTOR *actor1, ZAP_ACTOR *actor2));
+    ZAP_FUNC(bool, zap_is_touching, (ZAP_ACTOR *actor1, ZAP_ACTOR *actor2));
 
 #ifdef __cplusplus
 }

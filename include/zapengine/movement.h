@@ -24,7 +24,25 @@ extern "C" {
     ZAP_FUNC(void, zap_move_actor_down, (ZAP_ACTOR *actor));
     ZAP_FUNC(void, zap_apply_actor_gravity, (ZAP_ACTOR *actor));
     ZAP_FUNC(void, zap_actor_jump, (ZAP_ACTOR *actor));
+
     ZAP_FUNC(void, zap_update_actor_movement, (ZAP_ACTOR *actor));
+
+    ZAP_FUNC(int, zap_get_actor_x, (ZAP_ACTOR *actor));
+    ZAP_FUNC(int, zap_get_actor_y, (ZAP_ACTOR *actor));
+    ZAP_FUNC(int, zap_get_actor_center_x, (ZAP_ACTOR *actor));
+    ZAP_FUNC(int, zap_get_actor_center_y, (ZAP_ACTOR *actor));
+
+    ZAP_FUNC(void, zap_set_actor_box, (ZAP_ACTOR *actor, int left, int right, int top, int bottom));
+
+    ZAP_FUNC(int, zap_get_actor_direction, (ZAP_ACTOR *actor));
+    ZAP_FUNC(void, zap_set_actor_direction, (ZAP_ACTOR *actor, int direction));
+    ZAP_FUNC(int, zap_get_actor_speed, (ZAP_ACTOR *actor));
+    ZAP_FUNC(void, zap_set_actor_speed, (ZAP_ACTOR *actor, int speed));
+
+    ZAP_FUNC(int, zap_get_actor_left, (ZAP_ACTOR *actor));
+    ZAP_FUNC(int, zap_get_actor_right, (ZAP_ACTOR *actor));
+    ZAP_FUNC(int, zap_get_actor_top, (ZAP_ACTOR *actor));
+    ZAP_FUNC(int, zap_get_actor_bottom, (ZAP_ACTOR *actor));
 
 #ifdef __cplusplus
 }

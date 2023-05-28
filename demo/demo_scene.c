@@ -1,3 +1,6 @@
+#include <stdlib.h>
+#include <time.h>
+
 #include "demo_scene.h"
 #include "demo_actor.h"
 
@@ -12,6 +15,7 @@ static void on_key_up(int keycode);
 
 static void init(void)
 {
+    srand(time(0));
     zap_load_actor_sprite("GRAPHICS/SPR_TALLY", 32, 32, 0);
     zap_load_actor_sprite("GRAPHICS/SPR_CREATURES", 32, 32, 1);
     zap_add_actor(32, 32, DIR_RIGHT, demo_actor());

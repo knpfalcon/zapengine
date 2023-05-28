@@ -2,6 +2,7 @@
 #include <string.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
+#include <allegro5/allegro_primitives.h>
 #include "zapengine/zapengine.h"
 #include "zapengine/internal/zintern_actor.h"
 #include "zapengine/internal/zintern_sprite.h"
@@ -151,7 +152,13 @@ void _draw_actors()
             if (_actor_list[i]->active == true) //&& _actor_list[i]->in_view == true
             {
                 _actor_list[i]->draw(_actor_list[i]);
-                al_draw_bitmap(_actor_list[i]->sprite->frames[_actor_list[i]->current_frame], _actor_list[i]->x, _actor_list[i]->y, 0);
+                if (_actor_list[i]->dir == DIR_RIGHT)
+                    al_draw_bitmap(_actor_list[i]->sprite->frames[_actor_list[i]->current_frame], _actor_list[i]->x, _actor_list[i]->y, 0);
+                else
+                    al_draw_bitmap(_actor_list[i]->sprite->frames[_actor_list[i]->current_frame], _actor_list[i]->x, _actor_list[i]->y, ALLEGRO_FLIP_HORIZONTAL);
+                //#ifdef DEBUG
+                al_draw_rectangle(_actor_list[i]->left, _actor_list[i]->top, _actor_list[i]->right, _actor_list[i]->bottom, al_map_rgb(255, 0, 0), 1);
+                //#endif
             }
         }
         else
@@ -196,6 +203,15 @@ ZAP_ACTOR *zap_create_empty_actor(void)
     ZAP_ACTOR *actor = malloc(sizeof(ZAP_ACTOR));
     memset(actor, 0, sizeof(ZAP_ACTOR));
     actor->active = true;
+    actor->speed = SPEED_DEFAULT;
+    actor->dir = DIR_RIGHT;
+    actor->gravity = GRAVITY_DEFAULT;
+    actor->jump_strength = JUMP_STRENGTH_DEFAULT;
+    actor->max_vel_y = MAX_VEL_Y_DEFAULT;
+    actor->w = 32;
+    actor->h = 32;
+    actor->platform_movement = false;
+    zap_set_actor_box(actor, 8, 8, 4, 0);
     if (actor) return actor;
     zlog(FAIL, "Couldn't create empty actor");
     return NULL;

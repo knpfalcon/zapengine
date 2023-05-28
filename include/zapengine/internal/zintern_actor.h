@@ -17,6 +17,7 @@ extern "C" {
     {
         bool active;
         bool in_view;
+        bool platform_movement;
 
         int type;
         int id;
@@ -37,6 +38,8 @@ extern "C" {
 
         int w;
         int h;
+
+        int bbr, bbl, bbt, bbb;
 
         int right;
         int left;
