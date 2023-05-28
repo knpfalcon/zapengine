@@ -238,7 +238,16 @@ void zap_set_actor_active(ZAP_ACTOR *actor, bool active)
 
 void zap_set_actor_sprite(ZAP_ACTOR *actor, ZAP_ACTOR_SPRITE *sprite)
 {
-    actor->sprite = sprite;
+    if (sprite && actor)
+    {
+        zlog(INFO, "Changing Actor %d's sprite.", actor->id);
+        actor->sprite = sprite;
+    }
+    else
+    {
+        zlog(WARN, "Cannot change Actor %d's sprite!", actor->id);
+        return;
+    }
 }
 
 void zap_set_actor_animation_frames(ZAP_ACTOR *actor, int start_frame, int end_frame)
@@ -286,18 +295,4 @@ int zap_get_actor_id(ZAP_ACTOR *actor)
 
     zlog(WARN, "Cannot get actor ID. Actor doesn't exist.");
     return -1;
-}
-
-void zap_change_actor_sprite(ZAP_ACTOR *actor, ZAP_ACTOR_SPRITE *sprite)
-{
-    if (sprite && actor)
-    {
-        zlog(INFO, "Changing Actor %d's sprite.", actor->id);
-        actor->sprite = sprite;
-    }
-    else
-    {
-        zlog(WARN, "Cannot change Actor %d's sprite!", actor->id);
-        return;
-    }
 }
