@@ -287,3 +287,9 @@ int zap_get_actor_id(ZAP_ACTOR *actor)
     zlog(WARN, "Cannot get actor ID. Actor doesn't exist.");
     return -1;
 }
+
+void zap_change_actor_sprite(ZAP_ACTOR *actor, ZAP_ACTOR_SPRITE *sprite)
+{
+    if (sprite) actor->sprite = sprite;
+    else return;
+}

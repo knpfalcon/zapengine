@@ -13,15 +13,19 @@ static void on_key_up(int keycode);
 static void init(void)
 {
     zap_load_actor_sprite("GRAPHICS/SPR_TALLY", 32, 32, 0);
+    zap_load_actor_sprite("GRAPHICS/SPR_CREATURES", 32, 32, 1);
     zap_add_actor(32, 32, DIR_RIGHT, demo_actor());
     zap_add_actor(64, 32, DIR_RIGHT, demo_actor());
     zap_add_actor(64, 64, DIR_RIGHT, demo_actor());
+    zap_add_actor(128, 128, DIR_RIGHT, demo_actor());
+    zap_change_actor_sprite(zap_get_actor(3), zap_get_actor_sprite(1));
     zlog(INFO, "%s initialized!", scene_name);
 
     zap_set_actor_animation_frames(zap_get_actor(0), 0, 0);
     zap_set_actor_animation_frames(zap_get_actor(1), 1, 4);
     zap_set_actor_animation_frames(zap_get_actor(2), 5, 7);
-    zap_set_actor_animation_frames(zap_get_actor(3), 5, 7); //This one should throw a warning
+    zap_set_actor_animation_frames(zap_get_actor(3), 0, 119);
+
 }
 
 static void update(void)

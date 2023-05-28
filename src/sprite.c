@@ -5,6 +5,7 @@
 #include "zapengine/internal/zintern_bitmap.h"
 #include "zapengine/internal/zintern_actor.h"
 
+
 ZAP_ACTOR_SPRITE *_actor_sprites[MAX_ACTOR_TYPES];
 
 void _destroy_sprites()
@@ -69,3 +70,4 @@ ZAP_ACTOR_SPRITE *zap_get_actor_sprite(int type)
 {
     return _actor_sprites[type];
 }
+
