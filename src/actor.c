@@ -241,7 +241,7 @@ void zap_set_actor_destroy_func(ZAP_ACTOR *actor, void(*destroy)(ZAP_ACTOR *self
     actor->destroy = destroy;
 }
 
-void z_set_actor_type(ZAP_ACTOR *actor, int type)
+void zap_set_actor_type(ZAP_ACTOR *actor, int type)
 {
     actor->type = type;
 }

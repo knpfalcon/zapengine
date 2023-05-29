@@ -35,7 +35,7 @@ extern "C" {
     ZAP_FUNC(void, zap_set_actor_draw_func, (ZAP_ACTOR *actor, void(*draw)(ZAP_ACTOR *self)));
     ZAP_FUNC(void, zap_set_actor_destroy_func, (ZAP_ACTOR *actor, void(*destroy)(ZAP_ACTOR *self)));
 
-    ZAP_FUNC(void, z_set_actor_type, (ZAP_ACTOR *actor, int type));
+    ZAP_FUNC(void, zap_set_actor_type, (ZAP_ACTOR *actor, int type));
     ZAP_FUNC(int, zap_get_actor_type, (ZAP_ACTOR *actor));
     ZAP_FUNC(void, zap_set_actor_active, (ZAP_ACTOR *actor, bool active));
     ZAP_FUNC(void, zap_set_actor_sprite, (ZAP_ACTOR *actor, ZAP_ACTOR_SPRITE *sprite));

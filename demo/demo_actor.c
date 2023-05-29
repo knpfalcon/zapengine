@@ -18,6 +18,8 @@ static void update(ZAP_ACTOR *self)
 
     zap_update_actor_movement(self);
 
+    zap_apply_actor_gravity(self);
+
     while (zap_get_actor_bottom(self) > 200) zap_set_actor_y(self, zap_get_actor_y(self) - 1);
     while (zap_get_actor_top(self) < 0) zap_set_actor_y(self, zap_get_actor_y(self) + 1);
     while (zap_get_actor_right(self) > 320) zap_set_actor_x(self, zap_get_actor_x(self) - 1);
@@ -85,8 +87,6 @@ static void update(ZAP_ACTOR *self)
     {
         zap_set_actor_animation_frames(self, 0, 0);
     }
-
-    zap_apply_actor_gravity(self);
 }
 
 
@@ -110,7 +110,7 @@ ZAP_ACTOR *demo_actor(void)
     zap_set_actor_update_func(actor, update);
     zap_set_actor_draw_func(actor, draw);
     zap_set_actor_destroy_func(actor, destroy);
-    z_set_actor_type(actor, 0);
+    zap_set_actor_type(actor, 0);
     zap_set_actor_sprite(actor, zap_get_actor_sprite(zap_get_actor_type(actor)));
 
     zlog(INFO, "Demo Actor Created.");
