@@ -18,6 +18,8 @@ extern "C" {
 
     typedef struct ZAP_ACTOR ZAP_ACTOR;
 
+    enum ACTOR_STATE { e_state_stopped, e_state_walking, e_state_jumping, e_state_falling };
+
     typedef void (*ZAP_ACTOR_MODULE_CALLBACK)(int index);
 
     ZAP_FUNC(int, zap_add_actor, (int x, int y, int dir, ZAP_ACTOR *type));
@@ -33,12 +35,14 @@ extern "C" {
     ZAP_FUNC(void, zap_set_actor_draw_func, (ZAP_ACTOR *actor, void(*draw)(ZAP_ACTOR *self)));
     ZAP_FUNC(void, zap_set_actor_destroy_func, (ZAP_ACTOR *actor, void(*destroy)(ZAP_ACTOR *self)));
 
-    ZAP_FUNC(void, zap_set_actor_type, (ZAP_ACTOR *actor, int type));
+    ZAP_FUNC(void, z_set_actor_type, (ZAP_ACTOR *actor, int type));
     ZAP_FUNC(int, zap_get_actor_type, (ZAP_ACTOR *actor));
     ZAP_FUNC(void, zap_set_actor_active, (ZAP_ACTOR *actor, bool active));
     ZAP_FUNC(void, zap_set_actor_sprite, (ZAP_ACTOR *actor, ZAP_ACTOR_SPRITE *sprite));
     ZAP_FUNC(void, zap_set_actor_animation_frames, (ZAP_ACTOR *actor, int start_frame, int end_frame));
     ZAP_FUNC(void, zap_animate_actor, (ZAP_ACTOR *actor, int speed));
+    ZAP_FUNC(void, zap_set_actor_state, (ZAP_ACTOR *actor, int state));
+    ZAP_FUNC(int, zap_get_actor_state, (ZAP_ACTOR *actor));
 
     ZAP_FUNC(ZAP_ACTOR *, zap_get_actor, (int id));
     ZAP_FUNC(int, zap_get_actor_id, (ZAP_ACTOR *actor));

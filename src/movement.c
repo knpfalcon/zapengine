@@ -50,6 +50,16 @@ void zap_move_actor(ZAP_ACTOR *actor, int dir)
     }
 }
 
+void zap_stop_actor_h(ZAP_ACTOR *actor)
+{
+    actor->vel_x = 0;
+}
+
+void zap_stop_actor_v(ZAP_ACTOR *actor)
+{
+    actor->vel_y = 0;
+}
+
 void zap_move_actor_right(ZAP_ACTOR *actor)
 {
     if (!actor->platform_movement) actor->vel_y = 0;
@@ -76,20 +86,16 @@ void zap_move_actor_down(ZAP_ACTOR *actor)
 
 void zap_apply_actor_gravity(ZAP_ACTOR *actor)
 {
-    if (actor->platform_movement)
+    actor->vel_y += actor->gravity;
+    if (actor->vel_y > actor->max_vel_y)
     {
-        actor->vel_y += actor->gravity;
-        if (actor->vel_y > actor->max_vel_y)
-        {
-            actor->vel_y = actor->max_vel_y;
-        }
+        actor->vel_y = actor->max_vel_y;
     }
 }
 
 void zap_actor_jump(ZAP_ACTOR *actor)
 {
-    if (actor->platform_movement)
-        actor->vel_y = -actor->jump_strength;
+    actor->vel_y = -actor->jump_strength;
 }
 
 void zap_update_actor_movement(ZAP_ACTOR *actor)
@@ -121,6 +127,10 @@ void zap_set_actor_y(ZAP_ACTOR *actor, int y)
     _set_actor_points(actor);
 }
 
+int zap_get_actor_y_velocity(ZAP_ACTOR *actor)
+{
+    return actor->vel_y;
+}
 
 int zap_get_actor_direction(ZAP_ACTOR *actor)
 {
@@ -141,7 +151,6 @@ void zap_set_actor_speed(ZAP_ACTOR *actor, int speed)
 {
     actor->speed = speed;
 }
-
 /* Functions / Getters / Setters that need to be implemented:
 *
 *

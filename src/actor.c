@@ -214,8 +214,8 @@ ZAP_ACTOR *zap_create_empty_actor(void)
     actor->max_vel_y = MAX_VEL_Y_DEFAULT;
     actor->w = 32;
     actor->h = 32;
-    actor->platform_movement = false;
-    zap_set_actor_box(actor, 8, 8, 4, 0);
+    actor->platform_movement = true;
+    zap_set_actor_box(actor, 13, 12, 6, 0);
     if (actor) return actor;
     zlog(FAIL, "Couldn't create empty actor");
     return NULL;
@@ -241,7 +241,7 @@ void zap_set_actor_destroy_func(ZAP_ACTOR *actor, void(*destroy)(ZAP_ACTOR *self
     actor->destroy = destroy;
 }
 
-void zap_set_actor_type(ZAP_ACTOR *actor, int type)
+void z_set_actor_type(ZAP_ACTOR *actor, int type)
 {
     actor->type = type;
 }
@@ -272,7 +272,6 @@ void zap_set_actor_sprite(ZAP_ACTOR *actor, ZAP_ACTOR_SPRITE *sprite)
 
 void zap_set_actor_animation_frames(ZAP_ACTOR *actor, int start_frame, int end_frame)
 {
-    zlog(NONE, "Set Actor Frames.");
     if (!actor)
     {
         zlog(WARN, "Can't set actor animations frames! No actor with ID specified.");
@@ -298,6 +297,18 @@ void zap_animate_actor(ZAP_ACTOR *actor, int speed)
             actor->current_frame = actor->start_frame;
     }
 }
+
+
+void zap_set_actor_state(ZAP_ACTOR *actor, int state)
+{
+    actor->state = state;
+}
+
+int zap_get_actor_state(ZAP_ACTOR *actor)
+{
+    return actor->state;
+}
+
 ZAP_ACTOR *zap_get_actor(int id)
 {
     if (_actor_list[id])

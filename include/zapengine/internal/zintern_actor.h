@@ -11,7 +11,7 @@ extern "C" {
 
     extern ZAP_ACTOR_SPRITE *_actor_sprites[MAX_ACTOR_TYPES];
 
-    enum _ACTOR_STATE { WALKING, JUMPING, FALLING };
+
 
     struct ZAP_ACTOR
     {

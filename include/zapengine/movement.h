@@ -9,7 +9,7 @@ extern "C" {
 #endif
 
 #define MAX_VEL_Y_DEFAULT 12;
-#define GRAVITY_DEFAULT 2;
+#define GRAVITY_DEFAULT 1;
 #define JUMP_STRENGTH_DEFAULT 12;
 #define SPEED_DEFAULT 4;
 
@@ -25,6 +25,8 @@ extern "C" {
 #define DIAGONAL_MOVE 1.414
 
     ZAP_FUNC(void, zap_move_actor, (ZAP_ACTOR *actor, int dir));
+    ZAP_FUNC(void, zap_stop_actor_h, (ZAP_ACTOR *actor));
+    ZAP_FUNC(void, zap_stop_actor_v, (ZAP_ACTOR *actor));
     ZAP_FUNC(void, zap_move_actor_right, (ZAP_ACTOR *actor));
     ZAP_FUNC(void, zap_move_actor_left, (ZAP_ACTOR *actor));
     ZAP_FUNC(void, zap_move_actor_up, (ZAP_ACTOR *actor));
@@ -38,6 +40,7 @@ extern "C" {
     ZAP_FUNC(int, zap_get_actor_y, (ZAP_ACTOR *actor));
     ZAP_FUNC(void, zap_set_actor_x, (ZAP_ACTOR *actor, int x));
     ZAP_FUNC(void, zap_set_actor_y, (ZAP_ACTOR *actor, int y));
+    ZAP_FUNC(int, zap_get_actor_y_velocity, (ZAP_ACTOR *actor));
 
 
     ZAP_FUNC(int, zap_get_actor_direction, (ZAP_ACTOR *actor));
