@@ -26,18 +26,18 @@ extern "C" {
 
         int state;
 
-        float x;
-        float y;
-        float speed;
-        float vel_x;
-        float vel_y;
-        float max_vel_y;
-        float jump_strength;
-        float gravity;
-        int dir;
-
         int w;
         int h;
+
+        int dir;
+        int x;
+        int y;
+        int speed;
+        int vel_x;
+        int vel_y;
+        int max_vel_y;
+        int jump_strength;
+        int gravity;
 
         int bbr, bbl, bbt, bbb;
 

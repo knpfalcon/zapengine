@@ -16,7 +16,6 @@ static void on_key_up(int keycode);
 
 static void init(void)
 {
-    srand(time(0));
     zap_load_actor_sprite("GRAPHICS/SPR_TALLY", 32, 32, 0);
     zap_load_actor_sprite("GRAPHICS/SPR_CREATURES", 32, 32, 1);
     zap_add_actor(32, 32, DIR_RIGHT, demo_actor());
@@ -31,7 +30,11 @@ static void init(void)
     zap_set_actor_animation_frames(zap_get_actor(2), 5, 7);
     zap_set_actor_animation_frames(zap_get_actor(3), 0, 119);
 
-    ZAP_MAP *map = zap_load_map(zapmap);
+    ZAP_MAP *map = zap_create_empty_map();
+    zap_set_map_name(map, "Zap Map Test2.");
+    zap_save_map(map, "../../demo/assets/MAP/zapmap.zm");
+
+
 
 }
 

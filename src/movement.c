@@ -11,6 +11,45 @@ static void _set_actor_points(ZAP_ACTOR *actor)
     actor->top = actor->y + actor->bbt;
 }
 
+void zap_move_actor(ZAP_ACTOR *actor, int dir)
+{
+    switch (dir)
+    {
+    case DIR_RIGHT:
+        if (!actor->platform_movement) actor->vel_y = 0;
+        actor->vel_x = actor->speed;
+        break;
+    case DIR_DOWN_RIGHT:
+        actor->vel_x = actor->speed / DIAGONAL_MOVE;
+        actor->vel_y = actor->speed / DIAGONAL_MOVE;
+        break;
+    case DIR_DOWN:
+        if (!actor->platform_movement) actor->vel_x = 0;
+        actor->vel_y = actor->speed;
+        break;
+    case DIR_DOWN_LEFT:
+        actor->vel_x = -actor->speed / DIAGONAL_MOVE;
+        actor->vel_y = actor->speed / DIAGONAL_MOVE;
+        break;
+    case DIR_LEFT:
+        if (!actor->platform_movement) actor->vel_y = 0;
+        actor->vel_x = -actor->speed;
+        break;
+    case DIR_UP_LEFT:
+        actor->vel_x = -actor->speed / DIAGONAL_MOVE;
+        actor->vel_y = -actor->speed / DIAGONAL_MOVE;
+        break;
+    case DIR_UP:
+        if (!actor->platform_movement) actor->vel_x = 0;
+        actor->vel_y = -actor->speed;
+        break;
+    case DIR_UP_RIGHT:
+        actor->vel_x = actor->speed / DIAGONAL_MOVE;
+        actor->vel_y = -actor->speed / DIAGONAL_MOVE;
+        break;
+    }
+}
+
 void zap_move_actor_right(ZAP_ACTOR *actor)
 {
     if (!actor->platform_movement) actor->vel_y = 0;
@@ -70,6 +109,18 @@ int zap_get_actor_y(ZAP_ACTOR *actor)
     return actor->y;
 }
 
+void zap_set_actor_x(ZAP_ACTOR *actor, int x)
+{
+    actor->x = x;
+    _set_actor_points(actor);
+}
+
+void zap_set_actor_y(ZAP_ACTOR *actor, int y)
+{
+    actor->y = y;
+    _set_actor_points(actor);
+}
+
 
 int zap_get_actor_direction(ZAP_ACTOR *actor)
 {
@@ -90,7 +141,6 @@ void zap_set_actor_speed(ZAP_ACTOR *actor, int speed)
 {
     actor->speed = speed;
 }
-
 
 /* Functions / Getters / Setters that need to be implemented:
 *
