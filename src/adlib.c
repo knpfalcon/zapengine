@@ -64,10 +64,10 @@ void _adlmidi_init(void)
     zlog(INFO, "Music Device Reset.");
 }
 
-void zap_load_music_file(const char *filename)
+void z_load_music_file(const char *filename)
 {
     zlog(LOAD, "Loading %s into midi player.", filename);
-    zap_pause_music();
+    z_pause_music();
     PHYSFS_file *musfile = PHYSFS_openRead(filename);
     char *buffer = malloc(PHYSFS_fileLength(musfile));
 
@@ -80,26 +80,26 @@ void zap_load_music_file(const char *filename)
     PHYSFS_close(musfile);
 }
 
-void zap_play_music(void)
+void z_play_music(void)
 {
     adl_positionRewind(music.midi_player);
     al_set_audio_stream_playing(music.stream, true);
     music.is_playing = true;
 }
 
-void zap_pause_music(void)
+void z_pause_music(void)
 {
     al_set_audio_stream_playing(music.stream, false);
     music.is_playing = false;
 }
 
-void zap_resume_music(void)
+void z_resume_music(void)
 {
     al_set_audio_stream_playing(music.stream, true);
     music.is_playing = true;
 }
 
-void zap_restart_music(void)
+void z_restart_music(void)
 {
     adl_positionRewind(music.midi_player);
     music.is_playing = true;

@@ -6,6 +6,7 @@
 #include "zapengine/internal/zintern_sprite.h"
 #include "zapengine/internal/zintern_actor.h"
 #include "zapengine/internal/zintern_version.h"
+#include "zapengine/internal/zintern_movement.h"
 
 void _draw_screen(void)
 {
@@ -15,6 +16,19 @@ void _draw_screen(void)
         game.current_scene->draw();
 
     if (game.current_scene->use_actors == true) _draw_actors();
+
+    //testcode///////////////////////////////////////////
+    for (int i = 0; i < 40; i++)
+    {
+        al_draw_pixel(i * 8, 200, al_map_rgb(255, 0, 0));
+    }
+    al_draw_pixel(64, 200 - 64, al_map_rgb(255, 0, 0));
+    al_draw_pixel(64, 200 - 16, al_map_rgb(255, 0, 0));
+    al_draw_textf(game.sys_font, al_map_rgb(50, 50, 50), 0, 0, 0, "X %f", z_get_actor_x(z_get_actor(0)));
+    al_draw_textf(game.sys_font, al_map_rgb(50, 50, 50), 0, 8, 0, "Y %f", z_get_actor_y(z_get_actor(0)));
+    al_draw_textf(game.sys_font, al_map_rgb(50, 50, 50), 0, 16, 0, "VELX %f", z_get_actor_x_velocity(z_get_actor(0)));
+    al_draw_textf(game.sys_font, al_map_rgb(50, 50, 50), 0, 24, 0, "VELY %f", z_get_actor_y_velocity(z_get_actor(0)));
+    ////////////////////////////////////////////////////////
 
     al_set_target_backbuffer(game.display);
     al_draw_scaled_bitmap(game.view, 0, 0, 320, 200, 0, 0, game.window_w, game.window_h, 0);

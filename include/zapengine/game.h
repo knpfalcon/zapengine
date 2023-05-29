@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 
-    ZAP_FUNC(int, zap_get_drawn_game_frames, (void));
+    ZAP_FUNC(int, z_get_drawn_game_frames, (void));
 #ifdef __cplusplus
 }
 #endif

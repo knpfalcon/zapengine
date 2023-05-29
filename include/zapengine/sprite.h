@@ -12,8 +12,8 @@ extern "C" {
 
     typedef struct ZAP_ACTOR_SPRITE ZAP_ACTOR_SPRITE;
 
-    ZAP_FUNC(void, zap_load_actor_sprite, (char *file, int frame_w, int frame_h, int type));
-    ZAP_FUNC(ZAP_ACTOR_SPRITE *, zap_get_actor_sprite, (int type));
+    ZAP_FUNC(void, z_load_actor_sprite, (char *file, int frame_w, int frame_h, int type));
+    ZAP_FUNC(ZAP_ACTOR_SPRITE *, z_get_actor_sprite, (int type));
 
 
 #ifdef __cplusplus

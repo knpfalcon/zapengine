@@ -14,12 +14,12 @@ void _init_controls(void)
     controls.key_down = ALLEGRO_KEY_DOWN;
 }
 
-bool zap_get_key_state(int keycode)
+bool z_get_key_state(int keycode)
 {
     return controls.key_state[keycode];
 }
 
-int zap_get_key(int key)
+int z_get_key(int key)
 {
     switch (key)
     {

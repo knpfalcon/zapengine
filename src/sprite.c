@@ -32,7 +32,7 @@ void _destroy_sprites()
     }
 }
 
-void zap_load_actor_sprite(char *file, int frame_w, int frame_h, int type)
+void z_load_actor_sprite(char *file, int frame_w, int frame_h, int type)
 {
     zlog(LOAD, "Loading actor sprite from file %s for type %d", file, type);
 
@@ -49,7 +49,7 @@ void zap_load_actor_sprite(char *file, int frame_w, int frame_h, int type)
     zlog(INFO, "Actor sprite sheet loaded.");
 }
 
-ZAP_ACTOR_SPRITE *zap_get_actor_sprite(int type)
+ZAP_ACTOR_SPRITE *z_get_actor_sprite(int type)
 {
     return _actor_sprites[type];
 }

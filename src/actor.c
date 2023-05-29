@@ -15,7 +15,7 @@ static void update_actor_modules(void);
 ZAP_ACTOR *_actor_list[MAX_ACTORS];
 
 /* Finds and empty slot (NULL or inactive) in actor list and adds and actor. */
-int zap_add_actor(int x, int y, int dir, ZAP_ACTOR *type)
+int z_add_actor(int x, int y, int dir, ZAP_ACTOR *type)
 {
     zlog(NONE, "Adding actor of type %d", type->type);
     for (int i = 0; i < MAX_ACTORS; i++)
@@ -51,7 +51,7 @@ int zap_add_actor(int x, int y, int dir, ZAP_ACTOR *type)
 }
 
 /* Removes actor from actor list and sets its active status to false */
-int zap_remove_actor(int id)
+int z_remove_actor(int id)
 {
     zlog(NONE, "Removing actor %d", id);
     if (_actor_list[id] == NULL)
@@ -131,7 +131,7 @@ void _update_actors()
         {
             if (_actor_list[i]->active == true)
             {
-                if (zap_is_point_in_view(_actor_list[i]->x, _actor_list[i]->y, _actor_list[i]->w, _actor_list[i]->h))
+                if (z_is_point_in_view(_actor_list[i]->x, _actor_list[i]->y, _actor_list[i]->w, _actor_list[i]->h))
                 {
                     _actor_list[i]->in_view = true;
                 }
@@ -157,9 +157,9 @@ void _draw_actors()
             {
                 _actor_list[i]->draw(_actor_list[i]);
                 if (_actor_list[i]->dir == DIR_RIGHT)
-                    al_draw_bitmap(_actor_list[i]->sprite->frames[_actor_list[i]->current_frame], _actor_list[i]->x, _actor_list[i]->y, 0);
+                    al_draw_bitmap(_actor_list[i]->sprite->frames[_actor_list[i]->current_frame], (int)_actor_list[i]->x, (int)_actor_list[i]->y, 0);
                 else
-                    al_draw_bitmap(_actor_list[i]->sprite->frames[_actor_list[i]->current_frame], _actor_list[i]->x, _actor_list[i]->y, ALLEGRO_FLIP_HORIZONTAL);
+                    al_draw_bitmap(_actor_list[i]->sprite->frames[_actor_list[i]->current_frame], (int)_actor_list[i]->x, (int)_actor_list[i]->y, ALLEGRO_FLIP_HORIZONTAL);
             #ifdef DEBUG
                 al_draw_rectangle(_actor_list[i]->left, _actor_list[i]->top, _actor_list[i]->right, _actor_list[i]->bottom, al_map_rgb(255, 0, 0), 1);
             #endif
@@ -171,7 +171,7 @@ void _draw_actors()
 }
 
 /*Registers a function that updates an actor's "module" seperate from its instance.*/
-void zap_register_actor_module(ZAP_ACTOR_MODULE_CALLBACK actor_module_update_function)
+void z_register_actor_module(ZAP_ACTOR_MODULE_CALLBACK actor_module_update_function)
 {
     for (int i = 0; i < MAX_ACTOR_TYPES; i++)
     {
@@ -201,62 +201,64 @@ void _destroy_actor_list()
     _destroy_sprites();
 }
 
-ZAP_ACTOR *zap_create_empty_actor(void)
+ZAP_ACTOR *z_create_empty_actor(void)
 {
     zlog(NONE, "Creating Empty Actor.");
     ZAP_ACTOR *actor = malloc(sizeof(ZAP_ACTOR));
     memset(actor, 0, sizeof(ZAP_ACTOR));
     actor->active = true;
-    actor->speed = SPEED_DEFAULT;
+    actor->max_speed = MAX_SPEED_DEFAULT;
     actor->dir = DIR_RIGHT;
     actor->gravity = GRAVITY_DEFAULT;
     actor->jump_strength = JUMP_STRENGTH_DEFAULT;
     actor->max_vel_y = MAX_VEL_Y_DEFAULT;
+    actor->acceleration = ACCELERATION_DEFAULT;
+    actor->deceleration = DECELERATION_DEFAULT;
     actor->w = 32;
     actor->h = 32;
     actor->platform_movement = true;
-    zap_set_actor_box(actor, 13, 12, 6, 0);
+    z_set_actor_box(actor, 12, 12, 6, 0);
     if (actor) return actor;
     zlog(FAIL, "Couldn't create empty actor");
     return NULL;
 }
 
-void zap_set_actor_init_func(ZAP_ACTOR *actor, void(*init)(ZAP_ACTOR *self))
+void z_set_actor_init_func(ZAP_ACTOR *actor, void(*init)(ZAP_ACTOR *self))
 {
     actor->init = init;
 }
 
-void zap_set_actor_update_func(ZAP_ACTOR *actor, void(*update)(ZAP_ACTOR *self))
+void z_set_actor_update_func(ZAP_ACTOR *actor, void(*update)(ZAP_ACTOR *self))
 {
     actor->update = update;
 }
 
-void zap_set_actor_draw_func(ZAP_ACTOR *actor, void(*draw)(ZAP_ACTOR *self))
+void z_set_actor_draw_func(ZAP_ACTOR *actor, void(*draw)(ZAP_ACTOR *self))
 {
     actor->draw = draw;
 }
 
-void zap_set_actor_destroy_func(ZAP_ACTOR *actor, void(*destroy)(ZAP_ACTOR *self))
+void z_set_actor_destroy_func(ZAP_ACTOR *actor, void(*destroy)(ZAP_ACTOR *self))
 {
     actor->destroy = destroy;
 }
 
-void zap_set_actor_type(ZAP_ACTOR *actor, int type)
+void z_set_actor_type(ZAP_ACTOR *actor, int type)
 {
     actor->type = type;
 }
 
-int zap_get_actor_type(ZAP_ACTOR *actor)
+int z_get_actor_type(ZAP_ACTOR *actor)
 {
     return actor->type;
 }
 
-void zap_set_actor_active(ZAP_ACTOR *actor, bool active)
+void z_set_actor_active(ZAP_ACTOR *actor, bool active)
 {
     actor->active = active;
 }
 
-void zap_set_actor_sprite(ZAP_ACTOR *actor, ZAP_ACTOR_SPRITE *sprite)
+void z_set_actor_sprite(ZAP_ACTOR *actor, ZAP_ACTOR_SPRITE *sprite)
 {
     if (sprite && actor)
     {
@@ -270,7 +272,7 @@ void zap_set_actor_sprite(ZAP_ACTOR *actor, ZAP_ACTOR_SPRITE *sprite)
     }
 }
 
-void zap_set_actor_animation_frames(ZAP_ACTOR *actor, int start_frame, int end_frame)
+void z_set_actor_animation_frames(ZAP_ACTOR *actor, int start_frame, int end_frame)
 {
     if (!actor)
     {
@@ -286,10 +288,10 @@ void zap_set_actor_animation_frames(ZAP_ACTOR *actor, int start_frame, int end_f
     actor->current_frame = start_frame;
     zlog(INFO, "Actor %d animation frames set to START: %d, END: %d.", actor->id, actor->start_frame, actor->end_frame);
 }
-void zap_animate_actor(ZAP_ACTOR *actor, int speed)
+void z_animate_actor(ZAP_ACTOR *actor, int speed)
 {
 
-    if (zap_get_drawn_game_frames() % speed == 0)
+    if (z_get_drawn_game_frames() % speed == 0)
     {
         if (actor->current_frame < actor->end_frame)
             actor->current_frame++;
@@ -299,17 +301,17 @@ void zap_animate_actor(ZAP_ACTOR *actor, int speed)
 }
 
 
-void zap_set_actor_state(ZAP_ACTOR *actor, int state)
+void z_set_actor_state(ZAP_ACTOR *actor, int state)
 {
     actor->state = state;
 }
 
-int zap_get_actor_state(ZAP_ACTOR *actor)
+int z_get_actor_state(ZAP_ACTOR *actor)
 {
     return actor->state;
 }
 
-ZAP_ACTOR *zap_get_actor(int id)
+ZAP_ACTOR *z_get_actor(int id)
 {
     if (_actor_list[id])
         return _actor_list[id];
@@ -318,7 +320,7 @@ ZAP_ACTOR *zap_get_actor(int id)
     return NULL;
 }
 
-int zap_get_actor_id(ZAP_ACTOR *actor)
+int z_get_actor_id(ZAP_ACTOR *actor)
 {
     if (actor)
     {

@@ -13,7 +13,7 @@ void _init_camera(int x, int y, int w, int h)
     cam.h = h;
 }
 
-bool zap_is_point_in_view(int x, int y, int w, int h)
+bool z_is_point_in_view(int x, int y, int w, int h)
 {
     if (x > cam.x - w && x < cam.x + cam.w && y > cam.y - h && y < cam.y + cam.h)
         return true;

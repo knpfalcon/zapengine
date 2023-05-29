@@ -10,7 +10,7 @@ void _init_sound(float vol)
     sound.vol = vol;
 }
 
-void play_sound(ZAP_SAMPLE *sample, int interupt)
+void z_play_sound(ZAP_SAMPLE *sample, int interupt)
 {
     if (interupt == INTERUPT_ALL)
         al_stop_samples();
@@ -21,7 +21,7 @@ void play_sound(ZAP_SAMPLE *sample, int interupt)
 }
 
 
-void load_sample(ZAP_SAMPLE *sample, const char *filename)
+void z_load_sample(ZAP_SAMPLE *sample, const char *filename)
 {
     zlog(NONE, "Loading Sample from %s", filename);
     sample->sample = al_load_sample(filename);

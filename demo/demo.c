@@ -5,7 +5,7 @@
 
 int main(int argc, char **argv)
 {
-    game_begin(30, 960, 600, argv[0], DATAFILE_NAME, demo_scene());
+    z_game_begin(60, 1280, 800, argv[0], DATAFILE_NAME, demo_scene());
 
     return 0;
 }

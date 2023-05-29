@@ -7,9 +7,9 @@
 extern "C" {
 #endif
 
-    ZAP_FUNC(int, zap_get_version_major, (void));
-    ZAP_FUNC(int, zap_get_version_minor, (void));
-    ZAP_FUNC(int, zap_get_version_revision, (void));
+    ZAP_FUNC(int, z_get_version_major, (void));
+    ZAP_FUNC(int, z_get_version_minor, (void));
+    ZAP_FUNC(int, z_get_version_revision, (void));
 
 #ifdef __cplusplus
 }

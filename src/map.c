@@ -5,7 +5,7 @@
 #include "zapengine/internal/zintern_map.h"
 #include "zapengine/zlog.h"
 
-ZAP_MAP *zap_create_empty_map(void)
+ZAP_MAP *z_create_empty_map(void)
 {
     zlog(NONE, "Creating Empty Map.");
     ZAP_MAP *map = malloc(sizeof(ZAP_MAP));
@@ -14,10 +14,10 @@ ZAP_MAP *zap_create_empty_map(void)
     return map;
 }
 
-ZAP_MAP *zap_load_map(const char *mapfile)
+ZAP_MAP *z_load_map(const char *mapfile)
 {
     zlog(NONE, "Loading map from file %s", mapfile);
-    ZAP_MAP *map = zap_create_empty_map();
+    ZAP_MAP *map = z_create_empty_map();
     ALLEGRO_FILE *fp;
     fp = al_fopen(mapfile, "rb");
 
@@ -36,7 +36,7 @@ ZAP_MAP *zap_load_map(const char *mapfile)
     return map;
 }
 
-ZAP_MAP *zap_save_map(ZAP_MAP *map, const char *mapfile)
+ZAP_MAP *z_save_map(ZAP_MAP *map, const char *mapfile)
 {
     al_set_standard_file_interface();
     zlog(NONE, "Saving map to file %s", mapfile);
@@ -51,14 +51,14 @@ ZAP_MAP *zap_save_map(ZAP_MAP *map, const char *mapfile)
     return map;
 }
 
-void zap_destroy_map(ZAP_MAP *map)
+void z_destroy_map(ZAP_MAP *map)
 {
     zlog(NONE, "Destroying map %s", map->name);
     if (map) free(map);
     zlog(INFO, "Map destroyed");
 }
 
-void zap_set_map_name(ZAP_MAP *map, const char *name)
+void z_set_map_name(ZAP_MAP *map, const char *name)
 {
     zlog(NONE, "Setting map name.");
     strncpy_s(map->name, sizeof(map->name), name, 32);

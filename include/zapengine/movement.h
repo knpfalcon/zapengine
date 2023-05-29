@@ -8,10 +8,12 @@
 extern "C" {
 #endif
 
-#define MAX_VEL_Y_DEFAULT 12;
-#define GRAVITY_DEFAULT 1;
-#define JUMP_STRENGTH_DEFAULT 12;
-#define SPEED_DEFAULT 4;
+#define MAX_VEL_Y_DEFAULT 12
+#define GRAVITY_DEFAULT 0.25
+#define ACCELERATION_DEFAULT 0.1
+#define DECELERATION_DEFAULT 0.1
+#define JUMP_STRENGTH_DEFAULT 6
+#define MAX_SPEED_DEFAULT 2.5
 
 #define DIR_RIGHT 0
 #define DIR_DOWN_RIGHT 1
@@ -24,29 +26,35 @@ extern "C" {
 
 #define DIAGONAL_MOVE 1.414
 
-    ZAP_FUNC(void, zap_move_actor, (ZAP_ACTOR *actor, int dir));
-    ZAP_FUNC(void, zap_stop_actor_h, (ZAP_ACTOR *actor));
-    ZAP_FUNC(void, zap_stop_actor_v, (ZAP_ACTOR *actor));
-    ZAP_FUNC(void, zap_move_actor_right, (ZAP_ACTOR *actor));
-    ZAP_FUNC(void, zap_move_actor_left, (ZAP_ACTOR *actor));
-    ZAP_FUNC(void, zap_move_actor_up, (ZAP_ACTOR *actor));
-    ZAP_FUNC(void, zap_move_actor_down, (ZAP_ACTOR *actor));
-    ZAP_FUNC(void, zap_apply_actor_gravity, (ZAP_ACTOR *actor));
-    ZAP_FUNC(void, zap_actor_jump, (ZAP_ACTOR *actor));
+    ZAP_FUNC(void, z_move_actor, (ZAP_ACTOR *actor, int dir));
+    ZAP_FUNC(void, z_stop_actor_h, (ZAP_ACTOR *actor));
+    ZAP_FUNC(void, z_stop_actor_v, (ZAP_ACTOR *actor));
+    ZAP_FUNC(void, z_hard_stop_actor_h, (ZAP_ACTOR *actor));
+    ZAP_FUNC(void, z_move_actor_right, (ZAP_ACTOR *actor));
+    ZAP_FUNC(void, z_move_actor_left, (ZAP_ACTOR *actor));
+    ZAP_FUNC(void, z_move_actor_up, (ZAP_ACTOR *actor));
+    ZAP_FUNC(void, z_move_actor_down, (ZAP_ACTOR *actor));
+    ZAP_FUNC(void, z_apply_actor_gravity, (ZAP_ACTOR *actor));
+    ZAP_FUNC(void, z_actor_jump, (ZAP_ACTOR *actor));
 
-    ZAP_FUNC(void, zap_update_actor_movement, (ZAP_ACTOR *actor));
+    ZAP_FUNC(void, z_update_actor_movement, (ZAP_ACTOR *actor));
 
-    ZAP_FUNC(int, zap_get_actor_x, (ZAP_ACTOR *actor));
-    ZAP_FUNC(int, zap_get_actor_y, (ZAP_ACTOR *actor));
-    ZAP_FUNC(void, zap_set_actor_x, (ZAP_ACTOR *actor, int x));
-    ZAP_FUNC(void, zap_set_actor_y, (ZAP_ACTOR *actor, int y));
-    ZAP_FUNC(int, zap_get_actor_y_velocity, (ZAP_ACTOR *actor));
+    ZAP_FUNC(float, z_get_actor_x, (ZAP_ACTOR *actor));
+    ZAP_FUNC(float, z_get_actor_y, (ZAP_ACTOR *actor));
+    ZAP_FUNC(void, z_set_actor_x, (ZAP_ACTOR *actor, int x));
+    ZAP_FUNC(void, z_set_actor_y, (ZAP_ACTOR *actor, int y));
+    ZAP_FUNC(float, z_get_actor_y_velocity, (ZAP_ACTOR *actor));
+    ZAP_FUNC(float, z_get_actor_x_velocity, (ZAP_ACTOR *actor));
 
 
-    ZAP_FUNC(int, zap_get_actor_direction, (ZAP_ACTOR *actor));
-    ZAP_FUNC(void, zap_set_actor_direction, (ZAP_ACTOR *actor, int direction));
-    ZAP_FUNC(int, zap_get_actor_speed, (ZAP_ACTOR *actor));
-    ZAP_FUNC(void, zap_set_actor_speed, (ZAP_ACTOR *actor, int speed));
+    ZAP_FUNC(int, z_get_actor_direction, (ZAP_ACTOR *actor));
+    ZAP_FUNC(void, z_set_actor_direction, (ZAP_ACTOR *actor, int direction));
+
+    ZAP_FUNC(void, z_set_actor_acceleration, (ZAP_ACTOR *actor, float accel));
+    ZAP_FUNC(void, z_set_actor_deceleration, (ZAP_ACTOR *actor, float decel));
+
+    ZAP_FUNC(float, z_get_actor_speed, (ZAP_ACTOR *actor));
+    ZAP_FUNC(void, z_set_actor_speed, (ZAP_ACTOR *actor, float speed));
 
 
 
