@@ -132,13 +132,9 @@ void _update_actors()
             if (_actor_list[i]->active == true)
             {
                 if (z_is_point_in_view(_actor_list[i]->x, _actor_list[i]->y, _actor_list[i]->w, _actor_list[i]->h))
-                {
                     _actor_list[i]->in_view = true;
-                }
                 else
-                {
                     _actor_list[i]->in_view = false;
-                }
 
                 //Update built-in movements
                 switch (_actor_list[i]->movement_type)
