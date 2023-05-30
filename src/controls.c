@@ -23,22 +23,22 @@ int z_get_key(int key)
 {
     switch (key)
     {
-    case e_key_left:
+    case E_KEY_LEFT:
         return controls.key_left;
         break;
-    case e_key_right:
+    case E_KEY_RIGHT:
         return controls.key_right;
         break;
-    case e_key_down:
+    case E_KEY_DOWN:
         return controls.key_down;
         break;
-    case e_key_up:
+    case E_KEY_UP:
         return controls.key_up;
         break;
-    case e_key_fire:
+    case E_KEY_FIRE:
         return controls.key_fire;
         break;
-    case e_key_jump:
+    case E_KEY_JUMP:
         return controls.key_jump;
         break;
     }

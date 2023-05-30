@@ -9,7 +9,7 @@ static void destroy(ZAP_ACTOR *self);
 
 static void init(ZAP_ACTOR *self)
 {
-    z_set_actor_builtin_movement(self, e_movement_player_platform);
+    z_set_actor_builtin_movement(self, E_MOVEMENT_PLAYER_PLATFORM);
     zlog(INFO, "Demo Actor initialized with ID %d.", z_get_actor_id(self));
 }
 

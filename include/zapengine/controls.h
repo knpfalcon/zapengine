@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-    enum PLAYER_KEYS { e_key_fire, e_key_jump, e_key_left, e_key_right, e_key_up, e_key_down };
+    enum PLAYER_KEYS { E_KEY_FIRE, E_KEY_JUMP, E_KEY_LEFT, E_KEY_RIGHT, E_KEY_UP, E_KEY_DOWN };
 
     typedef struct ZAP_CONTROLS ZAP_CONTROLS;
 

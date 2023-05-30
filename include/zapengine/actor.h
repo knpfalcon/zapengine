@@ -18,8 +18,8 @@ extern "C" {
 
     typedef struct ZAP_ACTOR ZAP_ACTOR;
 
-    enum ACTOR_MOVEMENT_TYPE { e_movement_none, e_movement_player_platform };
-    enum ACTOR_STATE { e_state_stopped, e_state_walking, e_state_jumping, e_state_falling };
+    enum ACTOR_MOVEMENT_TYPE { E_MOVEMENT_NONE, E_MOVEMENT_PLAYER_PLATFORM };
+    enum ACTOR_STATE { E_ACTOR_STATE_STOPPED, E_ACTOR_STATE_WALKING, E_ACTOR_STATE_JUMPING, E_ACTOR_STATE_FALLING };
 
     typedef void (*ZAP_ACTOR_MODULE_CALLBACK)(int index);
 

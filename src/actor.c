@@ -143,7 +143,7 @@ void _update_actors()
                 //Update built-in movements
                 switch (_actor_list[i]->movement_type)
                 {
-                case e_movement_player_platform:
+                case E_MOVEMENT_PLAYER_PLATFORM:
                     _update_player_platform_movement(_actor_list[i]);
                     break;
                 }
@@ -225,7 +225,7 @@ ZAP_ACTOR *z_create_empty_actor(void)
     actor->deceleration = DECELERATION_DEFAULT;
     actor->w = 32;
     actor->h = 32;
-    actor->movement_type = e_movement_none;
+    actor->movement_type = E_MOVEMENT_NONE;
     z_set_actor_box(actor, 12, 12, 6, 0);
     if (actor) return actor;
     zlog(FAIL, "Couldn't create empty actor");
