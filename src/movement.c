@@ -194,7 +194,7 @@ void z_set_actor_speed(ZAP_ACTOR *actor, float speed)
 /*
 *
 *   Built-in movements ?
-*
+*   Each of these should probably go into their own modules eventually.
 */
 
 void _update_player_platform_movement(ZAP_ACTOR *actor)
