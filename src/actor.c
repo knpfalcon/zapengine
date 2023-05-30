@@ -202,6 +202,7 @@ void _destroy_actor_list()
         _destroy_actor(_actor_list[i]);
         _actor_list[i] = NULL;
     }
+
     zlog(INFO, "Actor List Destroyed");
     _destroy_sprites();
 }
@@ -293,6 +294,7 @@ void z_set_actor_animation_frames(ZAP_ACTOR *actor, int start_frame, int end_fra
     actor->current_frame = start_frame;
     zlog(INFO, "Actor %d animation frames set to START: %d, END: %d.", actor->id, actor->start_frame, actor->end_frame);
 }
+
 void z_animate_actor(ZAP_ACTOR *actor, int speed)
 {
 
@@ -304,7 +306,6 @@ void z_animate_actor(ZAP_ACTOR *actor, int speed)
             actor->current_frame = actor->start_frame;
     }
 }
-
 
 void z_set_actor_state(ZAP_ACTOR *actor, int state)
 {
