@@ -343,4 +343,5 @@ int z_get_actor_id(ZAP_ACTOR *actor)
 void z_set_actor_builtin_movement(ZAP_ACTOR *actor, int type)
 {
     actor->movement_type = type;
+    zlog(INFO, "Set Actor %d's movement to %d", actor->id, actor->movement_type);
 }
