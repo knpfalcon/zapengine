@@ -139,6 +139,15 @@ void _update_actors()
                 {
                     _actor_list[i]->in_view = false;
                 }
+
+                //Update built-in movements
+                switch (_actor_list[i]->movement_type)
+                {
+                case e_movement_player_platform:
+                    _update_player_platform_movement(_actor_list[i]);
+                    break;
+                }
+
                 _actor_list[i]->update(_actor_list[i]);
             }
         }
@@ -216,7 +225,7 @@ ZAP_ACTOR *z_create_empty_actor(void)
     actor->deceleration = DECELERATION_DEFAULT;
     actor->w = 32;
     actor->h = 32;
-    actor->platform_movement = true;
+    actor->movement_type = e_movement_none;
     z_set_actor_box(actor, 12, 12, 6, 0);
     if (actor) return actor;
     zlog(FAIL, "Couldn't create empty actor");
@@ -329,4 +338,9 @@ int z_get_actor_id(ZAP_ACTOR *actor)
 
     zlog(WARN, "Cannot get actor ID. Actor doesn't exist.");
     return -1;
+}
+
+void z_set_actor_builtin_movement(ZAP_ACTOR *actor, int type)
+{
+    actor->movement_type = type;
 }

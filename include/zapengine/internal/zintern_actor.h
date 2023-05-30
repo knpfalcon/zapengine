@@ -19,7 +19,7 @@ extern "C" {
 
         bool active;
         bool in_view;
-        bool platform_movement;
+        int movement_type;
 
         int type;
         int id;
@@ -70,6 +70,7 @@ extern "C" {
     void _zap_set_actor_list(ZAP_ACTOR **actor_list); //not needed. prune.
     void _draw_actors();
     void _update_actors();
+    void _update_player_platform_movement(ZAP_ACTOR *actor);
 
 #ifdef __cplusplus
 }

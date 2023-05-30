@@ -1,4 +1,6 @@
 #include "zapengine/internal/zintern_movement.h"
+#include "zapengine/internal/zintern_controls.h"
+#include "zapengine/internal/zintern_collision.h"
 
 static void _set_actor_points(ZAP_ACTOR *actor)
 {
@@ -16,7 +18,7 @@ void z_move_actor(ZAP_ACTOR *actor, int dir)
     switch (dir)
     {
     case DIR_RIGHT:
-        if (!actor->platform_movement) actor->vel_y = 0;
+        if (actor->movement_type != e_movement_player_platform) actor->vel_y = 0;
         actor->vel_x += actor->acceleration;
         if (actor->vel_x > actor->max_speed)
         {
@@ -28,7 +30,7 @@ void z_move_actor(ZAP_ACTOR *actor, int dir)
         actor->vel_y = actor->max_speed / DIAGONAL_MOVE;
         break;
     case DIR_DOWN:
-        if (!actor->platform_movement) actor->vel_x = 0;
+        if (actor->movement_type != e_movement_player_platform) actor->vel_x = 0;
         actor->vel_y = actor->max_speed;
         break;
     case DIR_DOWN_LEFT:
@@ -36,7 +38,7 @@ void z_move_actor(ZAP_ACTOR *actor, int dir)
         actor->vel_y = actor->max_speed / DIAGONAL_MOVE;
         break;
     case DIR_LEFT:
-        if (!actor->platform_movement) actor->vel_y = 0;
+        if (actor->movement_type != e_movement_player_platform) actor->vel_y = 0;
         actor->vel_x += -actor->acceleration;
         if (actor->vel_x < -actor->max_speed)
         {
@@ -48,7 +50,7 @@ void z_move_actor(ZAP_ACTOR *actor, int dir)
         actor->vel_y = -actor->max_speed / DIAGONAL_MOVE;
         break;
     case DIR_UP:
-        if (!actor->platform_movement) actor->vel_x = 0;
+        if (actor->movement_type != e_movement_player_platform) actor->vel_x = 0;
         actor->vel_y = -actor->max_speed;
         break;
     case DIR_UP_RIGHT:
@@ -84,25 +86,25 @@ void z_stop_actor_v(ZAP_ACTOR *actor)
 
 void z_move_actor_right(ZAP_ACTOR *actor)
 {
-    if (!actor->platform_movement) actor->vel_y = 0;
+    if (actor->movement_type != e_movement_player_platform) actor->vel_y = 0;
     actor->vel_x = actor->max_speed;
 }
 
 void z_move_actor_left(ZAP_ACTOR *actor)
 {
-    if (!actor->platform_movement) actor->vel_y = 0;
+    if (actor->movement_type != e_movement_player_platform) actor->vel_y = 0;
     actor->vel_x = -actor->max_speed;
 }
 
 void z_move_actor_up(ZAP_ACTOR *actor)
 {
-    if (!actor->platform_movement) actor->vel_x = 0;
+    if (actor->movement_type != e_movement_player_platform) actor->vel_x = 0;
     actor->vel_y = -actor->max_speed;
 }
 
 void z_move_actor_down(ZAP_ACTOR *actor)
 {
-    if (!actor->platform_movement) actor->vel_x = 0;
+    if (actor->movement_type != e_movement_player_platform) actor->vel_x = 0;
     actor->vel_y = actor->max_speed;
 }
 
@@ -194,3 +196,76 @@ void z_set_actor_speed(ZAP_ACTOR *actor, float speed)
 *   Built-in movements ?
 *
 */
+
+void _update_player_platform_movement(ZAP_ACTOR *actor)
+{
+    z_animate_actor(actor, 6);
+    z_update_actor_movement(actor);
+    z_apply_actor_gravity(actor);
+
+    //If actor is somehow inside ground pull it out before moving on.
+    while (z_get_actor_bottom(actor) > 200) z_set_actor_y(actor, z_get_actor_y(actor) - 1);
+    while (z_get_actor_top(actor) < 0) z_set_actor_y(actor, z_get_actor_y(actor) + 1);
+    while (z_get_actor_right(actor) > 320) z_set_actor_x(actor, z_get_actor_x(actor) - 1);
+    while (z_get_actor_left(actor) < 0) z_set_actor_x(actor, z_get_actor_x(actor) + 1);
+
+    //When keys are pressed or not pressed
+    if (z_get_actor_right(actor) < 320 && z_get_key_state(z_get_key(e_key_right)) && !z_get_key_state(z_get_key(e_key_left)))
+    {
+        z_set_actor_direction(actor, DIR_RIGHT);
+        z_move_actor(actor, DIR_RIGHT);
+        z_set_actor_state(actor, e_state_walking);
+    }
+    else if (z_get_actor_left(actor) > 1 && z_get_key_state(z_get_key(e_key_left)) && !z_get_key_state(z_get_key(e_key_right)))
+    {
+        z_set_actor_direction(actor, DIR_LEFT);
+        z_move_actor(actor, DIR_LEFT);
+        z_set_actor_state(actor, e_state_walking);
+    }
+    else if (!z_get_key_state(z_get_key(e_key_left)) || !z_get_key_state(z_get_key(e_key_right)))
+    {
+        z_stop_actor_h(actor);
+        if (z_get_actor_x_velocity(actor) == 0)
+            z_set_actor_state(actor, e_state_stopped);
+    }
+    else if (z_get_key_state(z_get_key(e_key_left)) && z_get_key_state(z_get_key(e_key_right)))
+    {
+        z_stop_actor_h(actor);
+        if (z_get_actor_x_velocity(actor) == 0)
+            z_set_actor_state(actor, e_state_stopped);
+    }
+
+    //Raise Acceleration and Decelerations rates if on ground
+    if (z_get_actor_bottom(actor) == 200)
+    {
+        z_set_actor_acceleration(actor, z_get_actor_speed(actor) * 0.2);
+        z_set_actor_deceleration(actor, z_get_actor_speed(actor) * 0.2);
+        z_stop_actor_v(actor);
+    }
+
+    //On ground level and presses jump key
+    if (z_get_actor_bottom(actor) == 200 && z_get_key_state(z_get_key(e_key_jump)))
+    {
+        z_set_actor_acceleration(actor, ACCELERATION_DEFAULT);
+        z_set_actor_deceleration(actor, DECELERATION_DEFAULT);
+        z_actor_jump(actor);
+    }
+
+    //Set states based on certain conditions
+    if (z_get_actor_y_velocity(actor) >= 0 && z_get_actor_bottom(actor) < 200)
+        z_set_actor_state(actor, e_state_falling);
+    else if (z_get_actor_y_velocity(actor) < 0)
+        z_set_actor_state(actor, e_state_jumping);
+    else if (z_get_actor_y_velocity(actor) == 0 && z_get_actor_state(actor) != e_state_walking && z_get_actor_bottom(actor) == 200)
+        z_set_actor_state(actor, e_state_stopped);
+
+    //Set animation frames based on state
+    if (z_get_actor_state(actor) == e_state_walking)
+        z_set_actor_animation_frames(actor, 1, 4);
+    else if (z_get_actor_state(actor) == e_state_falling)
+        z_set_actor_animation_frames(actor, 6, 6);
+    else if (z_get_actor_state(actor) == e_state_jumping)
+        z_set_actor_animation_frames(actor, 5, 5);
+    else if (z_get_actor_state(actor) == e_state_stopped)
+        z_set_actor_animation_frames(actor, 0, 0);
+}

@@ -18,6 +18,7 @@ extern "C" {
 
     typedef struct ZAP_ACTOR ZAP_ACTOR;
 
+    enum ACTOR_MOVEMENT_TYPE { e_movement_none, e_movement_player_platform };
     enum ACTOR_STATE { e_state_stopped, e_state_walking, e_state_jumping, e_state_falling };
 
     typedef void (*ZAP_ACTOR_MODULE_CALLBACK)(int index);
@@ -46,6 +47,8 @@ extern "C" {
 
     ZAP_FUNC(ZAP_ACTOR *, z_get_actor, (int id));
     ZAP_FUNC(int, z_get_actor_id, (ZAP_ACTOR *actor));
+
+    ZAP_FUNC(void, z_set_actor_builtin_movement, (ZAP_ACTOR *actor, int type));
 
 
 #ifdef __cplusplus
