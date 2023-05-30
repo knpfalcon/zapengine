@@ -6,6 +6,7 @@ static void init(ZAP_ACTOR *self);
 static void update(ZAP_ACTOR *self);
 static void draw(ZAP_ACTOR *self);
 static void destroy(ZAP_ACTOR *self);
+static void update_movement(ZAP_ACTOR *self);
 
 static void init(ZAP_ACTOR *self)
 {
@@ -13,6 +14,22 @@ static void init(ZAP_ACTOR *self)
 }
 
 static void update(ZAP_ACTOR *self)
+{
+    update_movement(self);
+}
+
+
+static void draw(ZAP_ACTOR *self)
+{
+
+}
+
+static void destroy(ZAP_ACTOR *self)
+{
+
+}
+
+static void update_movement(ZAP_ACTOR *self)
 {
     z_update_actor_movement(self);
     z_animate_actor(self, 6);
@@ -93,20 +110,7 @@ static void update(ZAP_ACTOR *self)
     {
         z_set_actor_animation_frames(self, 0, 0);
     }
-
 }
-
-
-static void draw(ZAP_ACTOR *self)
-{
-
-}
-
-static void destroy(ZAP_ACTOR *self)
-{
-
-}
-
 
 ZAP_ACTOR *demo_actor(void)
 {

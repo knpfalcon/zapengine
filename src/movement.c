@@ -187,8 +187,10 @@ void z_set_actor_speed(ZAP_ACTOR *actor, float speed)
 {
     actor->max_speed = speed;
 }
-/* Functions / Getters / Setters that need to be implemented:
+
+
+/*
 *
-*
+*   Built-in movements ?
 *
 */
