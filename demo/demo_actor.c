@@ -18,13 +18,13 @@ static void update(ZAP_ACTOR *self)
 {
     //Set animation frames based on state
     if (z_get_actor_state(self) == E_ACTOR_STATE_WALKING)
-        z_set_actor_animation_frames(self, ACTOR_001_TALLY_ANIMATION_WALK);
+        z_set_actor_animation_frames(self, ACTOR_TALLY_ANIM_WALK);
     else if (z_get_actor_state(self) == E_ACTOR_STATE_FALLING)
-        z_set_actor_animation_frames(self, ACTOR_001_TALLY_ANIMATION_FALL);
+        z_set_actor_animation_frames(self, ACTOR_TALLY_ANIM_FALL);
     else if (z_get_actor_state(self) == E_ACTOR_STATE_JUMPING)
-        z_set_actor_animation_frames(self, ACTOR_001_TALLY_ANIMATION_JUMP);
+        z_set_actor_animation_frames(self, ACTOR_TALLY_ANIM_JUMP);
     else if (z_get_actor_state(self) == E_ACTOR_STATE_STOPPED)
-        z_set_actor_animation_frames(self, ACTOR_001_TALLY_ANIMATION_STOP);
+        z_set_actor_animation_frames(self, ACTOR_TALLY_ANIM_STOP);
 }
 
 static void draw(ZAP_ACTOR *self)
@@ -37,7 +37,7 @@ static void destroy(ZAP_ACTOR *self)
 
 }
 
-ZAP_ACTOR *CREATE_ACTOR_000_TALLY(void)
+ZAP_ACTOR *CREATE_ACTOR_TALLY(void)
 {
     zlog(NONE, "Creating Demo Actor.");
     ZAP_ACTOR *actor = z_create_empty_actor();

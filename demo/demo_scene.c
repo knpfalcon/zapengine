@@ -14,9 +14,9 @@ static void on_key_up(int keycode);
 
 static void init(void)
 {
-    z_load_actor_sprite(ACTOR_000_TALLY_FILE, 32, 32, ACTOR_000_TALLY);
-    z_load_actor_sprite(ACTOR_001_CREATURES_FILE, 32, 32, ACTOR_001_CREATURES);
-    z_add_actor(32, 32, DIR_RIGHT, CREATE_ACTOR_000_TALLY());
+    z_load_actor_sprite(ACTOR_TALLY_FILE, 32, 32, ACTOR_TALLY);
+    z_load_actor_sprite(ACTOR_CREATURES_FILE, 32, 32, ACTOR_CREATURES);
+    z_add_actor(32, 32, DIR_RIGHT, CREATE_ACTOR_TALLY());
 
     zlog(INFO, "%s initialized!", scene_name);
 

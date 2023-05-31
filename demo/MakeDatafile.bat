@@ -9,10 +9,6 @@ for /R "assets/ACTOR" %%f in (*.png) do (
     echo f | xcopy %%~f "data/ACTOR/%%~nxf" /E /y
 )
 
-for /R "assets/ACTOR" %%f in (*.def) do (
-    echo f | xcopy %%~f "data/ACTOR/%%~nxf" /E /y
-)
-
 for /R "assets/MUSIC" %%f in (*.mid) do (
     echo f | xcopy %%~f "data/MUSIC/%%~nxf" /E /y
 )
