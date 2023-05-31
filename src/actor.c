@@ -7,6 +7,7 @@
 #include "zapengine/internal/zintern_actor.h"
 #include "zapengine/internal/zintern_sprite.h"
 #include "zapengine/internal/zintern_controls.h"
+#include "zapengine/internal/zintern_movement.h"
 
 static ZAP_ACTOR_MODULE_CALLBACK actor_module_list[MAX_ACTOR_TYPES];
 
@@ -140,7 +141,9 @@ void _update_actors()
                 switch (_actor_list[i]->movement_type)
                 {
                 case E_MOVEMENT_PLAYER_PLATFORM:
+
                     _update_player_platform_movement(_actor_list[i]);
+
                     break;
                 }
 
@@ -163,11 +166,12 @@ void _draw_actors()
 
                 _actor_list[i]->draw(_actor_list[i]);
                 if (_actor_list[i]->dir == DIR_RIGHT)
-                    al_draw_bitmap(_actor_list[i]->sprite->frames[_actor_list[i]->current_frame], (int)_actor_list[i]->x, (int)_actor_list[i]->y, 0);
+                    al_draw_bitmap(_actor_list[i]->sprite->frames[_actor_list[i]->current_frame], z_get_actor_x(_actor_list[i]), z_get_actor_y(_actor_list[i]), 0);
                 else
-                    al_draw_bitmap(_actor_list[i]->sprite->frames[_actor_list[i]->current_frame], (int)_actor_list[i]->x, (int)_actor_list[i]->y, ALLEGRO_FLIP_HORIZONTAL);
+                    al_draw_bitmap(_actor_list[i]->sprite->frames[_actor_list[i]->current_frame], z_get_actor_x(_actor_list[i]), z_get_actor_y(_actor_list[i]), ALLEGRO_FLIP_HORIZONTAL);
 
                 al_draw_rectangle(_actor_list[i]->left, _actor_list[i]->top, _actor_list[i]->right, _actor_list[i]->bottom, al_map_rgb(255, 0, 0), 1);
+
 
             }
         }
@@ -316,6 +320,16 @@ void z_set_actor_state(ZAP_ACTOR *actor, int state)
 int z_get_actor_state(ZAP_ACTOR *actor)
 {
     return actor->state;
+}
+
+int z_get_actor_w(ZAP_ACTOR *actor)
+{
+    return actor->w;
+}
+
+int z_get_actor_h(ZAP_ACTOR *actor)
+{
+    return actor->h;
 }
 
 ZAP_ACTOR *z_get_actor(int id)

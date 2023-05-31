@@ -44,6 +44,8 @@ extern "C" {
     ZAP_FUNC(void, z_animate_actor, (ZAP_ACTOR *actor, int speed));
     ZAP_FUNC(void, z_set_actor_state, (ZAP_ACTOR *actor, int state));
     ZAP_FUNC(int, z_get_actor_state, (ZAP_ACTOR *actor));
+    ZAP_FUNC(int, z_get_actor_w, (ZAP_ACTOR *actor));
+    ZAP_FUNC(int, z_get_actor_h, (ZAP_ACTOR *actor));
 
     ZAP_FUNC(ZAP_ACTOR *, z_get_actor, (int id));
     ZAP_FUNC(int, z_get_actor_id, (ZAP_ACTOR *actor));

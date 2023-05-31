@@ -4,15 +4,15 @@
 #include "zapengine/internal/zintern_controls.h"
 #include "zapengine/internal/zintern_collision.h"
 
-static void _set_actor_points(ZAP_ACTOR *actor)
+void _set_actor_points(ZAP_ACTOR *actor)
 {
-    actor->left = (int)actor->x + actor->bbl;
-    actor->right = (int)actor->x + actor->w - actor->bbr;
-    actor->bottom = (int)actor->y + actor->h - actor->bbb;
-    actor->top = (int)actor->y + actor->bbt;
+    actor->left = z_get_actor_x(actor) + actor->bbl;
+    actor->right = z_get_actor_x(actor) + z_get_actor_w(actor) - actor->bbr;
+    actor->bottom = z_get_actor_y(actor) + z_get_actor_h(actor) - actor->bbb;
+    actor->top = z_get_actor_y(actor) + actor->bbt;
 
-    actor->x_center = (int)(actor->w / 2) + actor->x;
-    actor->y_center = (int)(actor->h / 2) + actor->y;
+    actor->x_center = (z_get_actor_w(actor) >> 1) + z_get_actor_x(actor);
+    actor->y_center = (z_get_actor_h(actor) >> 1) + z_get_actor_y(actor);
 
 }
 
@@ -134,12 +134,12 @@ void z_update_actor_movement(ZAP_ACTOR *actor)
 
 float z_get_actor_x(ZAP_ACTOR *actor)
 {
-    return actor->x;
+    return lroundf(actor->x);
 }
 
 float z_get_actor_y(ZAP_ACTOR *actor)
 {
-    return actor->y;
+    return lroundf(actor->y);
 }
 
 void z_set_actor_x(ZAP_ACTOR *actor, float x)
@@ -227,12 +227,12 @@ void _update_player_platform_movement(ZAP_ACTOR *actor)
         z_set_actor_y(actor, z_get_actor_y(actor) + 1);
         z_stop_actor_v(actor);
     }
-    while (z_get_actor_right(actor) >= 320)
+    while (z_get_actor_right(actor) > 319)
     {
         z_set_actor_x(actor, z_get_actor_x(actor) - 1);
         z_hard_stop_actor_h(actor);
     }
-    while (z_get_actor_left(actor) <= 0)
+    while (z_get_actor_left(actor) < 0)
     {
         z_set_actor_x(actor, z_get_actor_x(actor) + 1);
         z_hard_stop_actor_h(actor);
