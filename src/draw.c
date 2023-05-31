@@ -7,6 +7,7 @@
 #include "zapengine/internal/zintern_actor.h"
 #include "zapengine/internal/zintern_version.h"
 #include "zapengine/internal/zintern_movement.h"
+#include "zapengine/internal/zintern_collision.h"
 
 void _draw_screen(void)
 {
@@ -28,6 +29,11 @@ void _draw_screen(void)
     al_draw_textf(game.sys_font, al_map_rgb(50, 50, 50), 0, 8, 0, "Y %f", z_get_actor_y(z_get_actor(0)));
     al_draw_textf(game.sys_font, al_map_rgb(50, 50, 50), 0, 16, 0, "VELX %f", z_get_actor_x_velocity(z_get_actor(0)));
     al_draw_textf(game.sys_font, al_map_rgb(50, 50, 50), 0, 24, 0, "VELY %f", z_get_actor_y_velocity(z_get_actor(0)));
+    al_draw_textf(game.sys_font, al_map_rgb(50, 50, 50), 0, 32, 0, "TOP %d", z_get_actor_top(z_get_actor(0)));
+    al_draw_textf(game.sys_font, al_map_rgb(50, 50, 50), 0, 40, 0, "BOTTOM %d", z_get_actor_bottom(z_get_actor(0)));
+    al_draw_textf(game.sys_font, al_map_rgb(50, 50, 50), 0, 48, 0, "LEFT %d", z_get_actor_left(z_get_actor(0)));
+    al_draw_textf(game.sys_font, al_map_rgb(50, 50, 50), 0, 56, 0, "RIGHT %d", z_get_actor_right(z_get_actor(0)));
+
     ////////////////////////////////////////////////////////
 
     al_set_target_backbuffer(game.display);

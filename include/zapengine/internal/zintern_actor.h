@@ -29,7 +29,7 @@ extern "C" {
         int w;
         int h;
 
-        float dir;
+        int dir;
         float x;
         float y;
         float max_speed;
@@ -41,15 +41,15 @@ extern "C" {
         float acceleration;
         float deceleration;
 
-        float bbr, bbl, bbt, bbb;
+        int bbr, bbl, bbt, bbb;
 
-        float right;
-        float left;
-        float top;
-        float bottom;
+        int right;
+        int left;
+        int top;
+        int bottom;
 
-        float x_center;
-        float y_center;
+        int x_center;
+        int y_center;
 
         int health;
 

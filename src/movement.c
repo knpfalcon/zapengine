@@ -1,17 +1,18 @@
 #include <stdlib.h>
+#include <math.h>
 #include "zapengine/internal/zintern_movement.h"
 #include "zapengine/internal/zintern_controls.h"
 #include "zapengine/internal/zintern_collision.h"
 
 static void _set_actor_points(ZAP_ACTOR *actor)
 {
-    actor->left = actor->x + actor->bbl;
-    actor->right = actor->x + actor->w - actor->bbr;
-    actor->bottom = actor->y + actor->h - actor->bbb;
-    actor->top = actor->y + actor->bbt;
+    actor->left = (int)actor->x + actor->bbl;
+    actor->right = (int)actor->x + actor->w - actor->bbr;
+    actor->bottom = (int)actor->y + actor->h - actor->bbb;
+    actor->top = (int)actor->y + actor->bbt;
 
-    actor->x_center = (actor->w / 2) + actor->x;
-    actor->y_center = (actor->h / 2) + actor->y;
+    actor->x_center = (int)(actor->w / 2) + actor->x;
+    actor->y_center = (int)(actor->h / 2) + actor->y;
 
 }
 
@@ -241,13 +242,13 @@ void _update_player_platform_movement(ZAP_ACTOR *actor)
     if (z_get_key_state(z_get_key(E_KEY_RIGHT)) && !z_get_key_state(z_get_key(E_KEY_LEFT)))
     {
         z_set_actor_direction(actor, DIR_RIGHT);
-        if (actor->right < 319) z_move_actor(actor, DIR_RIGHT);
+        z_move_actor(actor, DIR_RIGHT);
         z_set_actor_state(actor, E_ACTOR_STATE_WALKING);
     }
     else if (z_get_key_state(z_get_key(E_KEY_LEFT)) && !z_get_key_state(z_get_key(E_KEY_RIGHT)))
     {
         z_set_actor_direction(actor, DIR_LEFT);
-        if (actor->left > 1) z_move_actor(actor, DIR_LEFT);
+        z_move_actor(actor, DIR_LEFT);
         z_set_actor_state(actor, E_ACTOR_STATE_WALKING);
     }
     else if (!z_get_key_state(z_get_key(E_KEY_LEFT)) || !z_get_key_state(z_get_key(E_KEY_RIGHT)))
