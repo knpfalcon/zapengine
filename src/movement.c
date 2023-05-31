@@ -259,13 +259,5 @@ void _update_player_platform_movement(ZAP_ACTOR *actor)
     else if (z_get_actor_y_velocity(actor) == 0 && z_get_actor_state(actor) != E_ACTOR_STATE_WALKING && z_get_actor_bottom(actor) == 200)
         z_set_actor_state(actor, E_ACTOR_STATE_STOPPED);
 
-    //Set animation frames based on state
-    if (z_get_actor_state(actor) == E_ACTOR_STATE_WALKING)
-        z_set_actor_animation_frames(actor, 1, 4);
-    else if (z_get_actor_state(actor) == E_ACTOR_STATE_FALLING)
-        z_set_actor_animation_frames(actor, 6, 6);
-    else if (z_get_actor_state(actor) == E_ACTOR_STATE_JUMPING)
-        z_set_actor_animation_frames(actor, 5, 5);
-    else if (z_get_actor_state(actor) == E_ACTOR_STATE_STOPPED)
-        z_set_actor_animation_frames(actor, 0, 0);
+
 }

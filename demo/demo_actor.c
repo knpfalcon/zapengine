@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <time.h>
-#include "demo_actor.h"
+#include <zapengine/zapengine.h>
+#include "data.h"
 
 static void init(ZAP_ACTOR *self);
 static void update(ZAP_ACTOR *self);
@@ -15,7 +16,15 @@ static void init(ZAP_ACTOR *self)
 
 static void update(ZAP_ACTOR *self)
 {
-
+    //Set animation frames based on state
+    if (z_get_actor_state(self) == E_ACTOR_STATE_WALKING)
+        z_set_actor_animation_frames(self, ACTOR_001_TALLY_ANIMATION_WALK);
+    else if (z_get_actor_state(self) == E_ACTOR_STATE_FALLING)
+        z_set_actor_animation_frames(self, ACTOR_001_TALLY_ANIMATION_FALL);
+    else if (z_get_actor_state(self) == E_ACTOR_STATE_JUMPING)
+        z_set_actor_animation_frames(self, ACTOR_001_TALLY_ANIMATION_JUMP);
+    else if (z_get_actor_state(self) == E_ACTOR_STATE_STOPPED)
+        z_set_actor_animation_frames(self, ACTOR_001_TALLY_ANIMATION_STOP);
 }
 
 static void draw(ZAP_ACTOR *self)
@@ -28,7 +37,7 @@ static void destroy(ZAP_ACTOR *self)
 
 }
 
-ZAP_ACTOR *demo_actor(void)
+ZAP_ACTOR *CREATE_ACTOR_000_TALLY(void)
 {
     zlog(NONE, "Creating Demo Actor.");
     ZAP_ACTOR *actor = z_create_empty_actor();

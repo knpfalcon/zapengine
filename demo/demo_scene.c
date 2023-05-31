@@ -1,8 +1,6 @@
 #include <stdlib.h>
 #include <time.h>
-
 #include "demo_scene.h"
-#include "demo_actor.h"
 #include "data.h"
 
 static char *scene_name = "Demo Scene";
@@ -16,9 +14,9 @@ static void on_key_up(int keycode);
 
 static void init(void)
 {
-    z_load_actor_sprite("GRAPHICS/SPR_TALLY", 32, 32, 0);
-    z_load_actor_sprite("GRAPHICS/SPR_CREATURES", 32, 32, 1);
-    z_add_actor(32, 32, DIR_RIGHT, demo_actor());
+    z_load_actor_sprite(ACTOR_000_TALLY_FILE, 32, 32, ACTOR_000_TALLY);
+    z_load_actor_sprite(ACTOR_001_CREATURES_FILE, 32, 32, ACTOR_001_CREATURES);
+    z_add_actor(32, 32, DIR_RIGHT, CREATE_ACTOR_000_TALLY());
 
     zlog(INFO, "%s initialized!", scene_name);
 
@@ -27,9 +25,7 @@ static void init(void)
 
 static void update(void)
 {
-    if (z_get_key_state(28)) z_set_actor_animation_frames(z_get_actor(0), 1, 4);
-    else if (z_get_key_state(29)) z_set_actor_animation_frames(z_get_actor(0), 5, 7);
-    else if (z_get_key_state(30)) z_set_actor_animation_frames(z_get_actor(0), 8, 9);
+
 }
 
 static void draw(void)
