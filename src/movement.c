@@ -241,13 +241,13 @@ void _update_player_platform_movement(ZAP_ACTOR *actor)
     if (z_get_key_state(z_get_key(E_KEY_RIGHT)) && !z_get_key_state(z_get_key(E_KEY_LEFT)))
     {
         z_set_actor_direction(actor, DIR_RIGHT);
-        z_move_actor(actor, DIR_RIGHT);
+        if (actor->right < 319) z_move_actor(actor, DIR_RIGHT);
         z_set_actor_state(actor, E_ACTOR_STATE_WALKING);
     }
     else if (z_get_key_state(z_get_key(E_KEY_LEFT)) && !z_get_key_state(z_get_key(E_KEY_RIGHT)))
     {
         z_set_actor_direction(actor, DIR_LEFT);
-        z_move_actor(actor, DIR_LEFT);
+        if (actor->left > 1) z_move_actor(actor, DIR_LEFT);
         z_set_actor_state(actor, E_ACTOR_STATE_WALKING);
     }
     else if (!z_get_key_state(z_get_key(E_KEY_LEFT)) || !z_get_key_state(z_get_key(E_KEY_RIGHT)))
@@ -286,6 +286,5 @@ void _update_player_platform_movement(ZAP_ACTOR *actor)
         z_set_actor_state(actor, E_ACTOR_STATE_JUMPING);
     else if (z_get_actor_y_velocity(actor) == 0 && z_get_actor_state(actor) != E_ACTOR_STATE_WALKING && z_get_actor_bottom(actor) == 200)
         z_set_actor_state(actor, E_ACTOR_STATE_STOPPED);
-
 
 }

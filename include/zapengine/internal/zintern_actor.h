@@ -26,8 +26,8 @@ extern "C" {
 
         int state;
 
-        float w;
-        float h;
+        int w;
+        int h;
 
         float dir;
         float x;
