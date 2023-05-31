@@ -12,24 +12,24 @@ bool z_is_touching(ZAP_ACTOR *actor1, ZAP_ACTOR *actor2)
     return true;
 }
 
-int z_get_actor_left(ZAP_ACTOR *actor)
+float z_get_actor_left(ZAP_ACTOR *actor)
 {
     return actor->left;
 }
-int z_get_actor_right(ZAP_ACTOR *actor)
+float z_get_actor_right(ZAP_ACTOR *actor)
 {
     return actor->right;
 }
-int z_get_actor_top(ZAP_ACTOR *actor)
+float z_get_actor_top(ZAP_ACTOR *actor)
 {
     return actor->top;
 }
-int z_get_actor_bottom(ZAP_ACTOR *actor)
+float z_get_actor_bottom(ZAP_ACTOR *actor)
 {
     return actor->bottom;
 }
 
-void z_set_actor_box(ZAP_ACTOR *actor, int left, int right, int top, int bottom)
+void z_set_actor_box(ZAP_ACTOR *actor, float left, float right, float top, float bottom)
 {
     actor->bbl = left;
     actor->bbr = right;
@@ -37,12 +37,12 @@ void z_set_actor_box(ZAP_ACTOR *actor, int left, int right, int top, int bottom)
     actor->bbb = bottom;
 }
 
-int z_get_actor_center_x(ZAP_ACTOR *actor)
+float z_get_actor_center_x(ZAP_ACTOR *actor)
 {
     return actor->x_center;
 }
 
-int z_get_actor_center_y(ZAP_ACTOR *actor)
+float z_get_actor_center_y(ZAP_ACTOR *actor)
 {
     return actor->y_center;
 }

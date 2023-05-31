@@ -41,10 +41,12 @@ extern "C" {
 
     ZAP_FUNC(float, z_get_actor_x, (ZAP_ACTOR *actor));
     ZAP_FUNC(float, z_get_actor_y, (ZAP_ACTOR *actor));
-    ZAP_FUNC(void, z_set_actor_x, (ZAP_ACTOR *actor, int x));
-    ZAP_FUNC(void, z_set_actor_y, (ZAP_ACTOR *actor, int y));
+    ZAP_FUNC(void, z_set_actor_x, (ZAP_ACTOR *actor, float x));
+    ZAP_FUNC(void, z_set_actor_y, (ZAP_ACTOR *actor, float y));
     ZAP_FUNC(float, z_get_actor_y_velocity, (ZAP_ACTOR *actor));
+    ZAP_FUNC(void, z_set_actor_y_velocity, (ZAP_ACTOR *actor, float vely));
     ZAP_FUNC(float, z_get_actor_x_velocity, (ZAP_ACTOR *actor));
+    ZAP_FUNC(void, z_set_actor_x_velocity, (ZAP_ACTOR *actor, float velx));
 
 
     ZAP_FUNC(int, z_get_actor_direction, (ZAP_ACTOR *actor));

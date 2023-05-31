@@ -160,14 +160,19 @@ void _draw_actors()
         {
             if (_actor_list[i]->active == true) //&& _actor_list[i]->in_view == true
             {
+
                 _actor_list[i]->draw(_actor_list[i]);
                 if (_actor_list[i]->dir == DIR_RIGHT)
                     al_draw_bitmap(_actor_list[i]->sprite->frames[_actor_list[i]->current_frame], (int)_actor_list[i]->x, (int)_actor_list[i]->y, 0);
                 else
                     al_draw_bitmap(_actor_list[i]->sprite->frames[_actor_list[i]->current_frame], (int)_actor_list[i]->x, (int)_actor_list[i]->y, ALLEGRO_FLIP_HORIZONTAL);
-            #ifdef DEBUG
-                al_draw_rectangle(_actor_list[i]->left, _actor_list[i]->top, _actor_list[i]->right, _actor_list[i]->bottom, al_map_rgb(255, 0, 0), 1);
-            #endif
+
+                al_draw_pixel(_actor_list[i]->left, _actor_list[i]->top, al_map_rgb(255, 0, 0));
+                al_draw_pixel(_actor_list[i]->left, _actor_list[i]->bottom, al_map_rgb(255, 0, 0));
+                al_draw_pixel(_actor_list[i]->right, _actor_list[i]->top, al_map_rgb(255, 0, 0));
+                al_draw_pixel(_actor_list[i]->right, _actor_list[i]->bottom, al_map_rgb(255, 0, 0));
+                al_draw_pixel(_actor_list[i]->right, _actor_list[i]->y_center, al_map_rgb(255, 0, 0));
+                al_draw_pixel(_actor_list[i]->left, _actor_list[i]->y_center, al_map_rgb(255, 0, 0));
             }
         }
         else

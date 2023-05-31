@@ -28,7 +28,7 @@ extern "C" {
     ZAP_FUNC(void, z_register_actor_module, (ZAP_ACTOR_MODULE_CALLBACK actor_module_update_function));
 
     //Probaly don't need this one after tests
-    ZAP_FUNC(ZAP_ACTOR *, z_create_actor, (char *name, int vel_x, int vel_y, int max_vel_y, int gravity, int jump_strength, int w, int h, int type, void (*update_func)(void *self)));
+    ZAP_FUNC(ZAP_ACTOR *, z_create_actor, (char *name, float vel_x, int vel_y, int max_vel_y, int gravity, int jump_strength, int w, int h, int type, void (*update_func)(void *self)));
 
     ZAP_FUNC(ZAP_ACTOR *, z_create_empty_actor, (void));
     ZAP_FUNC(void, z_set_actor_init_func, (ZAP_ACTOR *actor, void(*init)(ZAP_ACTOR *self)));

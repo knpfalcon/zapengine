@@ -1,6 +1,6 @@
 CC = gcc
-CFLAGS = -O3 -Wall -g -static -DZLOG_ON
-DEMOCFLAGS = -O3 -Wall -g -DZLOG_ON
+CFLAGS = -O3 -Wall -g -static -DZLOG_ON -DDEBUG
+DEMOCFLAGS = -O3 -Wall -g -DZLOG_ON -DDEBUG
 LIBDIR =
 
 LIBS = -lallegro_monolith-static -ldsound -lpng16 -lzlibstatic \
@@ -17,7 +17,7 @@ SRCDIR = src
 INCLUDEDIR = include/zapengine
 ODIR = $(BUILDDIR)/obj
 
-CFLAGS_DLL = -Wall -O3 -g -static -Wl,--subsystem,windows,--out-implib,$(LIBDIR)/libzapengine.a -DZLOG_ON
+CFLAGS_DLL = -Wall -O3 -g -static -Wl,--subsystem,windows,--out-implib,$(LIBDIR)/libzapengine.a -DZLOG_ON -DDEBUG
 
 #Source files.
 _SRC = \

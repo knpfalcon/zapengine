@@ -46,7 +46,7 @@ ZAP_ACTOR *CREATE_ACTOR_TALLY(void)
     z_set_actor_update_func(actor, update);
     z_set_actor_draw_func(actor, draw);
     z_set_actor_destroy_func(actor, destroy);
-    z_set_actor_type(actor, 0);
+    z_set_actor_type(actor, ACTOR_TALLY);
     z_set_actor_sprite(actor, z_get_actor_sprite(z_get_actor_type(actor)));
 
     zlog(INFO, "Demo Actor Created.");

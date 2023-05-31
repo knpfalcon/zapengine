@@ -1,16 +1,18 @@
+#include <stdlib.h>
 #include "zapengine/internal/zintern_movement.h"
 #include "zapengine/internal/zintern_controls.h"
 #include "zapengine/internal/zintern_collision.h"
 
 static void _set_actor_points(ZAP_ACTOR *actor)
 {
-    actor->x_center = (actor->w / 2) + actor->x;
-    actor->y_center = (actor->h / 2) + actor->y;
-
     actor->left = actor->x + actor->bbl;
     actor->right = actor->x + actor->w - actor->bbr;
     actor->bottom = actor->y + actor->h - actor->bbb;
     actor->top = actor->y + actor->bbt;
+
+    actor->x_center = (actor->w / 2) + actor->x;
+    actor->y_center = (actor->h / 2) + actor->y;
+
 }
 
 void z_move_actor(ZAP_ACTOR *actor, int dir)
@@ -139,13 +141,13 @@ float z_get_actor_y(ZAP_ACTOR *actor)
     return actor->y;
 }
 
-void z_set_actor_x(ZAP_ACTOR *actor, int x)
+void z_set_actor_x(ZAP_ACTOR *actor, float x)
 {
     actor->x = x;
     _set_actor_points(actor);
 }
 
-void z_set_actor_y(ZAP_ACTOR *actor, int y)
+void z_set_actor_y(ZAP_ACTOR *actor, float y)
 {
     actor->y = y;
     _set_actor_points(actor);
@@ -155,10 +157,20 @@ float z_get_actor_y_velocity(ZAP_ACTOR *actor)
 {
     return actor->vel_y;
 }
+void  z_set_actor_y_velocity(ZAP_ACTOR *actor, float vely)
+{
+    actor->vel_y = vely;
+}
 
 float z_get_actor_x_velocity(ZAP_ACTOR *actor)
 {
     return actor->vel_x;
+}
+
+
+void z_set_actor_x_velocity(ZAP_ACTOR *actor, float velx)
+{
+    actor->vel_x = velx;
 }
 
 int z_get_actor_direction(ZAP_ACTOR *actor)
@@ -204,19 +216,35 @@ void _update_player_platform_movement(ZAP_ACTOR *actor)
     z_apply_actor_gravity(actor);
 
     //If actor is somehow inside ground pull it out before moving on.
-    while (z_get_actor_bottom(actor) > 200) z_set_actor_y(actor, z_get_actor_y(actor) - 1);
-    while (z_get_actor_top(actor) < 0) z_set_actor_y(actor, z_get_actor_y(actor) + 1);
-    while (z_get_actor_right(actor) > 320) z_set_actor_x(actor, z_get_actor_x(actor) - 1);
-    while (z_get_actor_left(actor) < 0) z_set_actor_x(actor, z_get_actor_x(actor) + 1);
+    while (z_get_actor_bottom(actor) > 200)
+    {
+        z_set_actor_y(actor, z_get_actor_y(actor) - 1);
+        z_stop_actor_v(actor);
+    }
+    while (z_get_actor_top(actor) < 0)
+    {
+        z_set_actor_y(actor, z_get_actor_y(actor) + 1);
+        z_stop_actor_v(actor);
+    }
+    while (z_get_actor_right(actor) >= 320)
+    {
+        z_set_actor_x(actor, z_get_actor_x(actor) - 1);
+        z_hard_stop_actor_h(actor);
+    }
+    while (z_get_actor_left(actor) <= 0)
+    {
+        z_set_actor_x(actor, z_get_actor_x(actor) + 1);
+        z_hard_stop_actor_h(actor);
+    }
 
     //When keys are pressed or not pressed
-    if (z_get_actor_right(actor) < 320 && z_get_key_state(z_get_key(E_KEY_RIGHT)) && !z_get_key_state(z_get_key(E_KEY_LEFT)))
+    if (z_get_key_state(z_get_key(E_KEY_RIGHT)) && !z_get_key_state(z_get_key(E_KEY_LEFT)))
     {
         z_set_actor_direction(actor, DIR_RIGHT);
         z_move_actor(actor, DIR_RIGHT);
         z_set_actor_state(actor, E_ACTOR_STATE_WALKING);
     }
-    else if (z_get_actor_left(actor) > 1 && z_get_key_state(z_get_key(E_KEY_LEFT)) && !z_get_key_state(z_get_key(E_KEY_RIGHT)))
+    else if (z_get_key_state(z_get_key(E_KEY_LEFT)) && !z_get_key_state(z_get_key(E_KEY_RIGHT)))
     {
         z_set_actor_direction(actor, DIR_LEFT);
         z_move_actor(actor, DIR_LEFT);
